@@ -1,0 +1,1 @@
+{"name":"ChessBot.Chess.PlayModeTests","references":["ChessBot.Chess.Core","ChessBot.Chess.Application","ChessBot.Chess.Presentation","ChessBot.Bootstrap","Unity.ugui","Unity.InputSystem"],"optionalUnityReferences":["TestAssemblies"]}

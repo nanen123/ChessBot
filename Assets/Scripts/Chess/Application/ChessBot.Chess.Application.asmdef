@@ -1,0 +1,1 @@
+{"name":"ChessBot.Chess.Application","rootNamespace":"ChessBot.Chess.Application","references":["ChessBot.Chess.Core"],"noEngineReferences":true}

@@ -57,7 +57,7 @@ Unity ML-Agents를 이용해 Self-Play(자가 대전)로 체스를 학습하는 
 | Universal Render Pipeline | `17.3.0` |
 | Input System | `1.18.0` |
 | Unity Test Framework | `1.6.0` |
-| ML-Agents Unity 패키지 | 미설치, 버전 미정 |
+| ML-Agents Unity 패키지 | `4.1.0` (학습 연동 미구현) |
 | Python 및 학습 패키지 | 미구성, 버전 미정 |
 
 ## 저장소 구성
@@ -71,6 +71,10 @@ ProjectSettings/   Unity 프로젝트 설정
 README.md          프로젝트 목표 및 시작 안내
 ```
 
+## 로컬 플레이
+
+사람이 화면에서 백·흑을 번갈아 조작하는 로컬 대국은 Assets/Scenes/SampleScene.unity에서 Play로 시작한다. [실행 안내와 제한](Codex/002.LocalPlay.md)을 참고한다. 아래 체크리스트는 전체 규칙과 학습까지의 완료 기준이다.
+
 ## 구현 계획
 
 - [ ] 보드 상태, 말, 좌표 및 턴 관리 구현
@@ -78,7 +82,7 @@ README.md          프로젝트 목표 및 시작 안내
 - [ ] 체크·체크메이트 및 표준 특수 규칙 구현
 - [ ] 대국 결과 처리와 게임 초기화 구현
 - [ ] 규칙 로직 검증 및 보드 표시 구현
-- [ ] 사람의 수 입력과 사람 대 Agent 대전 모드 구현
+- [ ] Agent vs Agent, 사람 vs Agent 대전 모드 구현
 - [ ] ML-Agents 연동 및 관측·행동·보상 설계
 - [ ] Self-Play 학습 설정과 실행 환경 구성
 - [ ] 학습 모델 저장·불러오기 및 대국 평가

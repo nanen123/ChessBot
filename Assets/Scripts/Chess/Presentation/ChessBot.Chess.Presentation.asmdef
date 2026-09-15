@@ -1,0 +1,1 @@
+{"name":"ChessBot.Chess.Presentation","rootNamespace":"ChessBot.Chess.Presentation","references":["ChessBot.Chess.Core","ChessBot.Chess.Application","Unity.ugui","Unity.InputSystem"]}
