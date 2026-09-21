@@ -108,3 +108,15 @@ InitTestScene*.unity*
 # Local chess validation artifacts
 /output/local-chess-validation/
 /output/local-chess-editor-validation/
+
+# Chess training dependencies, models and validation output
+/.venv-training/
+/output/python-runtime/
+/output/chess-training/
+/output/training-validation/
+/results/
+
+# ML-Agents generated profiling data
+/Assets/ML-Agents/Timers/
+/Assets/ML-Agents/Timers.meta
+/Assets/ML-Agents.meta

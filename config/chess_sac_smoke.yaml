@@ -1,10 +1,11 @@
+# Short wiring/checkpoint test, not a trained playing-strength model.
 behaviors:
   ChessV1:
     trainer_type: sac
     hyperparameters:
-      batch_size: 64
-      buffer_size: 50000
-      buffer_init_steps: 1000
+      batch_size: 16
+      buffer_size: 2048
+      buffer_init_steps: 32
       learning_rate: 0.0003
       learning_rate_schedule: constant
       tau: 0.005
@@ -13,24 +14,24 @@ behaviors:
       init_entcoef: 0.05
     network_settings:
       normalize: false
-      hidden_units: 128
+      hidden_units: 64
       num_layers: 2
     reward_signals:
       extrinsic:
         gamma: 0.99
         strength: 1.0
     self_play:
-      save_steps: 10000
-      team_change: 20000
-      swap_steps: 2000
-      window: 10
+      save_steps: 128
+      team_change: 256
+      swap_steps: 64
+      window: 3
       play_against_latest_model_ratio: 0.5
       initial_elo: 1200.0
-    max_steps: 10000000
-    time_horizon: 64
-    summary_freq: 10000
-    checkpoint_interval: 50000
-    keep_checkpoints: 5
+    max_steps: 256
+    time_horizon: 32
+    summary_freq: 64
+    checkpoint_interval: 128
+    keep_checkpoints: 2
 engine_settings:
   time_scale: 20
   target_frame_rate: -1
@@ -38,4 +39,4 @@ engine_settings:
 env_settings:
   num_envs: 1
 torch_settings:
-  device: cuda
+  device: cpu

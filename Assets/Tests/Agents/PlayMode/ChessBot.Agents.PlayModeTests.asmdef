@@ -1,0 +1,1 @@
+{"name":"ChessBot.Agents.PlayModeTests","references":["ChessBot.Agents","ChessBot.Training","ChessBot.Chess.Core","ChessBot.Chess.Application","Unity.ML-Agents"],"optionalUnityReferences":["TestAssemblies"]}

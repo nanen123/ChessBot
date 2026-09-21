@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "behaviorName": "ChessV1",
+  "observations": 844,
+  "discreteBranches": [8577],
+  "coordinates": "absolute a1=0, h8=63 for both colors",
+  "moveActions": "0..4095 = from*64+to; 4096..4287 = ((promotionSide*8+fromFile)*3+fileOffset+1)*4+promotion+4096",
+  "promotionSide": ["white rank6 to7", "black rank1 to0"],
+  "promotion": ["Queen", "Rook", "Bishop", "Knight"],
+  "drawActions": "4288..8575 = intended move action +4288; 8576 = claim current position",
+  "observationLayout": "768 own/opponent piece planes, own color, own turn, 4 castling flags, 65 en-passant flags including none, halfmove/150, repetition/5, current claim, intended claim, ply/maxPlies",
+  "partialObservation": "Full repetition history is not encoded. Exact valid draw commands remain action-masked.",
+  "rewards": {"capture": 0.1, "captured": -0.1, "win": 1.0, "loss": -1.0, "draw": 0.0},
+  "maximumPlies": 512,
+  "limitation": "Arbitrary blocked dead positions are not fully recognized by the current core. This is an initial experimental training setup."
+}

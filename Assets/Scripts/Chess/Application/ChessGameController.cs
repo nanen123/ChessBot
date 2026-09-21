@@ -15,6 +15,7 @@ namespace ChessBot.Chess.Application
         public int TurnVersion { get; private set; }
         public GameResult Result { get; private set; }
         public BoardState Board => _board.Copy();
+        public int CurrentPositionOccurrences => Occurrences(_board);
         public IReadOnlyList<Move> LegalMoves { get; private set; }
         public IReadOnlyList<string> Moves => _moves.AsReadOnly();
         public event Action Changed;

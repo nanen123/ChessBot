@@ -1,0 +1,9 @@
+# Unity ML-Agents 4.1 package documentation recommends Python trainer 1.1.0.
+# Python 3.10.12; CPU PyTorch keeps the initial smoke test independent of GPU drivers.
+mlagents==1.1.0
+mlagents-envs==1.1.0
+torch==2.8.0
+numpy==1.23.5
+onnx==1.15.0
+protobuf==3.20.3
+setuptools==75.8.0

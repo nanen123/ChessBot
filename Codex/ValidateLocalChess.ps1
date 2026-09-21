@@ -29,8 +29,14 @@ $unityRefs += "$project/Library/ScriptAssemblies/UnityEngine.UI.dll"
 $unityRefs += "$project/Library/ScriptAssemblies/Unity.InputSystem.dll"
 Compile-Chess 'ChessBot.Chess.Presentation' (Get-ChildItem "$project/Assets/Scripts/Chess/Presentation/*.cs").FullName ($unityRefs + @($core, $application))
 Compile-Chess 'ChessBot.Bootstrap' (Get-ChildItem "$project/Assets/Scripts/Bootstrap/*.cs").FullName ($unityRefs + @($core, $application, $presentation))
+$agentDll = Join-Path $validationOut 'ChessBot.Agents.dll'
+$trainingDll = Join-Path $validationOut 'ChessBot.Training.dll'
+$bootstrapDll = Join-Path $validationOut 'ChessBot.Bootstrap.dll'
+$mlRefs = @("$project/Library/ScriptAssemblies/Unity.ML-Agents.dll", "$project/Library/ScriptAssemblies/Unity.InferenceEngine.dll")
+Compile-Chess 'ChessBot.Agents' (Get-ChildItem "$project/Assets/Scripts/Agents/*.cs").FullName ($unityRefs + $mlRefs + @($core, $application))
+Compile-Chess 'ChessBot.Training' (Get-ChildItem "$project/Assets/Scripts/Training/*.cs").FullName ($unityRefs + $mlRefs + @($core, $application, $agentDll))
 $editorRefs = (Get-ChildItem "$UnityData/Managed/UnityEditor*.dll" | Where-Object Name -ne 'UnityEditor.dll').FullName
-Compile-Chess 'ChessBot.Bootstrap.Editor' (Get-ChildItem "$project/Assets/Scripts/Bootstrap/Editor/*.cs").FullName ($unityRefs + $editorRefs + @($core, $application, $presentation))
+Compile-Chess 'ChessBot.Bootstrap.Editor' (Get-ChildItem "$project/Assets/Scripts/Bootstrap/Editor/*.cs").FullName ($unityRefs + $editorRefs + $mlRefs + @($core, $application, $presentation, $agentDll, $trainingDll, $bootstrapDll))
 $nunit = (Get-ChildItem "$project/Library/PackageCache" -Filter nunit.framework.dll -Recurse | Select-Object -First 1).FullName
 if (!$nunit) { throw 'NUnit package is unavailable.' }
 Compile-Chess 'ChessBot.Chess.Tests' (Get-ChildItem "$project/Assets/Tests/EditMode/*.cs").FullName (@($core, $application, $presentation, $nunit) + $unityRefs)

@@ -1,0 +1,1 @@
+{"name":"ChessBot.Agents.Tests","references":["ChessBot.Agents","ChessBot.Chess.Core","ChessBot.Chess.Application"],"includePlatforms":["Editor"],"optionalUnityReferences":["TestAssemblies"]}
