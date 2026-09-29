@@ -24,6 +24,18 @@ namespace ChessBot.Training
         [SerializeField, Min(2)] private int _maximumPlies = 512;
         [SerializeField] private bool _allowHeuristicPreview;
         [SerializeField] private bool _recordGames = true;
+        [Header("Curriculum")]
+        [SerializeField] private bool _useCurriculum = true;
+        [SerializeField, Range(0, 5)] private int _previewLesson;
+        [SerializeField] private ChessLesson[] _lessons = ChessCurriculum.Defaults();
+        private ChessLesson _lesson;
+        private int _episodeLimit, _materialGain, _taskOutcome = 2, _colorSequence;
+        private PieceColor _focusColor;
+        private string _initialFen = BoardState.InitialFen;
+        public int ActiveLesson { get; private set; } = -1;
+        public int TaskEpisodes { get; private set; }
+        public void ConfigureCurriculum(bool enabled, int previewLesson = 0)
+        { _useCurriculum = enabled; _previewLesson = previewLesson; }
         private ChessGameController _game;
         private bool _whiteReady, _blackReady, _resetPending = true, _endPending, _interrupted;
         private bool _warnedMissingTrainer, _stopped;
@@ -31,7 +43,7 @@ namespace ChessBot.Training
         private int _invalidActionFrame;
         private TrainingGameRecorder _recorder;
         public ChessGameController Game => _game ?? (_game = new ChessGameController());
-        public int MaximumPlies => _maximumPlies;
+        public int MaximumPlies => _lesson != null ? _episodeLimit : _maximumPlies;
         public int CompletedGames { get; private set; }
         public int InterruptedGames { get; private set; }
         public int RejectedActions { get; private set; }
@@ -51,6 +63,22 @@ namespace ChessBot.Training
             if (_white == null || _black == null || _white == _black || _maximumPlies < 2 || !ValidReward(_captureReward) || !ValidReward(_winReward) || !ValidReward(_minimumWinReward) || _minimumWinReward > _winReward ||
                 _winRewardDecayPlies < 0 || !ValidReward(_lossRewardMultiplier) || !Finite(_whiteDrawReward) || !Finite(_blackDrawReward))
                 throw new InvalidOperationException("Training environment references or reward settings are invalid.");
+            if (_useCurriculum)
+            {
+                if (_lessons == null || _lessons.Length != 6) throw new InvalidOperationException("Curriculum requires six lessons.");
+                foreach (var lesson in _lessons)
+                {
+                    if (lesson == null || lesson.MaximumPlies < 1 || !ValidReward(lesson.SuccessReward) || !ValidReward(lesson.FailurePenalty) || lesson.Positions == null || lesson.Positions.Length == 0)
+                        throw new InvalidOperationException("Invalid curriculum lesson settings.");
+                    foreach (var fen in lesson.Positions)
+                    {
+                        var board = BoardState.FromFen(fen);
+                        if (ChessRules.IsInCheck(board, ChessRules.Opposite(board.SideToMove)) || new ChessGameController(board).Result.IsFinished)
+                            throw new InvalidOperationException("Curriculum position is illegal or already terminal: " + fen);
+                    }
+                }
+            }
+            _colorSequence = UnityEngine.Random.Range(0, 2);
             _game = new ChessGameController();
             if (_recordGames) _recorder = new TrainingGameRecorder();
         }
@@ -104,11 +132,23 @@ namespace ChessBot.Training
             if (_resetPending)
             {
                 if (!_whiteReady || !_blackReady) return;
-                Game.Reset(); _resetPending = false; _interrupted = false;
+                ResetEpisode(); _resetPending = false; _interrupted = false;
             }
             if (Game.Result.IsFinished) { _endPending = true; return; }
             if (_white.DecisionPending || _black.DecisionPending) return;
             (Game.Board.SideToMove == PieceColor.White ? _white : _black).RequestTurn();
+        }
+        private void ResetEpisode()
+        {
+            // Sample the global lesson only at a coordinated episode boundary.
+            ActiveLesson = _useCurriculum ? Mathf.Clamp(Mathf.RoundToInt(Academy.Instance.EnvironmentParameters.GetWithDefault("curriculum_stage", _previewLesson)), 0, 5) : -1;
+            _lesson = ActiveLesson < 0 ? null : _lessons[ActiveLesson];
+            _episodeLimit = _lesson == null ? _maximumPlies : _lesson.MaximumPlies;
+            _initialFen = _lesson == null ? BoardState.InitialFen : _lesson.Positions[UnityEngine.Random.Range(0, _lesson.Positions.Length)];
+            if (_lesson != null && ActiveLesson < 5 && (_colorSequence++ % 2) != 0) _initialFen = ChessCurriculum.SwapColors(_initialFen);
+            var board = BoardState.FromFen(_initialFen); _focusColor = board.SideToMove;
+            _materialGain = 0; _taskOutcome = 2;
+            Game.Reset(board);
         }
         public void Submit(ChessAgent agent, int action)
         {
@@ -127,9 +167,13 @@ namespace ChessBot.Training
                 agent.AddReward(captureReward);
                 (agent == _white ? _black : _white).AddReward(-captureReward);
             }
-            // A training time limit is an interruption, never a chess draw or a loss.
-            _interrupted = !Game.Result.IsFinished && Game.TurnVersion >= _maximumPlies;
-            _endPending = Game.Result.IsFinished || _interrupted;
+            var captured = command.IsDrawClaim ? default(Piece) : ChessRewardPolicy.CapturedPiece(before, command.Move.Value);
+            _materialGain += ChessRewardPolicy.MaterialValue(captured.Type) * (agent.Color == _focusColor ? 1 : -1);
+            if (_lesson != null && _lesson.Ending != CurriculumEnding.FullGame && !Game.Result.IsFinished)
+                _taskOutcome = ChessCurriculum.TaskOutcome(_lesson, Game.TurnVersion, !captured.IsEmpty, _materialGain);
+            // Full-game time limits interrupt; finite puzzle horizons are task terminals.
+            _interrupted = !Game.Result.IsFinished && _taskOutcome == 2 && Game.TurnVersion >= MaximumPlies;
+            _endPending = Game.Result.IsFinished || _interrupted || _taskOutcome != 2;
         }
         private void FailAction(int action)
         {
@@ -142,16 +186,29 @@ namespace ChessBot.Training
             {
                 var winner = Game.Result.Winner.Value == PieceColor.White ? _white : _black;
                 float reward = ChessRewardPolicy.WinReward(Game.TurnVersion,
-                    _winRewardDecayPlies == 0 ? _maximumPlies : _winRewardDecayPlies, _winReward, _minimumWinReward);
+                    _winRewardDecayPlies == 0 ? MaximumPlies : _winRewardDecayPlies, _winReward, _minimumWinReward);
                 winner.AddReward(reward); (winner == _white ? _black : _white).AddReward(-reward * _lossRewardMultiplier);
             }
             else if (!_interrupted && Game.Result.IsFinished)
             {
                 _white.AddReward(_whiteDrawReward); _black.AddReward(_blackDrawReward);
             }
+            if (!Game.Result.IsFinished && !_interrupted && _lesson != null && _taskOutcome != 2)
+            {
+                float reward = _taskOutcome > 0 ? _lesson.SuccessReward : _taskOutcome < 0 ? -_lesson.FailurePenalty : 0;
+                var focus = _focusColor == PieceColor.White ? _white : _black;
+                focus.AddReward(reward); (focus == _white ? _black : _white).AddReward(-reward);
+                TaskEpisodes++;
+            }
+            if (_lesson != null)
+            {
+                bool success = Game.Result.IsFinished ? Game.Result.Winner == _focusColor : _taskOutcome == 1;
+                Academy.Instance.StatsRecorder.Add($"Curriculum/Lesson{ActiveLesson}/Success", success ? 1 : 0);
+                Academy.Instance.StatsRecorder.Add("Curriculum/Stage", ActiveLesson);
+            }
             float whiteReward = _white.GetCumulativeReward(), blackReward = _black.GetCumulativeReward();
-            _recorder?.Write(Game, _interrupted, whiteReward, blackReward);
-            if (_interrupted) InterruptedGames++; else CompletedGames++;
+            _recorder?.Write(Game, _interrupted, whiteReward, blackReward, _initialFen, ActiveLesson, _focusColor, _taskOutcome);
+            if (_interrupted) InterruptedGames++; else if (Game.Result.IsFinished) CompletedGames++;
             Academy.Instance.StatsRecorder.Add("Chess/Plies", Game.TurnVersion);
             Academy.Instance.StatsRecorder.Add("Chess/Interrupted", _interrupted ? 1 : 0);
             Academy.Instance.StatsRecorder.Add("Chess/WhiteReward", whiteReward);

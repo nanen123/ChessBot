@@ -12,7 +12,7 @@ namespace ChessBot.Training
     {
         private readonly string _path = Path.Combine(UnityEngine.Application.persistentDataPath, "ChessTraining", Guid.NewGuid() + ".jsonl");
         private bool _failed;
-        public void Write(ChessGameController game, bool interrupted, float whiteReward, float blackReward)
+        public void Write(ChessGameController game, bool interrupted, float whiteReward, float blackReward, string initialFen = BoardState.InitialFen, int lesson = -1, PieceColor focus = PieceColor.White, int taskOutcome = 2)
         {
             if (_failed) return;
             try
@@ -21,8 +21,9 @@ namespace ChessBot.Training
                 var record = new Record
                 {
                     schemaVersion = ChessActionEncoder.SchemaVersion, behavior = ChessActionEncoder.BehaviorName,
-                    gameId = game.GameId.ToString(), initialFen = BoardState.InitialFen, finalFen = game.Board.ToFen(),
-                    moves = new List<string>(game.Moves).ToArray(), reason = interrupted ? "TrainingPlyLimit" : game.Result.Reason.ToString(),
+                    gameId = game.GameId.ToString(), initialFen = initialFen, finalFen = game.Board.ToFen(),
+                    moves = new List<string>(game.Moves).ToArray(), reason = interrupted ? "TrainingPlyLimit" : game.Result.IsFinished ? game.Result.Reason.ToString() : "CurriculumTask",
+                    curriculumStage = lesson, focusColor = focus.ToString(), taskResult = taskOutcome == 2 ? "NotApplicable" : taskOutcome > 0 ? "Success" : taskOutcome < 0 ? "Failure" : "Neutral",
                     winner = game.Result.Winner?.ToString() ?? "None", interrupted = interrupted,
                     whiteReward = whiteReward, blackReward = blackReward, finishedUtc = DateTime.UtcNow.ToString("O")
                 };
@@ -33,7 +34,8 @@ namespace ChessBot.Training
         }
         [Serializable] private sealed class Record
         {
-            public int schemaVersion, whiteTeam = 0, blackTeam = 1;
+            public int schemaVersion, whiteTeam = 0, blackTeam = 1, curriculumStage;
+            public string focusColor, taskResult;
             public string behavior, gameId, initialFen, finalFen, reason, winner, finishedUtc;
             public string[] moves;
             public bool interrupted;
