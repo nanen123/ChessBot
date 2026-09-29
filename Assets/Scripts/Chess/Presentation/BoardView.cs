@@ -23,10 +23,16 @@ namespace ChessBot.Chess.Presentation
         private Button _claim, _claimNext, _resign;
         private GameObject _promotion;
         private bool _flipped;
+        private Func<bool> _canInput = () => true;
+        private string _title = "CHESS / LOCAL PLAY", _mode = "PASS & PLAY", _instructions = "Select a piece, then a highlighted square.\nWhite and Black take turns on this screen.";
+        private Action _pause;
         private string _saveMessage = "";
         private static readonly Color Ink = new Color(0.075f, 0.095f, 0.12f);
         private static readonly Color Cream = new Color(0.96f, 0.92f, 0.83f);
 
+        public void ConfigureSession(Func<bool> canInput, string title, string mode, string instructions, bool flipped, Action pause = null)
+        { _canInput = canInput; _title = title; _mode = mode; _instructions = instructions; _flipped = flipped; _pause = pause; }
+        public void RefreshSession() => Refresh();
         public void Initialize(ChessGameController game, ChessArt art)
         {
             if (_game != null) throw new InvalidOperationException("View is already initialized.");
@@ -79,7 +85,8 @@ namespace ChessBot.Chess.Presentation
             // Center the fixed design area. CanvasScaler keeps it inside both wide and tall windows.
             var content = Rect("Local chess", transform, 0, 0, 1200, 800);
             content.anchorMin = content.anchorMax = new Vector2(0.5f, 0.5f); content.pivot = new Vector2(0.5f, 0.5f);
-            Label("CHESS / LOCAL PLAY", content, 36, 18, 700, 45, 28, Cream);
+            Label(_title, content, 36, 18, 700, 45, 28, Cream);
+            if (_pause != null) ActionButton("Pause / Resume", content, 775, 18, 380, () => { _pause(); Refresh(); });
             var board = Panel("Board artwork", content, 30, 75, 690, 690, Color.white); board.sprite = _art.Board;
             // Imported board has a coordinate frame; the playable 8x8 region occupies its inner 85.4%.
             const float edge = 51.75f, cell = 73.65f;
@@ -98,19 +105,19 @@ namespace ChessBot.Chess.Presentation
                 var tile = Panel("Square " + display, board.transform, edge + display % 8 * cell, edge + display / 8 * cell, cell, cell, Color.clear);
                 tile.raycastTarget = true; _highlights[display] = tile;
                 var button = tile.gameObject.AddComponent<Button>(); button.targetGraphic = tile; button.transition = Selectable.Transition.None;
-                button.onClick.AddListener(() => { _input.Click(BoardIndex(capturedDisplay)); Refresh(); }); _squares[display] = button;
+                button.onClick.AddListener(() => { if (_canInput()) _input.Click(BoardIndex(capturedDisplay)); Refresh(); }); _squares[display] = button;
                 var piece = Panel("Piece", tile.transform, 5, 4, cell - 10, cell - 8, Color.white);
                 piece.preserveAspect = true; _pieces[display] = piece;
             }
-            Label("PASS & PLAY", content, 775, 86, 385, 30, 19, new Color(0.6f, 0.76f, 0.77f));
+            Label(_mode, content, 775, 86, 385, 30, 19, new Color(0.6f, 0.76f, 0.77f));
             _status = Label("", content, 775, 127, 390, 88, 30, Cream);
-            Label("Select a piece, then a highlighted square.\nWhite and Black take turns on this screen.", content, 775, 226, 380, 60, 18, Cream);
+            Label(_instructions, content, 775, 226, 380, 60, 18, Cream);
             ActionButton("New game", content, 775, 305, 180, () => { _saveMessage = ""; _game.Reset(); });
             ActionButton("Flip board", content, 975, 305, 180, () => { _flipped = !_flipped; Refresh(); });
-            _resign = ActionButton("Resign", content, 775, 361, 180, () => _game.Resign(_game.Board.SideToMove, _game.GameId, _game.TurnVersion));
-            _claim = ActionButton("Claim draw", content, 975, 361, 180, () => _game.ClaimDraw(_game.Board.SideToMove, _game.GameId, _game.TurnVersion));
+            _resign = ActionButton("Resign", content, 775, 361, 180, () => { if (_canInput()) _game.Resign(_game.Board.SideToMove, _game.GameId, _game.TurnVersion); });
+            _claim = ActionButton("Claim draw", content, 975, 361, 180, () => { if (_canInput()) _game.ClaimDraw(_game.Board.SideToMove, _game.GameId, _game.TurnVersion); });
             _claimNext = ActionButton("Claim draw with next move", content, 775, 417, 380,
-                () => { bool enabled = !_input.ClaimWithNextMove; _input.Clear(); _input.ClaimWithNextMove = enabled; Refresh(); });
+                () => { if (!_canInput()) return; bool enabled = !_input.ClaimWithNextMove; _input.Clear(); _input.ClaimWithNextMove = enabled; Refresh(); });
             _message = Label("", content, 775, 476, 380, 89, 17, new Color(0.65f, 0.82f, 0.82f));
             Label("RECENT MOVES", content, 775, 574, 380, 25, 16, Cream);
             _history = Label("", content, 775, 610, 380, 150, 18, Cream);
@@ -121,7 +128,7 @@ namespace ChessBot.Chess.Presentation
             for (int i = 0; i < types.Length; i++)
             {
                 PieceType type = types[i];
-                ActionButton(type.ToString(), modal.transform, 25 + 185 * i, 88, 170, () => { _input.Promote(type); Refresh(); });
+                ActionButton(type.ToString(), modal.transform, 25 + 185 * i, 88, 170, () => { if (_canInput()) _input.Promote(type); Refresh(); });
             }
             ActionButton("Cancel", modal.transform, 305, 150, 170, () => { _input.Clear(); Refresh(); });
         }
@@ -139,15 +146,15 @@ namespace ChessBot.Chess.Presentation
                 if (check && piece.Type == PieceType.King && piece.Color == state.SideToMove) color = new Color(0.95f, 0.15f, 0.15f, 0.65f);
                 if (_input.Selected == index) color = new Color(0.95f, 0.7f, 0.16f, 0.65f);
                 _highlights[display].color = color;
-                _squares[display].interactable = !_game.Result.IsFinished && !_input.PromotionPending;
+                _squares[display].interactable = _canInput() && !_game.Result.IsFinished && !_input.PromotionPending;
             }
             for (int i = 0; i < 8; i++)
             { _files[i].text = ((char)('a' + (_flipped ? 7 - i : i))).ToString(); _ranks[i].text = (_flipped ? i + 1 : 8 - i).ToString(); }
             _status.text = _game.Result.IsFinished ? ResultText(_game.Result) : state.SideToMove + " to move" + (check ? "\nCheck!" : "");
             _promotion.SetActive(_input.PromotionPending);
-            _resign.interactable = !_game.Result.IsFinished && !_input.PromotionPending;
-            _claim.interactable = !_input.PromotionPending && _game.CanClaimDraw();
-            _claimNext.interactable = !_game.Result.IsFinished && !_input.PromotionPending;
+            _resign.interactable = _canInput() && !_game.Result.IsFinished && !_input.PromotionPending;
+            _claim.interactable = _canInput() && !_input.PromotionPending && _game.CanClaimDraw();
+            _claimNext.interactable = _canInput() && !_game.Result.IsFinished && !_input.PromotionPending;
             _message.text = _input.ClaimWithNextMove ? "DRAW CLAIM MODE\nChoose the intended move. It will not be played if the claim is invalid. Click the button again to cancel."
                 : !string.IsNullOrEmpty(_input.Message) ? _input.Message : _saveMessage;
             var history = new StringBuilder(); int first = Math.Max(0, _game.Moves.Count - 12); first -= first % 2;

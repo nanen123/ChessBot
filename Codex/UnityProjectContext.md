@@ -22,3 +22,8 @@
 - SAC self-play configuration, CPU Python 3.10.12 / ML-Agents 1.1.0 environment, setup/train scripts and exact package lock are provided. See 003.Training.md.
 - Unity batch Editor and Windows training player are available for verification; MCP remained disconnected. EditMode 59/59 and PlayMode 5/5 passed, including illegal-action and shutdown reporting regression coverage.
 - Actual standalone SAC smoke run saved checkpoint, replay buffer and valid ONNX (844 observation inputs, 8577 mask inputs); checkpoint/replay reload succeeded at step 280.
+## Model testing (2026-09-28)
+- AgentTest scene: default two-model spectator mode, optional HumanVsAgent, per-side ONNX assets, real-time move pacing, pause/restart/flip, turn-restricted UI.
+- InferenceOnly reuses ChessV1 masks and encoders; validates 844/8577 model inputs and policy output names. No rewards or trainer required. Invalid/missing models stop with a visible message.
+- Bundled Assets/Models/ChessV1_Test.onnx is a snapshot of results/first/ChessV1.onnx, not an automatically updating link.
+- Isolated Editor PlayMode 8/8 passed, including real ONNX inference; see Codex/004.AgentTesting.md.

@@ -43,8 +43,8 @@ Unity ML-Agents를 이용해 Self-Play(자가 대전)로 체스를 학습하는 
 - 자신의 차례에 합법적인 수를 선택하고 게임 환경에 적용할 수 있어야 한다.
 - 합법 수 판정은 게임 규칙 로직을 공통으로 사용한다.
 - 한 대국을 하나의 학습 에피소드로 다루고, 종료 시 두 Agent의 상태를 함께 초기화한다.
-- 초기 Agent는 기물 종류와 관계없이 포획 +0.1, 피포획 -0.1을 적용한다.
-- 초기 종료 보상은 승리 +1, 패배 -1, 무승부 0으로 설정한다. Inspector에서 수치를 조절할 수 있다.
+- 포획 시 기물 가치(폰 1, 나이트·비숍 3, 룩 5, 퀸 9)에 Capture Reward 배율을 곱한 보상과 동일 크기의 피포획 처벌을 적용한다.
+- 종료 보상은 진행 반수에 따라 승리 +1~+0.5, 패배는 반대 부호로 설정한다. 정상 무승부는 백 -0.2, 흑 +0.2다. Inspector에서 수치를 조절할 수 있다.
 - Self-Play 학습을 실행하고, 학습 결과를 저장해 평가할 수 있어야 한다.
 
 ## 개발 환경
@@ -77,7 +77,7 @@ README.md          프로젝트 목표 및 시작 안내
 
 ## Agent 학습
 
-LocalPlay.unity는 사람의 로컬 대국, Training.unity는 ChessAgent 두 개의 SAC Self-Play 전용 씬이다. 합법 수 Action Masking과 포획 ±0.1 / 승패 ±1의 초기 보상을 사용한다. 환경 설치·실행·스키마·제한은 [학습 안내](Codex/003.Training.md)를 참고한다.
+LocalPlay.unity는 사람의 로컬 대국, Training.unity는 ChessAgent 두 개의 SAC Self-Play 전용 씬이다. 합법 수 Action Masking과 기물 가치 × Capture Reward의 포획·피포획 보상 / 승패 ±(1~0.5), 정상 무승부 백 -0.2·흑 +0.2의 보상을 사용한다. 환경 설치·실행·스키마·제한은 [학습 안내](Codex/003.Training.md)를 참고한다.
 
 ## 구현 계획
 
@@ -109,3 +109,7 @@ EditMode 59개와 PlayMode 5개 테스트를 통과했다. 실제 Windows 학습
 - 완료 기준: 평가 상대, 평가 대국 수 및 목표 성능
 
 범위가 확정되면 해당 내용을 요구사항과 구현 계획에 반영한다.
+
+## 학습 모델 테스트
+
+`Assets/Scenes/AgentTest.unity`에서 학습된 두 Agent의 대국을 관전하거나 사람 대 Agent 모드로 플레이할 수 있다. 모델 지정과 조작은 [테스트 안내](Codex/004.AgentTesting.md)를 참고한다.

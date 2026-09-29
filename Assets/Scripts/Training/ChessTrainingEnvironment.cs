@@ -13,8 +13,14 @@ namespace ChessBot.Training
     {
         [SerializeField] private ChessAgent _white;
         [SerializeField] private ChessAgent _black;
-        [SerializeField, Min(0)] private float _captureReward = 0.1f;
-        [SerializeField, Min(0)] private float _winReward = 1f;
+        [SerializeField, Min(0), Tooltip("Reward per material point: pawn 1, knight/bishop 3, rook 5, queen 9. Opponent receives the negative amount.")] private float _captureReward = 0.05f;
+        [Header("Terminal rewards")]
+        [SerializeField, Min(0), Tooltip("Maximum win reward at 0 plies.")] private float _winReward = 1f;
+        [SerializeField, Min(0), Tooltip("Minimum win reward at or beyond Win Reward Decay Plies.")] private float _minimumWinReward = 0.5f;
+        [SerializeField, Min(0), Tooltip("Plies to reach minimum reward. 0 uses Maximum Plies. One move by either color is one ply.")] private int _winRewardDecayPlies;
+        [SerializeField, Min(0), Tooltip("Loser receives negative winner reward times this multiplier.")] private float _lossRewardMultiplier = 1f;
+        [SerializeField] private float _whiteDrawReward = -0.2f;
+        [SerializeField] private float _blackDrawReward = 0.2f;
         [SerializeField, Min(2)] private int _maximumPlies = 512;
         [SerializeField] private bool _allowHeuristicPreview;
         [SerializeField] private bool _recordGames = true;
@@ -42,12 +48,14 @@ namespace ChessBot.Training
         }
         private void Awake()
         {
-            if (_white == null || _black == null || _white == _black || _maximumPlies < 2 || !ValidReward(_captureReward) || !ValidReward(_winReward))
+            if (_white == null || _black == null || _white == _black || _maximumPlies < 2 || !ValidReward(_captureReward) || !ValidReward(_winReward) || !ValidReward(_minimumWinReward) || _minimumWinReward > _winReward ||
+                _winRewardDecayPlies < 0 || !ValidReward(_lossRewardMultiplier) || !Finite(_whiteDrawReward) || !Finite(_blackDrawReward))
                 throw new InvalidOperationException("Training environment references or reward settings are invalid.");
             _game = new ChessGameController();
             if (_recordGames) _recorder = new TrainingGameRecorder();
         }
-        private static bool ValidReward(float value) => value >= 0 && !float.IsNaN(value) && !float.IsInfinity(value);
+        private static bool Finite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
+        private static bool ValidReward(float value) => value >= 0 && Finite(value);
         private void OnEnable()
         {
             Academy.Instance.AgentPreStep += PreStep;
@@ -113,10 +121,11 @@ namespace ChessBot.Training
                 ? Game.ClaimDraw(agent.Color, agent.RequestedGameId, agent.RequestedTurn, command.Move)
                 : command.Move.HasValue && Game.SubmitMove(agent.Color, agent.RequestedGameId, agent.RequestedTurn, command.Move.Value);
             if (!accepted) { FailAction(action); return; }
-            if (!command.IsDrawClaim && !ChessRewardPolicy.CapturedPiece(before, command.Move.Value).IsEmpty)
+            float captureReward = command.IsDrawClaim ? 0f : ChessRewardPolicy.CaptureReward(before, command.Move.Value, _captureReward);
+            if (captureReward > 0f)
             {
-                agent.AddReward(_captureReward);
-                (agent == _white ? _black : _white).AddReward(-_captureReward);
+                agent.AddReward(captureReward);
+                (agent == _white ? _black : _white).AddReward(-captureReward);
             }
             // A training time limit is an interruption, never a chess draw or a loss.
             _interrupted = !Game.Result.IsFinished && Game.TurnVersion >= _maximumPlies;
@@ -132,7 +141,13 @@ namespace ChessBot.Training
             if (!_interrupted && Game.Result.Winner.HasValue)
             {
                 var winner = Game.Result.Winner.Value == PieceColor.White ? _white : _black;
-                winner.AddReward(_winReward); (winner == _white ? _black : _white).AddReward(-_winReward);
+                float reward = ChessRewardPolicy.WinReward(Game.TurnVersion,
+                    _winRewardDecayPlies == 0 ? _maximumPlies : _winRewardDecayPlies, _winReward, _minimumWinReward);
+                winner.AddReward(reward); (winner == _white ? _black : _white).AddReward(-reward * _lossRewardMultiplier);
+            }
+            else if (!_interrupted && Game.Result.IsFinished)
+            {
+                _white.AddReward(_whiteDrawReward); _black.AddReward(_blackDrawReward);
             }
             float whiteReward = _white.GetCumulativeReward(), blackReward = _black.GetCumulativeReward();
             _recorder?.Write(Game, _interrupted, whiteReward, blackReward);

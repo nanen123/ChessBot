@@ -63,13 +63,13 @@ namespace ChessBot.Tests
             _environment.Game.Reset(BoardState.FromFen("7k/6r1/5KQ1/8/8/8/8/8 w - - 0 1"));
             var id = _environment.Game.GameId; var agent = _environment.White; agent.RequestTurn();
             agent.OnActionReceived(new ActionBuffers(new float[0], new[] { ChessActionEncoder.Encode(Move.Parse("g6g7")) }));
-            Assert.That(agent.GetCumulativeReward(), Is.EqualTo(0.1f).Within(0.0001));
-            Assert.That(_environment.Black.GetCumulativeReward(), Is.EqualTo(-0.1f).Within(0.0001));
+            Assert.That(agent.GetCumulativeReward(), Is.EqualTo(0.25f).Within(0.0001));
+            Assert.That(_environment.Black.GetCumulativeReward(), Is.EqualTo(-0.25f).Within(0.0001));
             int completions = 0;
             _environment.EpisodeCompleted += (result, interrupted, white, black) =>
             {
                 completions++; Assert.That(interrupted, Is.False); Assert.That(result.Winner, Is.EqualTo(PieceColor.White));
-                Assert.That(white, Is.EqualTo(1.1f).Within(0.0001)); Assert.That(black, Is.EqualTo(-1.1f).Within(0.0001));
+                Assert.That(white, Is.EqualTo(1.1875f).Within(0.0001)); Assert.That(black, Is.EqualTo(-1.1875f).Within(0.0001));
             };
             Academy.Instance.EnvironmentStep(); Assert.That(_environment.Game.GameId, Is.EqualTo(id));
             Academy.Instance.EnvironmentStep(); Assert.That(_environment.Game.GameId, Is.Not.EqualTo(id));
@@ -89,6 +89,35 @@ namespace ChessBot.Tests
             Academy.Instance.EnvironmentStep();
             Assert.That(_environment.Game.TurnVersion, Is.EqualTo(before));
             yield return null;
+        }
+        [UnityTest] public IEnumerator DrawRewardsAreAppliedOnceBeforeReset()
+        {
+            _environment.Game.Reset(BoardState.FromFen("7k/8/8/8/8/8/8/K7 w - - 0 1"));
+            int completions = 0;
+            _environment.EpisodeCompleted += (result, interrupted, white, black) =>
+            {
+                completions++; Assert.That(interrupted, Is.False); Assert.That(result.Winner.HasValue, Is.False);
+                Assert.That(white, Is.EqualTo(-0.2f).Within(0.0001)); Assert.That(black, Is.EqualTo(0.2f).Within(0.0001));
+            };
+            Academy.Instance.EnvironmentStep(); Academy.Instance.EnvironmentStep();
+            Assert.That(completions, Is.EqualTo(1));
+            Academy.Instance.EnvironmentStep();
+            Assert.That(completions, Is.EqualTo(1));
+            Assert.That(_environment.White.GetCumulativeReward(), Is.Zero);
+            Assert.That(_environment.Black.GetCumulativeReward(), Is.Zero);
+            yield return null;
+        }
+        [UnityTest] public IEnumerator PlyLimitDoesNotAwardDrawRewards()
+        {
+            typeof(ChessTrainingEnvironment).GetField("_maximumPlies", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(_environment, 2);
+            int completions = 0;
+            _environment.EpisodeCompleted += (result, interrupted, white, black) =>
+            {
+                completions++; Assert.That(interrupted, Is.True);
+                Assert.That(white, Is.Zero); Assert.That(black, Is.Zero);
+            };
+            Academy.Instance.EnvironmentStep(); Academy.Instance.EnvironmentStep();
+            Assert.That(completions, Is.EqualTo(1)); yield return null;
         }
         private sealed class RecordingMask : IDiscreteActionMask
         {

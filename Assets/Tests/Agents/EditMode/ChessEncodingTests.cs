@@ -75,6 +75,31 @@ namespace ChessBot.Tests
             Assert.That(ChessRules.TryApply(before, move, out _), Is.True);
             Assert.That(ChessRewardPolicy.CapturedPiece(before, move).Type, Is.EqualTo(expected));
         }
+        [TestCase("7k/8/8/8/8/8/p7/R6K w - - 0 1", "a1a2", 0.1f)]
+        [TestCase("7k/8/8/8/8/8/n7/R6K w - - 0 1", "a1a2", 0.3f)]
+        [TestCase("7k/8/8/8/8/8/b7/R6K w - - 0 1", "a1a2", 0.3f)]
+        [TestCase("7k/8/8/8/8/8/r7/R6K w - - 0 1", "a1a2", 0.5f)]
+        [TestCase("7k/8/8/8/8/8/q7/R6K w - - 0 1", "a1a2", 0.9f)]
+        [TestCase("k7/8/8/5pP1/8/8/8/7K w - f6 0 1", "g5f6", 0.1f)]
+        [TestCase("1r5k/P7/8/8/8/8/8/7K w - - 0 1", "a7b8q", 0.5f)]
+        [TestCase("7k/P7/8/8/8/8/8/7K w - - 0 1", "a7a8q", 0f)]
+        public void CaptureRewardUsesVictimValueIncludingSpecialMoves(string fen, string uci, float expected)
+        {
+            var board = BoardState.FromFen(fen); var move = Move.Parse(uci);
+            Assert.That(ChessRules.TryApply(board, move, out _), Is.True);
+            Assert.That(ChessRewardPolicy.CaptureReward(board, move, 0.1f), Is.EqualTo(expected).Within(0.00001));
+            Assert.That(ChessRewardPolicy.CaptureReward(board, move, 0.02f), Is.EqualTo(expected * 0.2f).Within(0.00001));
+            Assert.That(ChessRewardPolicy.CaptureReward(board, move, 0f), Is.Zero);
+        }
+        [TestCase(0, 1f)]
+        [TestCase(256, 0.75f)]
+        [TestCase(512, 0.5f)]
+        [TestCase(1024, 0.5f)]
+        public void WinRewardDecaysAndClamps(int plies, float expected)
+        {
+            Assert.That(ChessRewardPolicy.WinReward(plies, 512, 1f, 0.5f), Is.EqualTo(expected).Within(0.00001));
+            Assert.That(ChessRewardPolicy.WinReward(plies, 512, 2f, 1f), Is.EqualTo(expected * 2f).Within(0.00001));
+        }
         [Test] public void IllegalPinnedEnPassantIsNeverEnabled()
         {
             var game = new ChessGameController(BoardState.FromFen("k7/8/8/r4pPK/8/8/8/8 w - f6 0 1"));
