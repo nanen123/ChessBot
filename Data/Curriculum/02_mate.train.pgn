@@ -1,0 +1,472 @@
+[Event "Rated Classical game"]
+[Site "https://lichess.org/j1dkb5dw"]
+[Date "????.??.??"]
+[Round "?"]
+[White "BFG9k"]
+[Black "mamalak"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:01:03"]
+[WhiteElo "1639"]
+[BlackElo "1403"]
+[WhiteRatingDiff "+5"]
+[BlackRatingDiff "-8"]
+[ECO "C00"]
+[Opening "French Defense: Normal Variation"]
+[TimeControl "600+8"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "24"]
+[CurriculumStartFEN "r2k1b1r/pbpp1Q1p/1pn1p3/7B/3PP2q/P1N5/1PP2PPP/R3K2R w KQ - 1 13"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. d4 b6 3. a3 Bb7 4. Nc3 Nh6 5. Bxh6 gxh6 6. Be2 Qg5 7. Bg4 h5 8. Nf3
+Qg6 9. Nh4 Qg5 10. Bxh5 Qxh4 11. Qf3 Kd8 12. Qxf7 Nc6 13. Qe8# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/7b44wxzu"]
+[Date "????.??.??"]
+[Round "?"]
+[White "hostking"]
+[Black "troepianiz"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:06:10"]
+[WhiteElo "1765"]
+[BlackElo "1752"]
+[WhiteRatingDiff "+10"]
+[BlackRatingDiff "-10"]
+[ECO "C20"]
+[Opening "English Opening: The Whale"]
+[TimeControl "540+0"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "52"]
+[CurriculumStartFEN "3rk1nQ/1p2np2/pNp4q/2P3pB/1P6/P2P3P/5PP1/4RRK1 w - - 3 27"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. c4 Bc5 3. Nf3 d6 4. d3 a6 5. a3 Bg4 6. h3 Bxf3 7. Qxf3 Qf6 8. Be2
+Nd7 9. Nc3 Ne7 10. O-O Bd4 11. Bd2 h6 12. Rab1 g5 13. Qg4 c6 14. Be3 Ba7 15.
+Bxa7 Rxa7 16. b4 Qg6 17. Na4 h5 18. Qg3 Nf6 19. Qe3 Ra8 20. Nb6 Rb8 21. c5 d5
+22. exd5 Nfxd5 23. Qxe5 Rd8 24. Qxh8+ Ng8 25. Bxh5 Qh6 26. Rbe1+ Ne7 27. Rxe7+
+Kxe7 28. Re1+ 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/1hi3aveq"]
+[Date "????.??.??"]
+[Round "?"]
+[White "BFG9k"]
+[Black "Sagaz"]
+[Result "0-1"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:07:33"]
+[WhiteElo "1644"]
+[BlackElo "1544"]
+[WhiteRatingDiff "-16"]
+[BlackRatingDiff "+14"]
+[ECO "B06"]
+[Opening "Modern Defense"]
+[TimeControl "600+8"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "73"]
+[CurriculumStartFEN "8/p6k/5R2/6p1/1PpPb1Pp/2P2P1P/P5K1/2r1r3 b - - 0 37"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 g6 2. d4 d6 3. Nf3 c6 4. h3 Nf6 5. Bg5 Nxe4 6. Qe2 Bf5 7. Nbd2 Qa5 8. c3
+Nxd2 9. Bxd2 Nd7 10. b4 Qa3 11. Ng5 h5 12. Qc4 d5 13. Qe2 Qb2 14. Qd1 Bc2 15.
+Qc1 Qxc1+ 16. Rxc1 Ba4 17. Bd3 Nb6 18. O-O Nc4 19. Bxc4 dxc4 20. Bf4 Bh6 21.
+Rfe1 O-O 22. Rxe7 Rae8 23. Rxb7 f6 24. Ne6 Rxe6 25. Bxh6 Rf7 26. Rb8+ Kh7 27.
+Bf4 g5 28. Bd2 Re2 29. Be1 Rfe7 30. Kf1 Bc2 31. Rc8 Bd3 32. Rxc6 Rc2+ 33. Kg1
+Rxc1 34. Rxf6 h4 35. g4 Rexe1+ 36. Kg2 Be4+ 37. f3 Rc2# 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/z2ncoii6"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Abd0"]
+[Black "Killi"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:08:21"]
+[WhiteElo "1436"]
+[BlackElo "1506"]
+[WhiteRatingDiff "+15"]
+[BlackRatingDiff "-14"]
+[ECO "C60"]
+[Opening "Ruy Lopez: Cozio Defense"]
+[TimeControl "420+0"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "66"]
+[CurriculumStartFEN "3b4/6Pk/6n1/p6p/1p1BQ3/1B1P4/PP5P/5K2 w - - 0 34"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 Nge7 4. Nc3 h6 5. Nd5 a6 6. Ba4 b5 7. Bb3 Ng6 8. c4
+b4 9. Ba4 Nd4 10. O-O c6 11. Ne3 a5 12. Nxd4 exd4 13. Nf5 Ba6 14. Nxd4 Bxc4 15.
+Nxc6 Bxf1 16. Nxd8 Bxg2 17. Nxf7 Bxe4 18. Qe2 Kxf7 19. Qxe4 Kg8 20. Qxa8 Kh7
+21. Qe4 d5 22. Qxd5 Be7 23. d3 Rf8 24. Bb3 Nf4 25. Qe4+ Ng6 26. Be3 Bh4 27. Rf1
+Bf6 28. Bd4 Bh4 29. f4 Bd8 30. f5 Ne7 31. f6+ Ng6 32. fxg7 Rxf1+ 33. Kxf1 h5
+34. g8=Q+ Kh6 35. Qexg6# 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/z2ncoii6"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Abd0"]
+[Black "Killi"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:08:21"]
+[WhiteElo "1436"]
+[BlackElo "1506"]
+[WhiteRatingDiff "+15"]
+[BlackRatingDiff "-14"]
+[ECO "C60"]
+[Opening "Ruy Lopez: Cozio Defense"]
+[TimeControl "420+0"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "68"]
+[CurriculumStartFEN "3b2Q1/8/6nk/p6p/1p1BQ3/1B1P4/PP5P/5K2 w - - 1 35"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 Nge7 4. Nc3 h6 5. Nd5 a6 6. Ba4 b5 7. Bb3 Ng6 8. c4
+b4 9. Ba4 Nd4 10. O-O c6 11. Ne3 a5 12. Nxd4 exd4 13. Nf5 Ba6 14. Nxd4 Bxc4 15.
+Nxc6 Bxf1 16. Nxd8 Bxg2 17. Nxf7 Bxe4 18. Qe2 Kxf7 19. Qxe4 Kg8 20. Qxa8 Kh7
+21. Qe4 d5 22. Qxd5 Be7 23. d3 Rf8 24. Bb3 Nf4 25. Qe4+ Ng6 26. Be3 Bh4 27. Rf1
+Bf6 28. Bd4 Bh4 29. f4 Bd8 30. f5 Ne7 31. f6+ Ng6 32. fxg7 Rxf1+ 33. Kxf1 h5
+34. g8=Q+ Kh6 35. Qexg6# 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/55a83jiu"]
+[Date "????.??.??"]
+[Round "?"]
+[White "ghosty"]
+[Black "jorespi"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:09:39"]
+[WhiteElo "1500"]
+[BlackElo "1585"]
+[WhiteRatingDiff "+222"]
+[BlackRatingDiff "-9"]
+[ECO "C30"]
+[Opening "King's Gambit"]
+[TimeControl "300+0"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "70"]
+[CurriculumStartFEN "3R4/2q2kr1/p6Q/4P3/8/8/P5PP/5K2 w - - 1 36"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. f4 d6 3. Nf3 Nc6 4. d4 exd4 5. Nxd4 Be7 6. Nxc6 bxc6 7. Bc4 Be6 8.
+Bxe6 fxe6 9. c4 Nh6 10. Nc3 O-O 11. O-O e5 12. f5 Nf7 13. b4 Bg5 14. b5 Bxc1
+15. Rxc1 Ng5 16. bxc6 a6 17. Re1 g6 18. fxg6 hxg6 19. Nd5 Ne6 20. Qg4 Qe8 21.
+Rf1 Nf4 22. Nxf4 Rxf4 23. Rxf4 exf4 24. Qxf4 Qxc6 25. Qf6 Qd7 26. c5 Rf8 27.
+Qxg6+ Kh8 28. cxd6 cxd6 29. Rd1 Rg8 30. Qf6+ Kh7 31. Rxd6 Qa7+ 32. Kf1 Rg7 33.
+Qh6+ Kg8 34. Rd8+ Kf7 35. e5 Qc7 36. Qf6# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/ufcqmfxx"]
+[Date "????.??.??"]
+[Round "?"]
+[White "6WX"]
+[Black "adamsrj"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:16:04"]
+[WhiteElo "1463"]
+[BlackElo "1504"]
+[WhiteRatingDiff "+62"]
+[BlackRatingDiff "-12"]
+[ECO "C44"]
+[Opening "Scotch Game: Benima Defense"]
+[TimeControl "1560+30"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "36"]
+[CurriculumStartFEN "r2q1rk1/pppb2p1/3pP1Qp/8/8/3B4/PPP3PP/2KRb3 w - - 0 19"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Be7 4. d4 exd4 5. Nxd4 d6 6. Nc3 Nf6 7. Bg5 Nxd4 8.
+Qxd4 h6 9. Bh4 O-O 10. O-O-O Bd7 11. Rhe1 Re8 12. Nd5 Nxd5 13. Qxd5 Bxh4 14.
+Qxf7+ Kh8 15. e5 Rf8 16. Qg6 Bxf2 17. Bd3 Kg8 18. e6 Bxe1 19. Qh7# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/15lzmn9d"]
+[Date "????.??.??"]
+[Round "?"]
+[White "omarojo"]
+[Black "josefo"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:18:49"]
+[WhiteElo "1421"]
+[BlackElo "1491"]
+[WhiteRatingDiff "+43"]
+[BlackRatingDiff "-71"]
+[ECO "B07"]
+[Opening "Pirc Defense #5"]
+[TimeControl "300+8"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "56"]
+[CurriculumStartFEN "4Rb1r/B4ppp/6n1/1Q6/8/kP6/P4PPP/R5K1 w - - 1 29"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 d6 2. d4 c6 3. c4 b5 4. d5 cxd5 5. cxd5 Bd7 6. Qb3 Qa5+ 7. Bd2 Qb6 8. Na3
+a6 9. Nc4 Qd4 10. Nf3 Qxe4+ 11. Ne3 e6 12. Bd3 Qe5 13. Nxe5 dxe5 14. O-O exd5
+15. Nxd5 Nc6 16. Bxb5 Nd4 17. Nc7+ Kd8 18. Qd5 Kxc7 19. Qxd7+ Kb6 20. Rfe1 axb5
+21. Rxe5 Nc6 22. Re8 Ra7 23. Be3+ Ka6 24. Qxc6+ Ka5 25. Bxa7 Ne7 26. Qb6+ Ka4
+27. b3+ Ka3 28. Qxb5 Ng6 29. Bd4 Nf4 30. Qa4# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/15lzmn9d"]
+[Date "????.??.??"]
+[Round "?"]
+[White "omarojo"]
+[Black "josefo"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:18:49"]
+[WhiteElo "1421"]
+[BlackElo "1491"]
+[WhiteRatingDiff "+43"]
+[BlackRatingDiff "-71"]
+[ECO "B07"]
+[Opening "Pirc Defense #5"]
+[TimeControl "300+8"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "58"]
+[CurriculumStartFEN "4Rb1r/5ppp/8/1Q6/3B1n2/kP6/P4PPP/R5K1 w - - 3 30"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 d6 2. d4 c6 3. c4 b5 4. d5 cxd5 5. cxd5 Bd7 6. Qb3 Qa5+ 7. Bd2 Qb6 8. Na3
+a6 9. Nc4 Qd4 10. Nf3 Qxe4+ 11. Ne3 e6 12. Bd3 Qe5 13. Nxe5 dxe5 14. O-O exd5
+15. Nxd5 Nc6 16. Bxb5 Nd4 17. Nc7+ Kd8 18. Qd5 Kxc7 19. Qxd7+ Kb6 20. Rfe1 axb5
+21. Rxe5 Nc6 22. Re8 Ra7 23. Be3+ Ka6 24. Qxc6+ Ka5 25. Bxa7 Ne7 26. Qb6+ Ka4
+27. b3+ Ka3 28. Qxb5 Ng6 29. Bd4 Nf4 30. Qa4# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/descpsmi"]
+[Date "????.??.??"]
+[Round "?"]
+[White "j-jorjik"]
+[Black "jesuss"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:19:27"]
+[WhiteElo "1548"]
+[BlackElo "1415"]
+[WhiteRatingDiff "+8"]
+[BlackRatingDiff "-8"]
+[ECO "C21"]
+[Opening "Center Game #2"]
+[TimeControl "480+8"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "88"]
+[CurriculumStartFEN "8/8/8/6k1/8/1P2R3/P2K1Q2/8 w - - 3 45"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. d4 Qf6 3. dxe5 Qxe5 4. Qe2 Nf6 5. Nf3 Qxe4 6. Qxe4+ Nxe4 7. Nbd2
+Nxd2 8. Bxd2 g6 9. Bc3 Rg8 10. Ng5 Bg7 11. Bxg7 Rxg7 12. O-O-O b6 13. Re1+ Kf8
+14. Be2 Bb7 15. Bf3 Bxf3 16. Nxf3 f6 17. Nd4 Nc6 18. Nxc6 dxc6 19. Re6 Re8 20.
+Rxf6+ Kg8 21. Rxc6 Re2 22. Rf1 Rd7 23. b3 Rdd2 24. Rd1 Rxd1+ 25. Kxd1 Rxf2 26.
+Rxc7 Rxg2 27. Rxa7 Rxh2 28. Rb7 g5 29. Rxb6 g4 30. Rb4 g3 31. Rg4+ Kh8 32. Rxg3
+Rh1+ 33. Kd2 h5 34. c4 h4 35. Re3 h3 36. c5 Kg7 37. c6 Kg6 38. c7 Kg5 39. c8=Q
+h2 40. Qh3 Kf6 41. Qf3+ Kg6 42. Qxh1 Kf5 43. Qxh2 Kf6 44. Qf2+ Kg5 45. Rg3+ Kh4
+46. Qh2# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/descpsmi"]
+[Date "????.??.??"]
+[Round "?"]
+[White "j-jorjik"]
+[Black "jesuss"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:19:27"]
+[WhiteElo "1548"]
+[BlackElo "1415"]
+[WhiteRatingDiff "+8"]
+[BlackRatingDiff "-8"]
+[ECO "C21"]
+[Opening "Center Game #2"]
+[TimeControl "480+8"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "90"]
+[CurriculumStartFEN "8/8/8/8/7k/1P4R1/P2K1Q2/8 w - - 5 46"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. d4 Qf6 3. dxe5 Qxe5 4. Qe2 Nf6 5. Nf3 Qxe4 6. Qxe4+ Nxe4 7. Nbd2
+Nxd2 8. Bxd2 g6 9. Bc3 Rg8 10. Ng5 Bg7 11. Bxg7 Rxg7 12. O-O-O b6 13. Re1+ Kf8
+14. Be2 Bb7 15. Bf3 Bxf3 16. Nxf3 f6 17. Nd4 Nc6 18. Nxc6 dxc6 19. Re6 Re8 20.
+Rxf6+ Kg8 21. Rxc6 Re2 22. Rf1 Rd7 23. b3 Rdd2 24. Rd1 Rxd1+ 25. Kxd1 Rxf2 26.
+Rxc7 Rxg2 27. Rxa7 Rxh2 28. Rb7 g5 29. Rxb6 g4 30. Rb4 g3 31. Rg4+ Kh8 32. Rxg3
+Rh1+ 33. Kd2 h5 34. c4 h4 35. Re3 h3 36. c5 Kg7 37. c6 Kg6 38. c7 Kg5 39. c8=Q
+h2 40. Qh3 Kf6 41. Qf3+ Kg6 42. Qxh1 Kf5 43. Qxh2 Kf6 44. Qf2+ Kg5 45. Rg3+ Kh4
+46. Qh2# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/61wsdfp4"]
+[Date "????.??.??"]
+[Round "?"]
+[White "adamsrj"]
+[Black "6WX"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:21:14"]
+[WhiteElo "1492"]
+[BlackElo "1525"]
+[WhiteRatingDiff "+12"]
+[BlackRatingDiff "-53"]
+[ECO "B50"]
+[Opening "Sicilian Defense"]
+[TimeControl "1560+30"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "46"]
+[CurriculumStartFEN "3r3r/p2k2pp/8/4Q3/1P2b3/7P/PP2N1q1/1RB1KR2 w - - 1 24"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 c5 2. Nf3 d6 3. h3 Nc6 4. d4 cxd4 5. Nxd4 e5 6. Nxc6 bxc6 7. Nc3 Nf6 8.
+Bc4 Rb8 9. Rb1 Nxe4 10. Nxe4 d5 11. Bxd5 cxd5 12. Nc3 Bb7 13. O-O Qd7 14. f4 d4
+15. Ne2 Qd5 16. Kf2 f6 17. fxe5 fxe5 18. Ke1 Bb4+ 19. c3 d3 20. cxb4 Qxg2 21.
+Qxd3 Be4 22. Qd6 Rd8 23. Qxe5+ Kd7 24. Rf7+ Kc8 25. Qc7# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/61wsdfp4"]
+[Date "????.??.??"]
+[Round "?"]
+[White "adamsrj"]
+[Black "6WX"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:21:14"]
+[WhiteElo "1492"]
+[BlackElo "1525"]
+[WhiteRatingDiff "+12"]
+[BlackRatingDiff "-53"]
+[ECO "B50"]
+[Opening "Sicilian Defense"]
+[TimeControl "1560+30"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "48"]
+[CurriculumStartFEN "2kr3r/p4Rpp/8/4Q3/1P2b3/7P/PP2N1q1/1RB1K3 w - - 3 25"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e4 c5 2. Nf3 d6 3. h3 Nc6 4. d4 cxd4 5. Nxd4 e5 6. Nxc6 bxc6 7. Nc3 Nf6 8.
+Bc4 Rb8 9. Rb1 Nxe4 10. Nxe4 d5 11. Bxd5 cxd5 12. Nc3 Bb7 13. O-O Qd7 14. f4 d4
+15. Ne2 Qd5 16. Kf2 f6 17. fxe5 fxe5 18. Ke1 Bb4+ 19. c3 d3 20. cxb4 Qxg2 21.
+Qxd3 Be4 22. Qd6 Rd8 23. Qxe5+ Kd7 24. Rf7+ Kc8 25. Qc7# 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/7hvhc1t7"]
+[Date "????.??.??"]
+[Round "?"]
+[White "migsan"]
+[Black "MARC0"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:23:14"]
+[WhiteElo "1162"]
+[BlackElo "1244"]
+[WhiteRatingDiff "+17"]
+[BlackRatingDiff "-21"]
+[ECO "A00"]
+[Opening "Van't Kruijs Opening"]
+[TimeControl "420+0"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "74"]
+[CurriculumStartFEN "4r1k1/2Q2R2/6p1/7p/2B5/1P4K1/P6P/1N6 w - - 1 38"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. e3 d5 2. b3 e5 3. Bb2 Qg5 4. g3 Nf6 5. Bh3 Nc6 6. Qf3 Bb4 7. c3 O-O 8. Ne2
+Bg4 9. Qg2 Bxe2 10. Kxe2 Bxc3 11. Bxc3 d4 12. Ba5 Rae8 13. Bxc7 dxe3 14. dxe3
+Qxe3+ 15. Kxe3 Nd4 16. Qxb7 Nc2+ 17. Kf3 Nxa1 18. Bd6 e4+ 19. Kg2 Nc2 20. Bxf8
+Kxf8 21. Rc1 Ne3+ 22. Kg1 Kg8 23. Qxa7 h6 24. Qxe3 Ng4 25. Bxg4 g6 26. Rc7 f5
+27. Qa7 h5 28. Rg7+ Kf8 29. Rf7+ Kg8 30. Rg7+ Kf8 31. Be2 f4 32. Bc4 e3 33.
+Rf7+ Kg8 34. Qc5 exf2+ 35. Kxf2 Kh8 36. Qc7 fxg3+ 37. Kxg3 Kg8 38. Rg7+ Kf8 39.
+Rg8# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/md14boea"]
+[Date "????.??.??"]
+[Round "?"]
+[White "metrolog"]
+[Black "b777"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:22:12"]
+[WhiteElo "1627"]
+[BlackElo "1633"]
+[WhiteRatingDiff "+11"]
+[BlackRatingDiff "-11"]
+[ECO "A40"]
+[Opening "English Defense"]
+[TimeControl "180+15"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "74"]
+[CurriculumStartFEN "3R4/p1k4p/1p4p1/2p2r2/P1B1pp2/2P2P1P/5P2/3R1K2 w - - 4 38"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. d4 b6 2. c4 e6 3. Nc3 Bb7 4. a3 g6 5. h3 Bg7 6. Nf3 Bxf3 7. exf3 Qf6 8. Be2
+Qxd4 9. Qxd4 Bxd4 10. O-O Bxc3 11. bxc3 Ne7 12. Bd3 f5 13. Be3 c5 14. Rab1 Nbc6
+15. Bh6 Na5 16. a4 Nec6 17. g4 Ne5 18. Be2 O-O-O 19. Bg7 Rhg8 20. Bxe5 d6 21.
+Bf6 Rdf8 22. g5 e5 23. Rbd1 Kc7 24. Rd3 f4 25. Rfd1 Nb7 26. R3d2 Rf7 27. Bd3
+Na5 28. Kf1 Nb3 29. Re2 Na5 30. Be4 Nxc4 31. Bd5 Rxf6 32. Bxg8 Rf5 33. Bxc4
+Rxg5 34. Red2 Rf5 35. Rxd6 e4 36. Rd7+ Kb8 37. Rd8+ Kc7 38. R1d7+ Kc6 39. Bb5#
+1-0
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/h6veisdc"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Ben_Dover"]
+[Black "pseudoknight"]
+[Result "0-1"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:28:33"]
+[WhiteElo "1871"]
+[BlackElo "1714"]
+[WhiteRatingDiff "-15"]
+[BlackRatingDiff "+15"]
+[ECO "A00"]
+[Opening "Van Geet Opening"]
+[TimeControl "60+1"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "79"]
+[CurriculumStartFEN "8/p3k3/4p1p1/2p1K1P1/2P2P2/3p4/P2R4/1r6 b - - 1 40"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "train"]
+
+1. Nc3 c5 2. d3 g6 3. e4 Bg7 4. f4 Nc6 5. Nf3 e6 6. Be3 Nge7 7. Qe2 Qb6 8. Na4
+Qa5+ 9. Nc3 d6 10. Bd2 b5 11. Nd5 Qd8 12. Nxe7 Qxe7 13. O-O-O b4 14. d4 Nxd4
+15. Nxd4 Bxd4 16. Qb5+ Bd7 17. Qb7 O-O 18. Bb5 Rfd8 19. Bxd7 Qxd7 20. Qxd7 Rxd7
+21. c3 bxc3 22. Bxc3 Bxc3 23. bxc3 Rad8 24. Kc2 d5 25. e5 d4 26. c4 Rb8 27. Rb1
+Rdb7 28. Rxb7 Rxb7 29. Rc1 Kf8 30. Kd3 Ke7 31. Rc2 Kd7 32. Ke4 Ke7 33. g4 f6
+34. exf6+ Kxf6 35. h4 h6 36. g5+ hxg5 37. hxg5+ Ke7 38. Ke5 Rb1 39. Re2 d3 40.
+Rd2 Re1+ 41. Re2 Rxe2# 0-1

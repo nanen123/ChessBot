@@ -29,6 +29,27 @@ namespace ChessBot.Chess.Application
             GameId = Guid.NewGuid(); TurnVersion = 0; Result = default;
             AddHistory(); RefreshResult(); Changed?.Invoke();
         }
+        // Import prior play without counting it as actions/rewards in the new episode.
+        public void ResetFromHistory(BoardState initial, IEnumerable<Move> moves)
+        {
+            if (moves == null) throw new ArgumentNullException(nameof(moves));
+            var replay = new ChessGameController(initial);
+            foreach (var move in moves)
+                if (!replay.SubmitMove(replay.Board.SideToMove, replay.GameId, replay.TurnVersion, move))
+                    throw new ArgumentException("Illegal or post-terminal history move: " + move, nameof(moves));
+            ResetFromPosition(replay);
+        }
+        public void ResetFromPosition(ChessGameController position)
+        {
+            if (position == null || position == this || position.Result.IsFinished)
+                throw new ArgumentException("A distinct, non-terminal source position is required.", nameof(position));
+            _board = position._board.Copy(); _initialFen = _board.ToFen();
+            _history.Clear();
+            foreach (var item in position._history) _history.Add(item.Key, item.Value);
+            _moves.Clear(); _intendedClaimMove = null;
+            GameId = Guid.NewGuid(); TurnVersion = 0; Result = default;
+            RefreshResult(); Changed?.Invoke();
+        }
         private bool Accepts(PieceColor color, Guid gameId, int version) =>
             !Result.IsFinished && color == _board.SideToMove && gameId == GameId && version == TurnVersion;
         public bool SubmitMove(PieceColor color, Guid gameId, int version, Move move)

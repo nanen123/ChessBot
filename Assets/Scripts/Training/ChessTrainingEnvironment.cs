@@ -26,6 +26,12 @@ namespace ChessBot.Training
         [SerializeField] private bool _recordGames = true;
         [Header("Curriculum")]
         [SerializeField] private bool _useCurriculum = true;
+        [SerializeField, Tooltip("PgnTraining uses bundled train PGNs. InspectorFen uses Lessons/Positions.")] private CurriculumPositionSource _positionSource = CurriculumPositionSource.PgnTraining;
+        private ChessCurriculumDataset.Sample _sample;
+        private bool _sampleMirrored;
+        public string SourceGame => _sample?.SourceGame;
+        public int SourceStartPly => _sample?.StartPly ?? 0;
+        public void ConfigurePositionSource(CurriculumPositionSource source) => _positionSource = source;
         [SerializeField, Range(0, 5)] private int _previewLesson;
         [SerializeField] private ChessLesson[] _lessons = ChessCurriculum.Defaults();
         private ChessLesson _lesson;
@@ -68,9 +74,9 @@ namespace ChessBot.Training
                 if (_lessons == null || _lessons.Length != 6) throw new InvalidOperationException("Curriculum requires six lessons.");
                 foreach (var lesson in _lessons)
                 {
-                    if (lesson == null || lesson.MaximumPlies < 1 || !ValidReward(lesson.SuccessReward) || !ValidReward(lesson.FailurePenalty) || lesson.Positions == null || lesson.Positions.Length == 0)
+                    if (lesson == null || lesson.MaximumPlies < 1 || !ValidReward(lesson.SuccessReward) || !ValidReward(lesson.FailurePenalty) || (_positionSource == CurriculumPositionSource.InspectorFen && (lesson.Positions == null || lesson.Positions.Length == 0)))
                         throw new InvalidOperationException("Invalid curriculum lesson settings.");
-                    foreach (var fen in lesson.Positions)
+                    if (_positionSource == CurriculumPositionSource.InspectorFen) foreach (var fen in lesson.Positions)
                     {
                         var board = BoardState.FromFen(fen);
                         if (ChessRules.IsInCheck(board, ChessRules.Opposite(board.SideToMove)) || new ChessGameController(board).Result.IsFinished)
@@ -78,6 +84,7 @@ namespace ChessBot.Training
                     }
                 }
             }
+            if (_useCurriculum && _positionSource == CurriculumPositionSource.PgnTraining) ChessCurriculumDataset.LoadBundled();
             _colorSequence = UnityEngine.Random.Range(0, 2);
             _game = new ChessGameController();
             if (_recordGames) _recorder = new TrainingGameRecorder();
@@ -144,11 +151,21 @@ namespace ChessBot.Training
             ActiveLesson = _useCurriculum ? Mathf.Clamp(Mathf.RoundToInt(Academy.Instance.EnvironmentParameters.GetWithDefault("curriculum_stage", _previewLesson)), 0, 5) : -1;
             _lesson = ActiveLesson < 0 ? null : _lessons[ActiveLesson];
             _episodeLimit = _lesson == null ? _maximumPlies : _lesson.MaximumPlies;
-            _initialFen = _lesson == null ? BoardState.InitialFen : _lesson.Positions[UnityEngine.Random.Range(0, _lesson.Positions.Length)];
-            if (_lesson != null && ActiveLesson < 5 && (_colorSequence++ % 2) != 0) _initialFen = ChessCurriculum.SwapColors(_initialFen);
-            var board = BoardState.FromFen(_initialFen); _focusColor = board.SideToMove;
+            _sample = null;
+            _sampleMirrored = _lesson != null && ActiveLesson < 5 && (_colorSequence++ % 2) != 0;
+            if (_lesson != null && _positionSource == CurriculumPositionSource.PgnTraining)
+            {
+                var data = ChessCurriculumDataset.LoadBundled();
+                _sample = data.Get(ActiveLesson, UnityEngine.Random.Range(0, data.Count(ActiveLesson)));
+                _sample.Apply(Game, _sampleMirrored);
+            }
+            else
+            {
+                var fen = _lesson == null ? BoardState.InitialFen : _lesson.Positions[UnityEngine.Random.Range(0, _lesson.Positions.Length)];
+                Game.Reset(BoardState.FromFen(_sampleMirrored ? ChessCurriculum.SwapColors(fen) : fen));
+            }
+            _initialFen = Game.Board.ToFen(); _focusColor = Game.Board.SideToMove;
             _materialGain = 0; _taskOutcome = 2;
-            Game.Reset(board);
         }
         public void Submit(ChessAgent agent, int action)
         {
@@ -207,7 +224,7 @@ namespace ChessBot.Training
                 Academy.Instance.StatsRecorder.Add("Curriculum/Stage", ActiveLesson);
             }
             float whiteReward = _white.GetCumulativeReward(), blackReward = _black.GetCumulativeReward();
-            _recorder?.Write(Game, _interrupted, whiteReward, blackReward, _initialFen, ActiveLesson, _focusColor, _taskOutcome);
+            _recorder?.Write(Game, _interrupted, whiteReward, blackReward, _initialFen, ActiveLesson, _focusColor, _taskOutcome, _sample, _sampleMirrored);
             if (_interrupted) InterruptedGames++; else if (Game.Result.IsFinished) CompletedGames++;
             Academy.Instance.StatsRecorder.Add("Chess/Plies", Game.TurnVersion);
             Academy.Instance.StatsRecorder.Add("Chess/Interrupted", _interrupted ? 1 : 0);

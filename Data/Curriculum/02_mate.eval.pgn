@@ -1,0 +1,108 @@
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/mntamgdj"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Killi"]
+[Black "Abd0"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:16:04"]
+[WhiteElo "1492"]
+[BlackElo "1451"]
+[WhiteRatingDiff "+10"]
+[BlackRatingDiff "-11"]
+[ECO "C24"]
+[Opening "Bishop's Opening: Berlin Defense"]
+[TimeControl "420+0"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "36"]
+[CurriculumStartFEN "r1b4k/pp2N1pp/2pp4/4N3/4P3/8/PPn3PP/5BK1 w - - 0 19"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "eval"]
+
+1. e4 e5 2. Bc4 Nf6 3. d3 Bc5 4. Bg5 Bxf2+ 5. Kxf2 Nxe4+ 6. dxe4 Qxg5 7. Nf3
+Qf6 8. Qd5 Nc6 9. Rf1 O-O 10. Kg1 Nb4 11. Qxe5 Qxe5 12. Nxe5 Nxc2 13. Bxf7+ Kh8
+14. Bc4 Rxf1+ 15. Bxf1 Nxa1 16. Nc3 Nc2 17. Nd5 c6 18. Ne7 d6 19. Nf7# 1-0
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/8dbw628m"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Jonathan_52"]
+[Black "1000"]
+[Result "0-1"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:34:22"]
+[WhiteElo "1270"]
+[BlackElo "1646"]
+[WhiteRatingDiff "-28"]
+[BlackRatingDiff "+3"]
+[ECO "A40"]
+[Opening "English Defense #2"]
+[TimeControl "60+0"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "43"]
+[CurriculumStartFEN "rn2k1n1/3p4/pq1Pp1p1/1p6/4P1R1/6P1/PPP3K1/RNB2r2 b q - 7 22"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "eval"]
+
+1. d4 b6 2. e3 Bb7 3. Bd3 a6 4. Nf3 g6 5. e4 c6 6. d5 b5 7. dxc6 Bxc6 8. e5 e6
+9. Ng5 f6 10. f3 fxg5 11. Be4 Bxe4 12. fxe4 g4 13. Qd6 Bxd6 14. exd6 h5 15. Rf1
+h4 16. Rf4 h3 17. gxh3 g3 18. hxg3 Rxh3 19. Rg4 Rh1+ 20. Kf2 Qb6+ 21. Kf3 Rf1+
+22. Kg2 Qg1+ 23. Kh3 Qh1# 0-1
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/8dbw628m"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Jonathan_52"]
+[Black "1000"]
+[Result "0-1"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:34:22"]
+[WhiteElo "1270"]
+[BlackElo "1646"]
+[WhiteRatingDiff "-28"]
+[BlackRatingDiff "+3"]
+[ECO "A40"]
+[Opening "English Defense #2"]
+[TimeControl "60+0"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "45"]
+[CurriculumStartFEN "rn2k1n1/3p4/p2Pp1p1/1p6/4P1R1/6PK/PPP5/RNB2rq1 b q - 9 23"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "eval"]
+
+1. d4 b6 2. e3 Bb7 3. Bd3 a6 4. Nf3 g6 5. e4 c6 6. d5 b5 7. dxc6 Bxc6 8. e5 e6
+9. Ng5 f6 10. f3 fxg5 11. Be4 Bxe4 12. fxe4 g4 13. Qd6 Bxd6 14. exd6 h5 15. Rf1
+h4 16. Rf4 h3 17. gxh3 g3 18. hxg3 Rxh3 19. Rg4 Rh1+ 20. Kf2 Qb6+ 21. Kf3 Rf1+
+22. Kg2 Qg1+ 23. Kh3 Qh1# 0-1
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/zz6hctpl"]
+[Date "????.??.??"]
+[Round "?"]
+[White "sonie"]
+[Black "Gardo"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:41:05"]
+[WhiteElo "1812"]
+[BlackElo "1621"]
+[WhiteRatingDiff "+6"]
+[BlackRatingDiff "-6"]
+[ECO "B21"]
+[Opening "Sicilian Defense: Smith-Morra Gambit #2"]
+[TimeControl "60+0"]
+[Termination "Normal"]
+[CurriculumStage "2"]
+[CurriculumStartPly "20"]
+[CurriculumStartFEN "r1b1kb1r/1p3ppp/p4n2/1Np1n3/4P3/4B3/PPP3PP/2KR1BNR w - - 0 11"]
+[CurriculumCriterion "forced mate verified over all legal defender replies within 1 or 3 plies"]
+[DatasetSplit "eval"]
+
+1. e4 c5 2. d4 d6 3. dxc5 dxc5 4. Qxd8+ Kxd8 5. Be3 e5 6. Nc3 Nf6 7. O-O-O+ Ke8
+8. f4 Nc6 9. fxe5 Nxe5 10. Nb5 a6 11. Nc7+ Ke7 12. Bxc5# 1-0

@@ -1,0 +1,113 @@
+[Event "Rated Classical game"]
+[Site "https://lichess.org/a9tcp02g"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Desmond_Wilson"]
+[Black "savinka59"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:04:12"]
+[WhiteElo "1654"]
+[BlackElo "1919"]
+[WhiteRatingDiff "+19"]
+[BlackRatingDiff "-22"]
+[ECO "D04"]
+[Opening "Queen's Pawn Game: Colle System, Anti-Colle"]
+[TimeControl "480+2"]
+[Termination "Normal"]
+[CurriculumStage "4"]
+[CurriculumStartPly "21"]
+[CurriculumStartFEN "rn1qk3/ppp2pp1/3bpnp1/8/3PN3/3B4/PPP1KPP1/R1B4Q b q - 0 11"]
+[CurriculumCriterion "20 to 50 plies; 16 to 28 pieces; material difference at most 2; no engine balance claim"]
+[DatasetSplit "eval"]
+
+1. d4 d5 2. Nf3 Nf6 3. e3 Bf5 4. Nh4 Bg6 5. Nxg6 hxg6 6. Nd2 e6 7. Bd3 Bd6 8.
+e4 dxe4 9. Nxe4 Rxh2 10. Ke2 Rxh1 11. Qxh1 Nc6 12. Bg5 Ke7 13. Qh7 Nxd4+ 14.
+Kd2 Qe8 15. Qxg7 Qh8 16. Bxf6+ Kd7 17. Qxh8 Rxh8 18. Bxh8 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/iinnkv77"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Kozakmamay007"]
+[Black "vadi"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:10:03"]
+[WhiteElo "1656"]
+[BlackElo "1812"]
+[WhiteRatingDiff "+16"]
+[BlackRatingDiff "-17"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
+[TimeControl "420+17"]
+[Termination "Normal"]
+[CurriculumStage "4"]
+[CurriculumStartPly "28"]
+[CurriculumStartFEN "r1b2rk1/1p2npp1/pb1p2qp/8/1PBpN3/P2P1N2/2P2PPP/R2QR1K1 w - - 0 15"]
+[CurriculumCriterion "20 to 50 plies; 16 to 28 pieces; material difference at most 2; no engine balance claim"]
+[DatasetSplit "eval"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. a3 Qf6 5. b4 Bb6 6. d3 h6 7. Nc3 Nge7 8. O-O
+O-O 9. Re1 a6 10. Be3 Nd4 11. Bxd4 exd4 12. e5 Qg6 13. Ne4 d5 14. exd6 cxd6 15.
+Bb3 Be6 16. Bxe6 fxe6 17. Nxd6 Rab8 18. Nc4 Ba7 19. Nfe5 Qe8 20. Nd6 Qd8 21.
+Ndc4 Qd5 22. Qg4 Rf5 23. Ng6 Nxg6 24. Qxg6 Re8 25. Qxe8+ 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/mntamgdj"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Killi"]
+[Black "Abd0"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:16:04"]
+[WhiteElo "1492"]
+[BlackElo "1451"]
+[WhiteRatingDiff "+10"]
+[BlackRatingDiff "-11"]
+[ECO "C24"]
+[Opening "Bishop's Opening: Berlin Defense"]
+[TimeControl "420+0"]
+[Termination "Normal"]
+[CurriculumStage "4"]
+[CurriculumStartPly "20"]
+[CurriculumStartFEN "r1b2rk1/pppp1ppp/5q2/3Qp3/1nB1P3/5N2/PPP3PP/RN3RK1 w - - 8 11"]
+[CurriculumCriterion "20 to 50 plies; 16 to 28 pieces; material difference at most 2; no engine balance claim"]
+[DatasetSplit "eval"]
+
+1. e4 e5 2. Bc4 Nf6 3. d3 Bc5 4. Bg5 Bxf2+ 5. Kxf2 Nxe4+ 6. dxe4 Qxg5 7. Nf3
+Qf6 8. Qd5 Nc6 9. Rf1 O-O 10. Kg1 Nb4 11. Qxe5 Qxe5 12. Nxe5 Nxc2 13. Bxf7+ Kh8
+14. Bc4 Rxf1+ 15. Bxf1 Nxa1 16. Nc3 Nc2 17. Nd5 c6 18. Ne7 d6 19. Nf7# 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/v778e8mr"]
+[Date "????.??.??"]
+[Round "?"]
+[White "chinokoli"]
+[Black "nichiren1967"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:11:15"]
+[WhiteElo "1938"]
+[BlackElo "1880"]
+[WhiteRatingDiff "+9"]
+[BlackRatingDiff "-10"]
+[ECO "D20"]
+[Opening "Queen's Gambit Accepted: Saduleto Variation"]
+[TimeControl "300+0"]
+[Termination "Normal"]
+[CurriculumStage "4"]
+[CurriculumStartPly "33"]
+[CurriculumStartFEN "r2q1rk1/3n1pbp/2p1pnp1/p7/Pp1PP3/1P1NBP2/3QN1PP/R4R1K b - - 0 17"]
+[CurriculumCriterion "20 to 50 plies; 16 to 28 pieces; material difference at most 2; no engine balance claim"]
+[DatasetSplit "eval"]
+
+1. d4 d5 2. c4 dxc4 3. e4 g6 4. Bxc4 Bg7 5. Ne2 Nf6 6. Nbc3 O-O 7. O-O e6 8.
+Be3 Nbd7 9. f3 Nb6 10. Bd3 a5 11. b3 c6 12. Kh1 Nbd7 13. Qd2 b5 14. a4 b4 15.
+Na2 Ba6 16. Nac1 Bxd3 17. Nxd3 Qc7 18. Bf4 Qb6 19. Rac1 Nh5 20. Bh6 Bxh6 21.
+Qxh6 Ng7 22. Rc4 e5 23. dxe5 Rfe8 24. f4 Qe3 25. Nec1 Nb6 26. Re1 Nxc4 27. Rxe3
+Nxe3 28. Qh3 Nd1 29. Qf3 Nc3 30. f5 gxf5 31. exf5 Rad8 32. h3 c5 33. f6 Ne6 34.
+Nxc5 Kh8 35. N1d3 Rg8 36. Nxe6 fxe6 37. Nf4 Rde8 38. f7 Rgf8 39. fxe8=Q Rxe8
+40. Qg4 Na2 41. Nxe6 Rg8 42. Qf5 h6 43. Qf6+ Kh7 44. Nf8+ Rxf8 45. Qxf8 Nc1 46.
+Qf7+ Kh8 47. e6 1-0

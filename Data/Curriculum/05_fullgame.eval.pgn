@@ -1,0 +1,108 @@
+[Event "Rated Classical game"]
+[Site "https://lichess.org/a9tcp02g"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Desmond_Wilson"]
+[Black "savinka59"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:04:12"]
+[WhiteElo "1654"]
+[BlackElo "1919"]
+[WhiteRatingDiff "+19"]
+[BlackRatingDiff "-22"]
+[ECO "D04"]
+[Opening "Queen's Pawn Game: Colle System, Anti-Colle"]
+[TimeControl "480+2"]
+[Termination "Normal"]
+[CurriculumStage "5"]
+[CurriculumStartPly "0"]
+[CurriculumStartFEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"]
+[CurriculumCriterion "normal completed standard game; initial position"]
+[DatasetSplit "eval"]
+
+1. d4 d5 2. Nf3 Nf6 3. e3 Bf5 4. Nh4 Bg6 5. Nxg6 hxg6 6. Nd2 e6 7. Bd3 Bd6 8.
+e4 dxe4 9. Nxe4 Rxh2 10. Ke2 Rxh1 11. Qxh1 Nc6 12. Bg5 Ke7 13. Qh7 Nxd4+ 14.
+Kd2 Qe8 15. Qxg7 Qh8 16. Bxf6+ Kd7 17. Qxh8 Rxh8 18. Bxh8 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/szom2tog"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Kozakmamay007"]
+[Black "VanillaShamanilla"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:03:15"]
+[WhiteElo "1643"]
+[BlackElo "1747"]
+[WhiteRatingDiff "+13"]
+[BlackRatingDiff "-94"]
+[ECO "C50"]
+[Opening "Four Knights Game: Italian Variation"]
+[TimeControl "420+17"]
+[Termination "Normal"]
+[CurriculumStage "5"]
+[CurriculumStartPly "0"]
+[CurriculumStartFEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"]
+[CurriculumCriterion "normal completed standard game; initial position"]
+[DatasetSplit "eval"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Nc3 Bc5 5. a3 Bxf2+ 6. Kxf2 Nd4 7. d3 Ng4+ 8.
+Kf1 Qf6 9. h3 d5 10. Nxd5 Qe6 11. Nxc7+ 1-0
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/1xb3os63"]
+[Date "????.??.??"]
+[Round "?"]
+[White "nichiren1967"]
+[Black "Naitero_Nagasaki"]
+[Result "0-1"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:02:37"]
+[WhiteElo "1765"]
+[BlackElo "1815"]
+[WhiteRatingDiff "-9"]
+[BlackRatingDiff "+9"]
+[ECO "C00"]
+[Opening "French Defense: La Bourdonnais Variation"]
+[TimeControl "60+1"]
+[Termination "Normal"]
+[CurriculumStage "5"]
+[CurriculumStartPly "0"]
+[CurriculumStartFEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"]
+[CurriculumCriterion "normal completed standard game; initial position"]
+[DatasetSplit "eval"]
+
+1. e4 e6 2. f4 d5 3. e5 c5 4. Nf3 Qb6 5. c3 Nc6 6. d3 Bd7 7. Be2 Nh6 8. O-O Nf5
+9. g4 Nh6 10. Kg2 Nxg4 11. h3 Nh6 12. Ng5 Nf5 13. Bg4 Nce7 14. Nd2 Ne3+ 15. Kf3
+Nxd1 16. Rxd1 h6 17. Nxf7 Kxf7 18. Rf1 h5 19. Bxe6+ Bxe6 20. Kg3 Nf5+ 21. Kg2
+Ne3+ 22. Kf2 Nxf1 23. Kxf1 Bxh3+ 0-1
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/iinnkv77"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Kozakmamay007"]
+[Black "vadi"]
+[Result "1-0"]
+[UTCDate "2012.12.31"]
+[UTCTime "23:10:03"]
+[WhiteElo "1656"]
+[BlackElo "1812"]
+[WhiteRatingDiff "+16"]
+[BlackRatingDiff "-17"]
+[ECO "C50"]
+[Opening "Giuoco Piano"]
+[TimeControl "420+17"]
+[Termination "Normal"]
+[CurriculumStage "5"]
+[CurriculumStartPly "0"]
+[CurriculumStartFEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"]
+[CurriculumCriterion "normal completed standard game; initial position"]
+[DatasetSplit "eval"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. a3 Qf6 5. b4 Bb6 6. d3 h6 7. Nc3 Nge7 8. O-O
+O-O 9. Re1 a6 10. Be3 Nd4 11. Bxd4 exd4 12. e5 Qg6 13. Ne4 d5 14. exd6 cxd6 15.
+Bb3 Be6 16. Bxe6 fxe6 17. Nxd6 Rab8 18. Nc4 Ba7 19. Nfe5 Qe8 20. Nd6 Qd8 21.
+Ndc4 Qd5 22. Qg4 Rf5 23. Ng6 Nxg6 24. Qxg6 Re8 25. Qxe8+ 1-0

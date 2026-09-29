@@ -122,6 +122,7 @@ namespace ChessBot.Tests
         private void StartLesson(int stage, ChessLesson[] lessons = null)
         {
             if (lessons != null) typeof(ChessTrainingEnvironment).GetField("_lessons", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(_environment, lessons);
+            _environment.ConfigurePositionSource(CurriculumPositionSource.InspectorFen);
             _environment.ConfigureCurriculum(true, stage);
             typeof(ChessTrainingEnvironment).GetMethod("ResetEpisode", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(_environment, null);
         }
@@ -170,6 +171,24 @@ namespace ChessBot.Tests
             { completions++; Assert.That(interrupted, Is.True); Assert.That(result.IsFinished, Is.False); Assert.That(white, Is.Zero); Assert.That(black, Is.Zero); };
             Academy.Instance.EnvironmentStep(); Academy.Instance.EnvironmentStep(); Academy.Instance.EnvironmentStep();
             Assert.That(completions, Is.EqualTo(1)); yield return null;
+        }
+        [UnityTest] public IEnumerator PgnLessonsStartWithZeroEpisodePliesAndNoHistoricalRewards()
+        {
+            _environment.ConfigurePositionSource(CurriculumPositionSource.PgnTraining);
+            for (int stage = 0; stage < 6; stage++)
+            {
+                _environment.ConfigureCurriculum(true, stage);
+                typeof(ChessTrainingEnvironment).GetMethod("ResetEpisode", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(_environment, null);
+                Assert.That(_environment.SourceGame, Does.StartWith("https://lichess.org/"));
+                Assert.That(_environment.Game.TurnVersion, Is.Zero); Assert.That(_environment.Game.Moves, Is.Empty);
+                Assert.That(_environment.White.GetCumulativeReward(), Is.Zero);
+                Assert.That(_environment.Black.GetCumulativeReward(), Is.Zero);
+                Assert.That(_environment.Game.Result.IsFinished, Is.False);
+                if (stage < 5) Assert.That(_environment.SourceStartPly, Is.GreaterThan(0));
+                else Assert.That(_environment.Game.Board.ToFen(), Is.EqualTo(BoardState.InitialFen));
+                Assert.That(ChessActionEncoder.LegalActions(_environment.Game).Count, Is.GreaterThan(0));
+            }
+            yield return null;
         }
         private sealed class RecordingMask : IDiscreteActionMask
         {

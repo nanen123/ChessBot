@@ -1,0 +1,567 @@
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/0efbuxny"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Dipankar"]
+[Black "ralphhh"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "05:53:08"]
+[WhiteElo "1511"]
+[BlackElo "1422"]
+[WhiteRatingDiff "-14"]
+[BlackRatingDiff "+14"]
+[ECO "C00"]
+[Opening "French Defense #2"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "103"]
+[CurriculumStartFEN "8/8/8/8/8/8/1k1K4/q7 b - - 1 52"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. Nh3 d5 3. Nc3 dxe4 4. Nxe4 Nf6 5. d3 Nxe4 6. dxe4 Qxd1+ 7. Kxd1 Nc6
+8. Bf4 Bd6 9. Ke2 Bd7 10. Rd1 Bxf4 11. Nxf4 O-O-O 12. Kf3 h6 13. Bb5 g5 14. Nh5
+f5 15. Nf6 Ne5+ 16. Kg3 Bxb5 17. Rxd8+ Rxd8 18. b3 Bc6 19. c4 Bxe4 20. Nxe4
+fxe4 21. Re1 Rd4 22. f3 Nd3 23. Rxe4 Rxe4 24. fxe4 Kd7 25. Kg4 e5 26. Kh5 Nf4+
+27. Kxh6 Nxg2 28. Kxg5 Nf4 29. Kf5 Kd6 30. c5+ Kxc5 31. Kxe5 Nd3+ 32. Kf5 Kd4
+33. h4 Ne5 34. h5 Nf7 35. Kg6 Ne5+ 36. Kg7 Ng4 37. Kg6 Kxe4 38. Kg5 Kf3 39. a4
+a5 40. h6 Nxh6 41. Kxh6 Ke4 42. Kg6 Kd4 43. Kf7 Kc3 44. Ke7 Kxb3 45. Kd7 Kxa4
+46. Kxc7 Kb3 47. Kxb7 a4 48. Kc6 Kb2 49. Kd5 a3 50. Kd4 a2 51. Kd3 a1=Q 52. Kd2
+Qc1+ 53. Kd3 Qc3+ 54. Ke4 Qd2 55. Ke5 Kc2 56. Kf6 Qe2 57. Kg7 Qf2 58. Kh8 Qg2
+59. Kh7 Kd3 60. Kh6 Ke4 61. Kh5 Kf4 62. Kh4 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/0efbuxny"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Dipankar"]
+[Black "ralphhh"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "05:53:08"]
+[WhiteElo "1511"]
+[BlackElo "1422"]
+[WhiteRatingDiff "-14"]
+[BlackRatingDiff "+14"]
+[ECO "C00"]
+[Opening "French Defense #2"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "105"]
+[CurriculumStartFEN "8/8/8/8/8/3K4/1k6/2q5 b - - 3 53"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. Nh3 d5 3. Nc3 dxe4 4. Nxe4 Nf6 5. d3 Nxe4 6. dxe4 Qxd1+ 7. Kxd1 Nc6
+8. Bf4 Bd6 9. Ke2 Bd7 10. Rd1 Bxf4 11. Nxf4 O-O-O 12. Kf3 h6 13. Bb5 g5 14. Nh5
+f5 15. Nf6 Ne5+ 16. Kg3 Bxb5 17. Rxd8+ Rxd8 18. b3 Bc6 19. c4 Bxe4 20. Nxe4
+fxe4 21. Re1 Rd4 22. f3 Nd3 23. Rxe4 Rxe4 24. fxe4 Kd7 25. Kg4 e5 26. Kh5 Nf4+
+27. Kxh6 Nxg2 28. Kxg5 Nf4 29. Kf5 Kd6 30. c5+ Kxc5 31. Kxe5 Nd3+ 32. Kf5 Kd4
+33. h4 Ne5 34. h5 Nf7 35. Kg6 Ne5+ 36. Kg7 Ng4 37. Kg6 Kxe4 38. Kg5 Kf3 39. a4
+a5 40. h6 Nxh6 41. Kxh6 Ke4 42. Kg6 Kd4 43. Kf7 Kc3 44. Ke7 Kxb3 45. Kd7 Kxa4
+46. Kxc7 Kb3 47. Kxb7 a4 48. Kc6 Kb2 49. Kd5 a3 50. Kd4 a2 51. Kd3 a1=Q 52. Kd2
+Qc1+ 53. Kd3 Qc3+ 54. Ke4 Qd2 55. Ke5 Kc2 56. Kf6 Qe2 57. Kg7 Qf2 58. Kh8 Qg2
+59. Kh7 Kd3 60. Kh6 Ke4 61. Kh5 Kf4 62. Kh4 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/0efbuxny"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Dipankar"]
+[Black "ralphhh"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "05:53:08"]
+[WhiteElo "1511"]
+[BlackElo "1422"]
+[WhiteRatingDiff "-14"]
+[BlackRatingDiff "+14"]
+[ECO "C00"]
+[Opening "French Defense #2"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "107"]
+[CurriculumStartFEN "8/8/8/8/4K3/2q5/1k6/8 b - - 5 54"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. Nh3 d5 3. Nc3 dxe4 4. Nxe4 Nf6 5. d3 Nxe4 6. dxe4 Qxd1+ 7. Kxd1 Nc6
+8. Bf4 Bd6 9. Ke2 Bd7 10. Rd1 Bxf4 11. Nxf4 O-O-O 12. Kf3 h6 13. Bb5 g5 14. Nh5
+f5 15. Nf6 Ne5+ 16. Kg3 Bxb5 17. Rxd8+ Rxd8 18. b3 Bc6 19. c4 Bxe4 20. Nxe4
+fxe4 21. Re1 Rd4 22. f3 Nd3 23. Rxe4 Rxe4 24. fxe4 Kd7 25. Kg4 e5 26. Kh5 Nf4+
+27. Kxh6 Nxg2 28. Kxg5 Nf4 29. Kf5 Kd6 30. c5+ Kxc5 31. Kxe5 Nd3+ 32. Kf5 Kd4
+33. h4 Ne5 34. h5 Nf7 35. Kg6 Ne5+ 36. Kg7 Ng4 37. Kg6 Kxe4 38. Kg5 Kf3 39. a4
+a5 40. h6 Nxh6 41. Kxh6 Ke4 42. Kg6 Kd4 43. Kf7 Kc3 44. Ke7 Kxb3 45. Kd7 Kxa4
+46. Kxc7 Kb3 47. Kxb7 a4 48. Kc6 Kb2 49. Kd5 a3 50. Kd4 a2 51. Kd3 a1=Q 52. Kd2
+Qc1+ 53. Kd3 Qc3+ 54. Ke4 Qd2 55. Ke5 Kc2 56. Kf6 Qe2 57. Kg7 Qf2 58. Kh8 Qg2
+59. Kh7 Kd3 60. Kh6 Ke4 61. Kh5 Kf4 62. Kh4 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/0efbuxny"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Dipankar"]
+[Black "ralphhh"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "05:53:08"]
+[WhiteElo "1511"]
+[BlackElo "1422"]
+[WhiteRatingDiff "-14"]
+[BlackRatingDiff "+14"]
+[ECO "C00"]
+[Opening "French Defense #2"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "109"]
+[CurriculumStartFEN "8/8/8/4K3/8/8/1k1q4/8 b - - 7 55"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. Nh3 d5 3. Nc3 dxe4 4. Nxe4 Nf6 5. d3 Nxe4 6. dxe4 Qxd1+ 7. Kxd1 Nc6
+8. Bf4 Bd6 9. Ke2 Bd7 10. Rd1 Bxf4 11. Nxf4 O-O-O 12. Kf3 h6 13. Bb5 g5 14. Nh5
+f5 15. Nf6 Ne5+ 16. Kg3 Bxb5 17. Rxd8+ Rxd8 18. b3 Bc6 19. c4 Bxe4 20. Nxe4
+fxe4 21. Re1 Rd4 22. f3 Nd3 23. Rxe4 Rxe4 24. fxe4 Kd7 25. Kg4 e5 26. Kh5 Nf4+
+27. Kxh6 Nxg2 28. Kxg5 Nf4 29. Kf5 Kd6 30. c5+ Kxc5 31. Kxe5 Nd3+ 32. Kf5 Kd4
+33. h4 Ne5 34. h5 Nf7 35. Kg6 Ne5+ 36. Kg7 Ng4 37. Kg6 Kxe4 38. Kg5 Kf3 39. a4
+a5 40. h6 Nxh6 41. Kxh6 Ke4 42. Kg6 Kd4 43. Kf7 Kc3 44. Ke7 Kxb3 45. Kd7 Kxa4
+46. Kxc7 Kb3 47. Kxb7 a4 48. Kc6 Kb2 49. Kd5 a3 50. Kd4 a2 51. Kd3 a1=Q 52. Kd2
+Qc1+ 53. Kd3 Qc3+ 54. Ke4 Qd2 55. Ke5 Kc2 56. Kf6 Qe2 57. Kg7 Qf2 58. Kh8 Qg2
+59. Kh7 Kd3 60. Kh6 Ke4 61. Kh5 Kf4 62. Kh4 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/0efbuxny"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Dipankar"]
+[Black "ralphhh"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "05:53:08"]
+[WhiteElo "1511"]
+[BlackElo "1422"]
+[WhiteRatingDiff "-14"]
+[BlackRatingDiff "+14"]
+[ECO "C00"]
+[Opening "French Defense #2"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "111"]
+[CurriculumStartFEN "8/8/5K2/8/8/8/2kq4/8 b - - 9 56"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. Nh3 d5 3. Nc3 dxe4 4. Nxe4 Nf6 5. d3 Nxe4 6. dxe4 Qxd1+ 7. Kxd1 Nc6
+8. Bf4 Bd6 9. Ke2 Bd7 10. Rd1 Bxf4 11. Nxf4 O-O-O 12. Kf3 h6 13. Bb5 g5 14. Nh5
+f5 15. Nf6 Ne5+ 16. Kg3 Bxb5 17. Rxd8+ Rxd8 18. b3 Bc6 19. c4 Bxe4 20. Nxe4
+fxe4 21. Re1 Rd4 22. f3 Nd3 23. Rxe4 Rxe4 24. fxe4 Kd7 25. Kg4 e5 26. Kh5 Nf4+
+27. Kxh6 Nxg2 28. Kxg5 Nf4 29. Kf5 Kd6 30. c5+ Kxc5 31. Kxe5 Nd3+ 32. Kf5 Kd4
+33. h4 Ne5 34. h5 Nf7 35. Kg6 Ne5+ 36. Kg7 Ng4 37. Kg6 Kxe4 38. Kg5 Kf3 39. a4
+a5 40. h6 Nxh6 41. Kxh6 Ke4 42. Kg6 Kd4 43. Kf7 Kc3 44. Ke7 Kxb3 45. Kd7 Kxa4
+46. Kxc7 Kb3 47. Kxb7 a4 48. Kc6 Kb2 49. Kd5 a3 50. Kd4 a2 51. Kd3 a1=Q 52. Kd2
+Qc1+ 53. Kd3 Qc3+ 54. Ke4 Qd2 55. Ke5 Kc2 56. Kf6 Qe2 57. Kg7 Qf2 58. Kh8 Qg2
+59. Kh7 Kd3 60. Kh6 Ke4 61. Kh5 Kf4 62. Kh4 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/0efbuxny"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Dipankar"]
+[Black "ralphhh"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "05:53:08"]
+[WhiteElo "1511"]
+[BlackElo "1422"]
+[WhiteRatingDiff "-14"]
+[BlackRatingDiff "+14"]
+[ECO "C00"]
+[Opening "French Defense #2"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "113"]
+[CurriculumStartFEN "8/6K1/8/8/8/8/2k1q3/8 b - - 11 57"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. Nh3 d5 3. Nc3 dxe4 4. Nxe4 Nf6 5. d3 Nxe4 6. dxe4 Qxd1+ 7. Kxd1 Nc6
+8. Bf4 Bd6 9. Ke2 Bd7 10. Rd1 Bxf4 11. Nxf4 O-O-O 12. Kf3 h6 13. Bb5 g5 14. Nh5
+f5 15. Nf6 Ne5+ 16. Kg3 Bxb5 17. Rxd8+ Rxd8 18. b3 Bc6 19. c4 Bxe4 20. Nxe4
+fxe4 21. Re1 Rd4 22. f3 Nd3 23. Rxe4 Rxe4 24. fxe4 Kd7 25. Kg4 e5 26. Kh5 Nf4+
+27. Kxh6 Nxg2 28. Kxg5 Nf4 29. Kf5 Kd6 30. c5+ Kxc5 31. Kxe5 Nd3+ 32. Kf5 Kd4
+33. h4 Ne5 34. h5 Nf7 35. Kg6 Ne5+ 36. Kg7 Ng4 37. Kg6 Kxe4 38. Kg5 Kf3 39. a4
+a5 40. h6 Nxh6 41. Kxh6 Ke4 42. Kg6 Kd4 43. Kf7 Kc3 44. Ke7 Kxb3 45. Kd7 Kxa4
+46. Kxc7 Kb3 47. Kxb7 a4 48. Kc6 Kb2 49. Kd5 a3 50. Kd4 a2 51. Kd3 a1=Q 52. Kd2
+Qc1+ 53. Kd3 Qc3+ 54. Ke4 Qd2 55. Ke5 Kc2 56. Kf6 Qe2 57. Kg7 Qf2 58. Kh8 Qg2
+59. Kh7 Kd3 60. Kh6 Ke4 61. Kh5 Kf4 62. Kh4 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/0efbuxny"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Dipankar"]
+[Black "ralphhh"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "05:53:08"]
+[WhiteElo "1511"]
+[BlackElo "1422"]
+[WhiteRatingDiff "-14"]
+[BlackRatingDiff "+14"]
+[ECO "C00"]
+[Opening "French Defense #2"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "115"]
+[CurriculumStartFEN "7K/8/8/8/8/8/2k2q2/8 b - - 13 58"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. Nh3 d5 3. Nc3 dxe4 4. Nxe4 Nf6 5. d3 Nxe4 6. dxe4 Qxd1+ 7. Kxd1 Nc6
+8. Bf4 Bd6 9. Ke2 Bd7 10. Rd1 Bxf4 11. Nxf4 O-O-O 12. Kf3 h6 13. Bb5 g5 14. Nh5
+f5 15. Nf6 Ne5+ 16. Kg3 Bxb5 17. Rxd8+ Rxd8 18. b3 Bc6 19. c4 Bxe4 20. Nxe4
+fxe4 21. Re1 Rd4 22. f3 Nd3 23. Rxe4 Rxe4 24. fxe4 Kd7 25. Kg4 e5 26. Kh5 Nf4+
+27. Kxh6 Nxg2 28. Kxg5 Nf4 29. Kf5 Kd6 30. c5+ Kxc5 31. Kxe5 Nd3+ 32. Kf5 Kd4
+33. h4 Ne5 34. h5 Nf7 35. Kg6 Ne5+ 36. Kg7 Ng4 37. Kg6 Kxe4 38. Kg5 Kf3 39. a4
+a5 40. h6 Nxh6 41. Kxh6 Ke4 42. Kg6 Kd4 43. Kf7 Kc3 44. Ke7 Kxb3 45. Kd7 Kxa4
+46. Kxc7 Kb3 47. Kxb7 a4 48. Kc6 Kb2 49. Kd5 a3 50. Kd4 a2 51. Kd3 a1=Q 52. Kd2
+Qc1+ 53. Kd3 Qc3+ 54. Ke4 Qd2 55. Ke5 Kc2 56. Kf6 Qe2 57. Kg7 Qf2 58. Kh8 Qg2
+59. Kh7 Kd3 60. Kh6 Ke4 61. Kh5 Kf4 62. Kh4 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/0efbuxny"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Dipankar"]
+[Black "ralphhh"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "05:53:08"]
+[WhiteElo "1511"]
+[BlackElo "1422"]
+[WhiteRatingDiff "-14"]
+[BlackRatingDiff "+14"]
+[ECO "C00"]
+[Opening "French Defense #2"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "117"]
+[CurriculumStartFEN "8/7K/8/8/8/8/2k3q1/8 b - - 15 59"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. Nh3 d5 3. Nc3 dxe4 4. Nxe4 Nf6 5. d3 Nxe4 6. dxe4 Qxd1+ 7. Kxd1 Nc6
+8. Bf4 Bd6 9. Ke2 Bd7 10. Rd1 Bxf4 11. Nxf4 O-O-O 12. Kf3 h6 13. Bb5 g5 14. Nh5
+f5 15. Nf6 Ne5+ 16. Kg3 Bxb5 17. Rxd8+ Rxd8 18. b3 Bc6 19. c4 Bxe4 20. Nxe4
+fxe4 21. Re1 Rd4 22. f3 Nd3 23. Rxe4 Rxe4 24. fxe4 Kd7 25. Kg4 e5 26. Kh5 Nf4+
+27. Kxh6 Nxg2 28. Kxg5 Nf4 29. Kf5 Kd6 30. c5+ Kxc5 31. Kxe5 Nd3+ 32. Kf5 Kd4
+33. h4 Ne5 34. h5 Nf7 35. Kg6 Ne5+ 36. Kg7 Ng4 37. Kg6 Kxe4 38. Kg5 Kf3 39. a4
+a5 40. h6 Nxh6 41. Kxh6 Ke4 42. Kg6 Kd4 43. Kf7 Kc3 44. Ke7 Kxb3 45. Kd7 Kxa4
+46. Kxc7 Kb3 47. Kxb7 a4 48. Kc6 Kb2 49. Kd5 a3 50. Kd4 a2 51. Kd3 a1=Q 52. Kd2
+Qc1+ 53. Kd3 Qc3+ 54. Ke4 Qd2 55. Ke5 Kc2 56. Kf6 Qe2 57. Kg7 Qf2 58. Kh8 Qg2
+59. Kh7 Kd3 60. Kh6 Ke4 61. Kh5 Kf4 62. Kh4 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/1pkjq22j"]
+[Date "????.??.??"]
+[Round "?"]
+[White "kinner"]
+[Black "ddj"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "08:30:42"]
+[WhiteElo "1656"]
+[BlackElo "1556"]
+[WhiteRatingDiff "+8"]
+[BlackRatingDiff "-13"]
+[ECO "A10"]
+[Opening "English Opening: Great Snake Variation"]
+[TimeControl "120+2"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "116"]
+[CurriculumStartFEN "8/R1K2k2/8/8/8/8/8/8 w - - 1 59"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. c4 g6 2. Nc3 Bg7 3. d4 e6 4. e4 d5 5. cxd5 exd5 6. e5 Nc6 7. Nf3 Bg4 8. Be2
+Nge7 9. Bg5 Bxf3 10. Bxf3 O-O 11. O-O Qd7 12. Bg4 f5 13. Bxe7 Nxe7 14. Bf3 c5
+15. dxc5 Bxe5 16. Nxd5 Bxb2 17. Nxe7+ Qxe7 18. Qb3+ Rf7 19. Qxb2 Rc8 20. Bd5
+Rxc5 21. Bxf7+ Kxf7 22. Rfe1 Qc7 23. Rad1 Rc2 24. Qb3+ Kg7 25. Qa4 Qc5 26. Qd4+
+Qxd4 27. Rxd4 Rxa2 28. Rd7+ Kf6 29. Rxb7 a5 30. Ra7 a4 31. f4 a3 32. Ra6+ Kg7
+33. Re7+ Kh6 34. Raa7 Ra1+ 35. Kf2 g5 36. Rxh7+ Kg6 37. Rhg7+ Kf6 38. fxg5+ Ke5
+39. Ra5+ Kf4 40. Rga7 Ra2+ 41. Ke1 Rxg2 42. Ra4+ Ke5 43. R7a5+ Ke6 44. Rxa3
+Rxg5 45. Rf3 Rg2 46. Rfxf5 Rxh2 47. Rh5 Rb2 48. Rh6+ Kf7 49. Ra7+ Kg8 50. Rc6
+Rb1+ 51. Kd2 Rb2+ 52. Kc3 Rb8 53. Kc4 Re8 54. Kb5 Rb8+ 55. Ka6 Re8 56. Kb7 Re7+
+57. Rc7 Rxc7+ 58. Kxc7 Kf7 59. Ra5 Ke6 60. Kb6 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/1pkjq22j"]
+[Date "????.??.??"]
+[Round "?"]
+[White "kinner"]
+[Black "ddj"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "08:30:42"]
+[WhiteElo "1656"]
+[BlackElo "1556"]
+[WhiteRatingDiff "+8"]
+[BlackRatingDiff "-13"]
+[ECO "A10"]
+[Opening "English Opening: Great Snake Variation"]
+[TimeControl "120+2"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "118"]
+[CurriculumStartFEN "8/2K5/4k3/R7/8/8/8/8 w - - 3 60"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. c4 g6 2. Nc3 Bg7 3. d4 e6 4. e4 d5 5. cxd5 exd5 6. e5 Nc6 7. Nf3 Bg4 8. Be2
+Nge7 9. Bg5 Bxf3 10. Bxf3 O-O 11. O-O Qd7 12. Bg4 f5 13. Bxe7 Nxe7 14. Bf3 c5
+15. dxc5 Bxe5 16. Nxd5 Bxb2 17. Nxe7+ Qxe7 18. Qb3+ Rf7 19. Qxb2 Rc8 20. Bd5
+Rxc5 21. Bxf7+ Kxf7 22. Rfe1 Qc7 23. Rad1 Rc2 24. Qb3+ Kg7 25. Qa4 Qc5 26. Qd4+
+Qxd4 27. Rxd4 Rxa2 28. Rd7+ Kf6 29. Rxb7 a5 30. Ra7 a4 31. f4 a3 32. Ra6+ Kg7
+33. Re7+ Kh6 34. Raa7 Ra1+ 35. Kf2 g5 36. Rxh7+ Kg6 37. Rhg7+ Kf6 38. fxg5+ Ke5
+39. Ra5+ Kf4 40. Rga7 Ra2+ 41. Ke1 Rxg2 42. Ra4+ Ke5 43. R7a5+ Ke6 44. Rxa3
+Rxg5 45. Rf3 Rg2 46. Rfxf5 Rxh2 47. Rh5 Rb2 48. Rh6+ Kf7 49. Ra7+ Kg8 50. Rc6
+Rb1+ 51. Kd2 Rb2+ 52. Kc3 Rb8 53. Kc4 Re8 54. Kb5 Rb8+ 55. Ka6 Re8 56. Kb7 Re7+
+57. Rc7 Rxc7+ 58. Kxc7 Kf7 59. Ra5 Ke6 60. Kb6 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/zozrprlr"]
+[Date "????.??.??"]
+[Round "?"]
+[White "tica"]
+[Black "alltimewiner"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "12:29:16"]
+[WhiteElo "1576"]
+[BlackElo "1607"]
+[WhiteRatingDiff "+1"]
+[BlackRatingDiff "-2"]
+[ECO "C20"]
+[Opening "King's Pawn Game: Napoleon Attack"]
+[TimeControl "1800+0"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "134"]
+[CurriculumStartFEN "8/2K5/8/4k3/8/8/7R/8 w - - 1 68"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Qf3 Nc6 3. Bb5 d6 4. Ne2 Nf6 5. h3 Bd7 6. d3 Be7 7. Bxc6 Bxc6 8.
+Bg5 d5 9. Bxf6 Bxf6 10. O-O dxe4 11. dxe4 O-O 12. Nbc3 Qd2 13. Rac1 Qg5 14. Qg3
+b5 15. Qxg5 Bxg5 16. Rb1 b4 17. Nd5 Bxd5 18. exd5 Rad8 19. Rbd1 Rd7 20. c3 a5
+21. c4 Rfd8 22. b3 c6 23. d6 Rxd6 24. Rxd6 Rxd6 25. Ng3 Rg6 26. Ne4 Bf6 27.
+Nxf6+ Rxf6 28. Rd1 Kf8 29. Rd7 Ke8 30. Ra7 Rd6 31. Kf1 Rd1+ 32. Ke2 Rb1 33.
+Rxa5 f6 34. Ke3 Kd7 35. g4 Kd6 36. Ra4 Kc5 37. Ke4 Rh1 38. Ra7 Rxh3 39. Rxg7
+Rh4 40. f3 h5 41. Kf5 hxg4 42. fxg4 Rh2 43. Ra7 Rh6 44. g5 fxg5 45. Kxg5 Rd6
+46. Ra5+ Kd4 47. Kf5 e4 48. Re5 Kc3 49. Rxe4 Rd2 50. c5 Rxa2 51. Re3+ Kc2 52.
+Ke5 Ra3 53. Kd6 Rxb3 54. Re2+ Kc3 55. Kxc6 Rb2 56. Re3+ Kc4 57. Re4+ Kc3 58.
+Kb5 b3 59. c6 Ra2 60. Rc4+ Kd2 61. c7 b2 62. Rb4 Ra8 63. Rxb2+ Kc3 64. Rh2 Rc8
+65. Kc6 Kd4 66. Kb7 Rxc7+ 67. Kxc7 Ke5 68. Rd2 Ke4 69. Kd7 Kf5 70. Re2 Kg6 71.
+Ke7 Kh7 72. Rg2 Kh6 73. Kf7 Kh5 74. Kf6 Kh4 75. Kf5 Kh3 76. Rg5 Kh4 77. Kf4 Kh3
+78. Rg4 Kh2 79. Kf3 Kh3 80. Rg1 Kh4 81. Rg3 Kh5 82. Kf4 Kh4 83. Rg4+ Kh5 84.
+Kg3 Kh6 85. Kh4 Kh7 86. Rg5 Kh6 87. Kg4 Kh7 88. Kh5 Kh8 89. Kh6 1/2-1/2
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/zozrprlr"]
+[Date "????.??.??"]
+[Round "?"]
+[White "tica"]
+[Black "alltimewiner"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "12:29:16"]
+[WhiteElo "1576"]
+[BlackElo "1607"]
+[WhiteRatingDiff "+1"]
+[BlackRatingDiff "-2"]
+[ECO "C20"]
+[Opening "King's Pawn Game: Napoleon Attack"]
+[TimeControl "1800+0"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "136"]
+[CurriculumStartFEN "8/2K5/8/8/4k3/8/3R4/8 w - - 3 69"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Qf3 Nc6 3. Bb5 d6 4. Ne2 Nf6 5. h3 Bd7 6. d3 Be7 7. Bxc6 Bxc6 8.
+Bg5 d5 9. Bxf6 Bxf6 10. O-O dxe4 11. dxe4 O-O 12. Nbc3 Qd2 13. Rac1 Qg5 14. Qg3
+b5 15. Qxg5 Bxg5 16. Rb1 b4 17. Nd5 Bxd5 18. exd5 Rad8 19. Rbd1 Rd7 20. c3 a5
+21. c4 Rfd8 22. b3 c6 23. d6 Rxd6 24. Rxd6 Rxd6 25. Ng3 Rg6 26. Ne4 Bf6 27.
+Nxf6+ Rxf6 28. Rd1 Kf8 29. Rd7 Ke8 30. Ra7 Rd6 31. Kf1 Rd1+ 32. Ke2 Rb1 33.
+Rxa5 f6 34. Ke3 Kd7 35. g4 Kd6 36. Ra4 Kc5 37. Ke4 Rh1 38. Ra7 Rxh3 39. Rxg7
+Rh4 40. f3 h5 41. Kf5 hxg4 42. fxg4 Rh2 43. Ra7 Rh6 44. g5 fxg5 45. Kxg5 Rd6
+46. Ra5+ Kd4 47. Kf5 e4 48. Re5 Kc3 49. Rxe4 Rd2 50. c5 Rxa2 51. Re3+ Kc2 52.
+Ke5 Ra3 53. Kd6 Rxb3 54. Re2+ Kc3 55. Kxc6 Rb2 56. Re3+ Kc4 57. Re4+ Kc3 58.
+Kb5 b3 59. c6 Ra2 60. Rc4+ Kd2 61. c7 b2 62. Rb4 Ra8 63. Rxb2+ Kc3 64. Rh2 Rc8
+65. Kc6 Kd4 66. Kb7 Rxc7+ 67. Kxc7 Ke5 68. Rd2 Ke4 69. Kd7 Kf5 70. Re2 Kg6 71.
+Ke7 Kh7 72. Rg2 Kh6 73. Kf7 Kh5 74. Kf6 Kh4 75. Kf5 Kh3 76. Rg5 Kh4 77. Kf4 Kh3
+78. Rg4 Kh2 79. Kf3 Kh3 80. Rg1 Kh4 81. Rg3 Kh5 82. Kf4 Kh4 83. Rg4+ Kh5 84.
+Kg3 Kh6 85. Kh4 Kh7 86. Rg5 Kh6 87. Kg4 Kh7 88. Kh5 Kh8 89. Kh6 1/2-1/2
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/zozrprlr"]
+[Date "????.??.??"]
+[Round "?"]
+[White "tica"]
+[Black "alltimewiner"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "12:29:16"]
+[WhiteElo "1576"]
+[BlackElo "1607"]
+[WhiteRatingDiff "+1"]
+[BlackRatingDiff "-2"]
+[ECO "C20"]
+[Opening "King's Pawn Game: Napoleon Attack"]
+[TimeControl "1800+0"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "138"]
+[CurriculumStartFEN "8/3K4/8/5k2/8/8/3R4/8 w - - 5 70"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Qf3 Nc6 3. Bb5 d6 4. Ne2 Nf6 5. h3 Bd7 6. d3 Be7 7. Bxc6 Bxc6 8.
+Bg5 d5 9. Bxf6 Bxf6 10. O-O dxe4 11. dxe4 O-O 12. Nbc3 Qd2 13. Rac1 Qg5 14. Qg3
+b5 15. Qxg5 Bxg5 16. Rb1 b4 17. Nd5 Bxd5 18. exd5 Rad8 19. Rbd1 Rd7 20. c3 a5
+21. c4 Rfd8 22. b3 c6 23. d6 Rxd6 24. Rxd6 Rxd6 25. Ng3 Rg6 26. Ne4 Bf6 27.
+Nxf6+ Rxf6 28. Rd1 Kf8 29. Rd7 Ke8 30. Ra7 Rd6 31. Kf1 Rd1+ 32. Ke2 Rb1 33.
+Rxa5 f6 34. Ke3 Kd7 35. g4 Kd6 36. Ra4 Kc5 37. Ke4 Rh1 38. Ra7 Rxh3 39. Rxg7
+Rh4 40. f3 h5 41. Kf5 hxg4 42. fxg4 Rh2 43. Ra7 Rh6 44. g5 fxg5 45. Kxg5 Rd6
+46. Ra5+ Kd4 47. Kf5 e4 48. Re5 Kc3 49. Rxe4 Rd2 50. c5 Rxa2 51. Re3+ Kc2 52.
+Ke5 Ra3 53. Kd6 Rxb3 54. Re2+ Kc3 55. Kxc6 Rb2 56. Re3+ Kc4 57. Re4+ Kc3 58.
+Kb5 b3 59. c6 Ra2 60. Rc4+ Kd2 61. c7 b2 62. Rb4 Ra8 63. Rxb2+ Kc3 64. Rh2 Rc8
+65. Kc6 Kd4 66. Kb7 Rxc7+ 67. Kxc7 Ke5 68. Rd2 Ke4 69. Kd7 Kf5 70. Re2 Kg6 71.
+Ke7 Kh7 72. Rg2 Kh6 73. Kf7 Kh5 74. Kf6 Kh4 75. Kf5 Kh3 76. Rg5 Kh4 77. Kf4 Kh3
+78. Rg4 Kh2 79. Kf3 Kh3 80. Rg1 Kh4 81. Rg3 Kh5 82. Kf4 Kh4 83. Rg4+ Kh5 84.
+Kg3 Kh6 85. Kh4 Kh7 86. Rg5 Kh6 87. Kg4 Kh7 88. Kh5 Kh8 89. Kh6 1/2-1/2
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/zozrprlr"]
+[Date "????.??.??"]
+[Round "?"]
+[White "tica"]
+[Black "alltimewiner"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "12:29:16"]
+[WhiteElo "1576"]
+[BlackElo "1607"]
+[WhiteRatingDiff "+1"]
+[BlackRatingDiff "-2"]
+[ECO "C20"]
+[Opening "King's Pawn Game: Napoleon Attack"]
+[TimeControl "1800+0"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "140"]
+[CurriculumStartFEN "8/3K4/6k1/8/8/8/4R3/8 w - - 7 71"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Qf3 Nc6 3. Bb5 d6 4. Ne2 Nf6 5. h3 Bd7 6. d3 Be7 7. Bxc6 Bxc6 8.
+Bg5 d5 9. Bxf6 Bxf6 10. O-O dxe4 11. dxe4 O-O 12. Nbc3 Qd2 13. Rac1 Qg5 14. Qg3
+b5 15. Qxg5 Bxg5 16. Rb1 b4 17. Nd5 Bxd5 18. exd5 Rad8 19. Rbd1 Rd7 20. c3 a5
+21. c4 Rfd8 22. b3 c6 23. d6 Rxd6 24. Rxd6 Rxd6 25. Ng3 Rg6 26. Ne4 Bf6 27.
+Nxf6+ Rxf6 28. Rd1 Kf8 29. Rd7 Ke8 30. Ra7 Rd6 31. Kf1 Rd1+ 32. Ke2 Rb1 33.
+Rxa5 f6 34. Ke3 Kd7 35. g4 Kd6 36. Ra4 Kc5 37. Ke4 Rh1 38. Ra7 Rxh3 39. Rxg7
+Rh4 40. f3 h5 41. Kf5 hxg4 42. fxg4 Rh2 43. Ra7 Rh6 44. g5 fxg5 45. Kxg5 Rd6
+46. Ra5+ Kd4 47. Kf5 e4 48. Re5 Kc3 49. Rxe4 Rd2 50. c5 Rxa2 51. Re3+ Kc2 52.
+Ke5 Ra3 53. Kd6 Rxb3 54. Re2+ Kc3 55. Kxc6 Rb2 56. Re3+ Kc4 57. Re4+ Kc3 58.
+Kb5 b3 59. c6 Ra2 60. Rc4+ Kd2 61. c7 b2 62. Rb4 Ra8 63. Rxb2+ Kc3 64. Rh2 Rc8
+65. Kc6 Kd4 66. Kb7 Rxc7+ 67. Kxc7 Ke5 68. Rd2 Ke4 69. Kd7 Kf5 70. Re2 Kg6 71.
+Ke7 Kh7 72. Rg2 Kh6 73. Kf7 Kh5 74. Kf6 Kh4 75. Kf5 Kh3 76. Rg5 Kh4 77. Kf4 Kh3
+78. Rg4 Kh2 79. Kf3 Kh3 80. Rg1 Kh4 81. Rg3 Kh5 82. Kf4 Kh4 83. Rg4+ Kh5 84.
+Kg3 Kh6 85. Kh4 Kh7 86. Rg5 Kh6 87. Kg4 Kh7 88. Kh5 Kh8 89. Kh6 1/2-1/2
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/zozrprlr"]
+[Date "????.??.??"]
+[Round "?"]
+[White "tica"]
+[Black "alltimewiner"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "12:29:16"]
+[WhiteElo "1576"]
+[BlackElo "1607"]
+[WhiteRatingDiff "+1"]
+[BlackRatingDiff "-2"]
+[ECO "C20"]
+[Opening "King's Pawn Game: Napoleon Attack"]
+[TimeControl "1800+0"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "142"]
+[CurriculumStartFEN "8/4K2k/8/8/8/8/4R3/8 w - - 9 72"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Qf3 Nc6 3. Bb5 d6 4. Ne2 Nf6 5. h3 Bd7 6. d3 Be7 7. Bxc6 Bxc6 8.
+Bg5 d5 9. Bxf6 Bxf6 10. O-O dxe4 11. dxe4 O-O 12. Nbc3 Qd2 13. Rac1 Qg5 14. Qg3
+b5 15. Qxg5 Bxg5 16. Rb1 b4 17. Nd5 Bxd5 18. exd5 Rad8 19. Rbd1 Rd7 20. c3 a5
+21. c4 Rfd8 22. b3 c6 23. d6 Rxd6 24. Rxd6 Rxd6 25. Ng3 Rg6 26. Ne4 Bf6 27.
+Nxf6+ Rxf6 28. Rd1 Kf8 29. Rd7 Ke8 30. Ra7 Rd6 31. Kf1 Rd1+ 32. Ke2 Rb1 33.
+Rxa5 f6 34. Ke3 Kd7 35. g4 Kd6 36. Ra4 Kc5 37. Ke4 Rh1 38. Ra7 Rxh3 39. Rxg7
+Rh4 40. f3 h5 41. Kf5 hxg4 42. fxg4 Rh2 43. Ra7 Rh6 44. g5 fxg5 45. Kxg5 Rd6
+46. Ra5+ Kd4 47. Kf5 e4 48. Re5 Kc3 49. Rxe4 Rd2 50. c5 Rxa2 51. Re3+ Kc2 52.
+Ke5 Ra3 53. Kd6 Rxb3 54. Re2+ Kc3 55. Kxc6 Rb2 56. Re3+ Kc4 57. Re4+ Kc3 58.
+Kb5 b3 59. c6 Ra2 60. Rc4+ Kd2 61. c7 b2 62. Rb4 Ra8 63. Rxb2+ Kc3 64. Rh2 Rc8
+65. Kc6 Kd4 66. Kb7 Rxc7+ 67. Kxc7 Ke5 68. Rd2 Ke4 69. Kd7 Kf5 70. Re2 Kg6 71.
+Ke7 Kh7 72. Rg2 Kh6 73. Kf7 Kh5 74. Kf6 Kh4 75. Kf5 Kh3 76. Rg5 Kh4 77. Kf4 Kh3
+78. Rg4 Kh2 79. Kf3 Kh3 80. Rg1 Kh4 81. Rg3 Kh5 82. Kf4 Kh4 83. Rg4+ Kh5 84.
+Kg3 Kh6 85. Kh4 Kh7 86. Rg5 Kh6 87. Kg4 Kh7 88. Kh5 Kh8 89. Kh6 1/2-1/2
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/zozrprlr"]
+[Date "????.??.??"]
+[Round "?"]
+[White "tica"]
+[Black "alltimewiner"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "12:29:16"]
+[WhiteElo "1576"]
+[BlackElo "1607"]
+[WhiteRatingDiff "+1"]
+[BlackRatingDiff "-2"]
+[ECO "C20"]
+[Opening "King's Pawn Game: Napoleon Attack"]
+[TimeControl "1800+0"]
+[Termination "Normal"]
+[CurriculumStage "3"]
+[CurriculumStartPly "144"]
+[CurriculumStartFEN "8/4K3/7k/8/8/8/6R1/8 w - - 11 73"]
+[CurriculumCriterion "KQK or KRK; stronger side to move; major piece not attacked; no tablebase verification"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Qf3 Nc6 3. Bb5 d6 4. Ne2 Nf6 5. h3 Bd7 6. d3 Be7 7. Bxc6 Bxc6 8.
+Bg5 d5 9. Bxf6 Bxf6 10. O-O dxe4 11. dxe4 O-O 12. Nbc3 Qd2 13. Rac1 Qg5 14. Qg3
+b5 15. Qxg5 Bxg5 16. Rb1 b4 17. Nd5 Bxd5 18. exd5 Rad8 19. Rbd1 Rd7 20. c3 a5
+21. c4 Rfd8 22. b3 c6 23. d6 Rxd6 24. Rxd6 Rxd6 25. Ng3 Rg6 26. Ne4 Bf6 27.
+Nxf6+ Rxf6 28. Rd1 Kf8 29. Rd7 Ke8 30. Ra7 Rd6 31. Kf1 Rd1+ 32. Ke2 Rb1 33.
+Rxa5 f6 34. Ke3 Kd7 35. g4 Kd6 36. Ra4 Kc5 37. Ke4 Rh1 38. Ra7 Rxh3 39. Rxg7
+Rh4 40. f3 h5 41. Kf5 hxg4 42. fxg4 Rh2 43. Ra7 Rh6 44. g5 fxg5 45. Kxg5 Rd6
+46. Ra5+ Kd4 47. Kf5 e4 48. Re5 Kc3 49. Rxe4 Rd2 50. c5 Rxa2 51. Re3+ Kc2 52.
+Ke5 Ra3 53. Kd6 Rxb3 54. Re2+ Kc3 55. Kxc6 Rb2 56. Re3+ Kc4 57. Re4+ Kc3 58.
+Kb5 b3 59. c6 Ra2 60. Rc4+ Kd2 61. c7 b2 62. Rb4 Ra8 63. Rxb2+ Kc3 64. Rh2 Rc8
+65. Kc6 Kd4 66. Kb7 Rxc7+ 67. Kxc7 Ke5 68. Rd2 Ke4 69. Kd7 Kf5 70. Re2 Kg6 71.
+Ke7 Kh7 72. Rg2 Kh6 73. Kf7 Kh5 74. Kf6 Kh4 75. Kf5 Kh3 76. Rg5 Kh4 77. Kf4 Kh3
+78. Rg4 Kh2 79. Kf3 Kh3 80. Rg1 Kh4 81. Rg3 Kh5 82. Kf4 Kh4 83. Rg4+ Kh5 84.
+Kg3 Kh6 85. Kh4 Kh7 86. Rg5 Kh6 87. Kg4 Kh7 88. Kh5 Kh8 89. Kh6 1/2-1/2
