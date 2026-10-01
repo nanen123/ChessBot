@@ -2,16 +2,90 @@
   "schemaVersion": 1,
   "behaviorName": "ChessV1",
   "observations": 844,
-  "discreteBranches": [8577],
+  "discreteBranches": [
+    8577
+  ],
   "coordinates": "absolute a1=0, h8=63 for both colors",
   "moveActions": "0..4095 = from*64+to; 4096..4287 = ((promotionSide*8+fromFile)*3+fileOffset+1)*4+promotion+4096",
-  "promotionSide": ["white rank6 to7", "black rank1 to0"],
-  "promotion": ["Queen", "Rook", "Bishop", "Knight"],
+  "promotionSide": [
+    "white rank6 to7",
+    "black rank1 to0"
+  ],
+  "promotion": [
+    "Queen",
+    "Rook",
+    "Bishop",
+    "Knight"
+  ],
   "drawActions": "4288..8575 = intended move action +4288; 8576 = claim current position",
   "observationLayout": "768 own/opponent piece planes, own color, own turn, 4 castling flags, 65 en-passant flags including none, halfmove/150, repetition/5, current claim, intended claim, ply/maxPlies",
   "partialObservation": "Full repetition history is not encoded. Exact valid draw commands remain action-masked.",
-  "rewards": {"rewardPolicyVersion": 3, "capturePerMaterialPoint": 0.05, "capturedMultiplier": -1, "pieceValues": {"Pawn": 1, "Knight": 3, "Bishop": 3, "Rook": 5, "Queen": 9}, "winMaximum": 1.0, "winMinimum": 0.5, "winDecayPlies": 0, "winDecayFormula": "lerp(max,min,clamp(plies/(decayPlies==0?maximumPlies:decayPlies),0,1))", "lossMultiplier": 1.0, "whiteDraw": -0.2, "blackDraw": 0.2, "interruptionTerminalReward": 0.0},
-  "curriculum": {"version":1,"parameter":"curriculum_stage","stages":6,"maximumPliesByStage":[10,12,3,100,256,512],"taskSuccessRewards":[0.1,0.1,0,0,0,0],"taskFailurePenalties":[0.1,0.1,0.1,0,0,0],"settingsSource":"ChessTrainingEnvironment Inspector; values here are defaults","positionSource":"PgnTraining","datasetId":"7c0926e5ade389a01a6248192f54fa1b4c6fb5d2ffd43cf1d74ff68892de1f29","history":"Prior PGN repetition retained; episode plies and rewards start at zero"},
+  "rewards": {
+    "rewardPolicyVersion": 4,
+    "capturePerMaterialPoint": 0.05,
+    "capturedMultiplier": -1,
+    "pieceValues": {
+      "Pawn": 1,
+      "Knight": 3,
+      "Bishop": 3,
+      "Rook": 5,
+      "Queen": 9
+    },
+    "winMaximum": 1.0,
+    "winMinimum": 0.5,
+    "winDecayPlies": 0,
+    "winDecayFormula": "lerp(max,min,clamp(plies/(decayPlies==0?maximumPlies:decayPlies),0,1))",
+    "lossMultiplier": 1.0,
+    "whiteDraw": -0.2,
+    "blackDraw": 0.2,
+    "interruptionTerminalReward": 0.0,
+    "earlyRepetition": {
+      "stages": [
+        0,
+        1,
+        2
+      ],
+      "penalty": 0.005,
+      "fromOccurrence": 2,
+      "perAgentEpisodeCap": 0.05,
+      "history": "episode-local; moving agent only; no terminal-board penalty"
+    },
+    "firstMoveCapture": "No capture reward for an unfavorable stage-0 capture"
+  },
+  "curriculum": {
+    "version": 3,
+    "parameter": "curriculum_stage",
+    "stages": 6,
+    "maximumPliesByStage": [
+      1,
+      12,
+      3,
+      100,
+      256,
+      512
+    ],
+    "taskSuccessRewards": [
+      0.1,
+      0.1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "taskFailurePenalties": [
+      0.1,
+      0.1,
+      0.1,
+      0,
+      0,
+      0
+    ],
+    "settingsSource": "ChessTrainingEnvironment Inspector; values here are defaults",
+    "positionSource": "PgnTraining",
+    "datasetId": "0f6237040ea094816d519440f8f74e0989cd65fc4ea647a74d54ed50a466afd3",
+    "history": "Prior PGN repetition retained; episode plies and rewards start at zero",
+    "promotion": "Held-out success; Tools/TrainChessSuccess.py; config/chess_evaluation.yaml"
+  },
   "maximumPlies": 512,
   "limitation": "Arbitrary blocked dead positions are not fully recognized by the current core. This is an initial experimental training setup."
 }

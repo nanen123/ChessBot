@@ -91,7 +91,7 @@ LocalPlay.unity는 사람의 로컬 대국, Training.unity는 ChessAgent 두 개
 - [x] ML-Agents 연동 및 관측·행동·보상 설계
 - [x] Self-Play 학습 설정과 실행 환경 구성
 - [x] 학습 체크포인트 저장·재개 및 ONNX 내보내기
-- [ ] 학습 모델의 대국 평가
+- [x] 고정 상대·전술 문제 자동 평가와 성공률 기반 승급
 
 ## 검증 계획
 
@@ -117,3 +117,7 @@ EditMode 59개와 PlayMode 5개 테스트를 통과했다. 실제 Windows 학습
 ## 단계별 커리큘럼
 
 6단계 커리큘럼을 구현했다. 단계별 학습 내용, 종료 조건, 보상과 Inspector 설정은 [커리큘럼 안내](Codex/005.Curriculum.md)를 참고한다. 변경된 학습 환경은 실행 파일을 다시 빌드해야 적용된다.
+
+## 성공률 기반 학습
+
+현재 학습은 `python Tools/TrainChessSuccess.py config/chess_sac.yaml` 실행기에 기존 학습 인자를 붙여 시작한다. 평가 성공률과 이전 단계 유지 기준을 연속 통과해야 승급한다. 일반 mlagents-learn만 사용하면 단계 0에 머문다. 준비·실행·결과 확인은 [자동 평가 안내](Codex/006.AutomaticEvaluation.md)를 참고한다.

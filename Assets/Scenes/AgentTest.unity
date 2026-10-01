@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ChessBot.Bootstrap::ChessBot.Bootstrap.ChessEvaluationEnvironment
   _mode: 0
-  _whiteModel: {fileID: 5022602860645237092, guid: 08ce0328c05a4d340ba91b250499145a, type: 3}
+  _whiteModel: {fileID: 5022602860645237092, guid: f52b1283c8fbece4998ec54018620b88, type: 3}
   _blackModel: {fileID: 5022602860645237092, guid: 08ce0328c05a4d340ba91b250499145a, type: 3}
   _humanColor: 0
   _secondsPerMove: 0.5

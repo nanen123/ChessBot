@@ -4,7 +4,7 @@ using ChessBot.Chess.Core;
 using UnityEngine;
 namespace ChessBot.Training
 {
-    public enum CurriculumEnding { FirstCapture, MaterialAfterHorizon, MateWithinHorizon, FullGame }
+    public enum CurriculumEnding { FirstCapture, MaterialAfterHorizon, MateWithinHorizon, FullGame, FirstMoveFavorableCapture }
     [Serializable] public sealed class ChessLesson
     {
         public string Name;
@@ -20,7 +20,7 @@ namespace ChessBot.Training
     {
         public static ChessLesson[] Defaults() => new[]
         {
-            new ChessLesson("Immediate capture", CurriculumEnding.FirstCapture, 10, 0.1f, 0.1f,
+            new ChessLesson("Immediate capture", CurriculumEnding.FirstMoveFavorableCapture, 1, 0.1f, 0.1f,
                 "7k/8/8/8/8/8/p7/R6K w - - 0 1", "7k/8/8/8/8/2p5/8/1N5K w - - 0 1", "7k/8/8/8/8/8/1r6/B6K w - - 0 1"),
             new ChessLesson("Capture and defense", CurriculumEnding.MaterialAfterHorizon, 12, 0.1f, 0.1f,
                 "7k/8/8/8/8/r7/p7/R6K w - - 0 1", "7k/8/8/8/8/r7/q7/R6K w - - 0 1", "7k/8/8/8/8/2p5/1p6/B6K w - - 0 1"),
@@ -55,8 +55,9 @@ namespace ChessBot.Training
             if (fields[3] != "-") fields[3] = fields[3][0].ToString() + (9 - (fields[3][1] - '0'));
             return string.Join(" ", fields);
         }
-        public static int TaskOutcome(ChessLesson lesson, int plies, bool capture, int materialGain)
+        public static int TaskOutcome(ChessLesson lesson, int plies, bool capture, int materialGain, bool favorableCapture = false)
         {
+            if (lesson.Ending == CurriculumEnding.FirstMoveFavorableCapture) return plies < 1 ? 2 : favorableCapture ? 1 : -1;
             if (lesson.Ending == CurriculumEnding.FirstCapture && capture) return Math.Sign(materialGain);
             if (plies < lesson.MaximumPlies) return 2;
             if (lesson.Ending == CurriculumEnding.MaterialAfterHorizon) return Math.Sign(materialGain);

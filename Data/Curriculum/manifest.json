@@ -2,32 +2,32 @@
   "source": "https://database.lichess.org/standard/lichess_db_standard_rated_2013-01.pgn.zst",
   "sourceLicense": "CC0-1.0",
   "sourceSha256": "aa40b3671fa3cf1072eb182892cd90b0e1e003a4a5943492f64b77e7f3fd1635",
-  "gamesScanned": 2762,
+  "gamesScanned": 4829,
   "counts": {
     "capture": {
-      "train": 16,
-      "eval": 4
+      "train": 64,
+      "eval": 16
     },
     "exchange": {
-      "train": 16,
-      "eval": 4
+      "train": 64,
+      "eval": 16
     },
     "mate": {
-      "train": 16,
-      "eval": 4
+      "train": 64,
+      "eval": 16
     },
     "endgame": {
-      "train": 16,
-      "eval": 4
+      "train": 64,
+      "eval": 16
     },
     "middlegame": {
-      "train": 16,
-      "eval": 4
+      "train": 64,
+      "eval": 16
     },
     "fullgame": {
-      "train": 16,
-      "eval": 4
+      "train": 64,
+      "eval": 16
     }
   },
-  "note": "Small deterministic starter selection; not random, engine-quality, or Unity-integrated. Full games retained; start at annotated ply."
+  "note": "Deterministic selection; not random or engine-quality. Generate the Unity resource separately. Full games retained; start at annotated ply."
 }

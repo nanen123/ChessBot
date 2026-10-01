@@ -12,7 +12,7 @@ namespace ChessBot.Tests
             var data = ChessCurriculumDataset.LoadBundled();
             for (int stage = 0; stage < 6; stage++)
             {
-                Assert.That(data.Count(stage), Is.EqualTo(16));
+                Assert.That(data.Count(stage), Is.EqualTo(64));
                 for (int i = 0; i < data.Count(stage); i++)
                 {
                     var sample = data.Get(stage, i); var game = new ChessGameController();

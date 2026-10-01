@@ -18,7 +18,7 @@
 [CurriculumStage "0"]
 [CurriculumStartPly "67"]
 [CurriculumStartFEN "5k2/pp4p1/2p5/4P1K1/3P3P/2b5/P5P1/8 b - - 0 34"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e4 c6 2. Nc3 d5 3. Qf3 dxe4 4. Nxe4 Nd7 5. Bc4 Ngf6 6. Nxf6+ Nxf6 7. Qg3 Bf5
@@ -48,9 +48,9 @@ Kd4 47. Kxa4 c4 0-1
 [TimeControl "180+5"]
 [Termination "Normal"]
 [CurriculumStage "0"]
-[CurriculumStartPly "70"]
-[CurriculumStartFEN "8/2Q2pk1/p1p3b1/1p6/1P6/q7/5PPK/8 w - - 0 36"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumStartPly "76"]
+[CurriculumStartFEN "8/5pk1/p1Q3b1/1p6/1q6/8/5PPK/8 w - - 0 39"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. d4 e5 2. dxe5 d6 3. exd6 Bxd6 4. Nf3 Nf6 5. Nc3 O-O 6. a3 Nc6 7. e3 a6 8.
@@ -82,7 +82,7 @@ b2 0-1
 [CurriculumStage "0"]
 [CurriculumStartPly "89"]
 [CurriculumStartFEN "8/4K3/r3p3/P1kp3p/R1p3RP/8/2r5/8 b - - 0 45"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e4 e6 2. d4 d5 3. Nc3 Nf6 4. Bg5 Be7 5. Bxf6 Bxf6 6. e5 Be7 7. Qg4 O-O 8.
@@ -112,9 +112,9 @@ Kd6 40. Rc3 c5 41. Rg3 c4 42. Kg7 Kc5 43. Kf6 Re2 44. Ke7 Rxc2 45. Rxg4 hxg4
 [TimeControl "300+0"]
 [Termination "Normal"]
 [CurriculumStage "0"]
-[CurriculumStartPly "73"]
-[CurriculumStartFEN "8/1p5R/p5p1/2p2kP1/P4r2/1PK5/2P5/8 b - - 0 37"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumStartPly "78"]
+[CurriculumStartFEN "8/2R5/p4rp1/2p5/P4k2/1PK5/2P5/8 w - - 3 40"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e4 c5 2. f4 d5 3. exd5 Qxd5 4. Nc3 Qd8 5. Bc4 Bf5 6. d3 a6 7. g4 Bd7 8. a4
@@ -127,36 +127,6 @@ Rc7 Kf4 40. Rxc5 g5 41. b4 g4 42. Rc4+ Kf3 43. Rc5 Rg6 44. Rf5+ Kg2 45. b5 axb5
 46. axb5 g3 47. Kb4 Kh1 48. Rd5 g2 49. Rd1+ g1=Q 50. Rxg1+ Kxg1 51. c4 Kf2 52.
 c5 Ke3 53. b6 Kd4 54. b7 Rg1 55. Kb5 Rb1+ 56. Kc6 Rb4 57. Kc7 Kxc5 58. b8=Q
 Rxb8 59. Kxb8 1/2-1/2
-
-[Event "Rated Blitz game"]
-[Site "https://lichess.org/55a83jiu"]
-[Date "????.??.??"]
-[Round "?"]
-[White "ghosty"]
-[Black "jorespi"]
-[Result "1-0"]
-[UTCDate "2012.12.31"]
-[UTCTime "23:09:39"]
-[WhiteElo "1500"]
-[BlackElo "1585"]
-[WhiteRatingDiff "+222"]
-[BlackRatingDiff "-9"]
-[ECO "C30"]
-[Opening "King's Gambit"]
-[TimeControl "300+0"]
-[Termination "Normal"]
-[CurriculumStage "0"]
-[CurriculumStartPly "70"]
-[CurriculumStartFEN "3R4/2q2kr1/p6Q/4P3/8/8/P5PP/5K2 w - - 1 36"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
-[DatasetSplit "train"]
-
-1. e4 e5 2. f4 d6 3. Nf3 Nc6 4. d4 exd4 5. Nxd4 Be7 6. Nxc6 bxc6 7. Bc4 Be6 8.
-Bxe6 fxe6 9. c4 Nh6 10. Nc3 O-O 11. O-O e5 12. f5 Nf7 13. b4 Bg5 14. b5 Bxc1
-15. Rxc1 Ng5 16. bxc6 a6 17. Re1 g6 18. fxg6 hxg6 19. Nd5 Ne6 20. Qg4 Qe8 21.
-Rf1 Nf4 22. Nxf4 Rxf4 23. Rxf4 exf4 24. Qxf4 Qxc6 25. Qf6 Qd7 26. c5 Rf8 27.
-Qxg6+ Kh8 28. cxd6 cxd6 29. Rd1 Rg8 30. Qf6+ Kh7 31. Rxd6 Qa7+ 32. Kf1 Rg7 33.
-Qh6+ Kg8 34. Rd8+ Kf7 35. e5 Qc7 36. Qf6# 1-0
 
 [Event "Rated Classical game"]
 [Site "https://lichess.org/descpsmi"]
@@ -176,9 +146,9 @@ Qh6+ Kg8 34. Rd8+ Kf7 35. e5 Qc7 36. Qf6# 1-0
 [TimeControl "480+8"]
 [Termination "Normal"]
 [CurriculumStage "0"]
-[CurriculumStartPly "52"]
-[CurriculumStartFEN "6k1/p1R4p/1p4p1/8/8/1P6/P1P3rP/3K4 w - - 0 27"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumStartPly "82"]
+[CurriculumStartFEN "8/8/6k1/8/8/1P2RQ2/P2K3p/7r w - - 4 42"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e4 e5 2. d4 Qf6 3. dxe5 Qxe5 4. Qe2 Nf6 5. Nf3 Qxe4 6. Qxe4+ Nxe4 7. Nbd2
@@ -208,9 +178,9 @@ h2 40. Qh3 Kf6 41. Qf3+ Kg6 42. Qxh1 Kf5 43. Qxh2 Kf6 44. Qf2+ Kg5 45. Rg3+ Kh4
 [TimeControl "300+3"]
 [Termination "Normal"]
 [CurriculumStage "0"]
-[CurriculumStartPly "74"]
-[CurriculumStartFEN "8/5p2/6pk/p2R3p/7P/5PP1/P1K5/6r1 w - - 3 38"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumStartPly "79"]
+[CurriculumStartFEN "8/5p2/7k/6Pp/8/R4Pr1/P1K5/8 b - - 0 40"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e4 e5 2. Bc4 c6 3. Nf3 d5 4. exd5 cxd5 5. Bb3 Nc6 6. Ba4 Bd6 7. O-O e4 8.
@@ -241,7 +211,7 @@ Kxd3 Re1 34. Kc2 Rh1 35. f3 h5 36. h4 Kh6 37. Rd5 Rg1 38. Rxa5 Rxg3 39. Ra3 g5
 [CurriculumStage "0"]
 [CurriculumStartPly "76"]
 [CurriculumStartFEN "4rk2/2Q3R1/6p1/7p/2B5/1P4K1/P6P/1N6 w - - 3 39"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e3 d5 2. b3 e5 3. Bb2 Qg5 4. g3 Nf6 5. Bh3 Nc6 6. Qf3 Bb4 7. c3 O-O 8. Ne2
@@ -270,9 +240,9 @@ Rg8# 1-0
 [TimeControl "300+0"]
 [Termination "Normal"]
 [CurriculumStage "0"]
-[CurriculumStartPly "96"]
-[CurriculumStartFEN "4r2k/5Q1p/3b4/1p3P2/8/1KP5/P5q1/8 w - - 0 49"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumStartPly "95"]
+[CurriculumStartFEN "4Q1rk/5Q1p/3b4/1p3P2/8/1KP5/P5q1/8 b - - 0 48"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e4 c6 2. Nf3 d5 3. exd5 cxd5 4. d4 Nc6 5. Nc3 e6 6. Be2 Bd6 7. O-O Nf6 8.
@@ -308,9 +278,9 @@ Kf7 84. Qd6 Kg7 85. Qcc7+ Kg8 86. Qdd8# 1-0
 [TimeControl "540+0"]
 [Termination "Normal"]
 [CurriculumStage "0"]
-[CurriculumStartPly "81"]
-[CurriculumStartFEN "7r/3k4/1p1p3P/p1p2Kp1/7b/1P6/8/R7 b - - 3 41"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumStartPly "83"]
+[CurriculumStartFEN "8/3k4/1p1p3r/p1p2Kp1/1P5b/8/8/R7 b - - 0 42"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e4 e6 2. b3 d6 3. Bb2 e5 4. g3 Nf6 5. Bh3 Bxh3 6. Nxh3 Nxe4 7. f3 Nc5 8. d4
@@ -343,7 +313,7 @@ Kb3 Re3+ 47. Ka2 a4 48. Rd1 g4 49. Rg1 g3 50. Rg2 Rf3 51. Rg1 Rf2+ 52. Kb1 g2
 [CurriculumStage "0"]
 [CurriculumStartPly "73"]
 [CurriculumStartFEN "5k2/1p3Np1/4n3/p7/6K1/4P1P1/P2P3P/8 b - - 0 37"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e3 d5 2. b3 e5 3. Bb2 Nf6 4. g3 Nc6 5. Bg2 Bf5 6. Na3 Bd6 7. Nb5 O-O 8. c4
@@ -378,7 +348,7 @@ Kc7 66. Q4e6 Kb7 67. Q8e7+ Kb8 68. Qg8# 1-0
 [CurriculumStage "0"]
 [CurriculumStartPly "91"]
 [CurriculumStartFEN "8/8/p5k1/4rPp1/2p5/P1Rb1K1P/8/8 b - - 0 46"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e4 e5 2. d4 exd4 3. Qxd4 Nc6 4. Qe3 Nf6 5. Nc3 a6 6. Nd5 h6 7. Nxf6+ Qxf6 8.
@@ -410,7 +380,7 @@ Kg7 41. Kf3 Kg6 42. fxg5 hxg5 43. g4 Rxe5 44. a3 f6 45. h3 f5 46. gxf5+ Kxf5
 [CurriculumStage "0"]
 [CurriculumStartPly "80"]
 [CurriculumStartFEN "3r3k/4R3/7B/p7/Pp2p3/4KP2/1P6/7R w - - 0 41"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e4 e5 2. Nf3 d6 3. Bc4 h6 4. Nc3 c6 5. d3 b5 6. Bb3 a5 7. a4 b4 8. Ne2 c5 9.
@@ -441,7 +411,7 @@ Rxe7 fxe4 41. Rxe4 1-0
 [CurriculumStage "0"]
 [CurriculumStartPly "95"]
 [CurriculumStartFEN "B7/8/1N1Q4/1Pk5/P7/3P4/2PKP3/R5N1 b - - 0 48"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. b3 Nc6 2. Bb2 Nb8 3. a3 Nc6 4. b4 Nb8 5. g3 Nc6 6. Bg2 Nb8 7. b5 Nf6 8. a4
@@ -476,7 +446,7 @@ c6 Kf4 66. c7 Kf5 67. c8=Q+ Kf4 68. Qf6+ Kg3 69. Qbg7+ Kh2 70. Qch8# 1-0
 [CurriculumStage "0"]
 [CurriculumStartPly "68"]
 [CurriculumStartFEN "r7/p7/kp6/n2Q4/1p3P1P/8/P3N3/4K3 w - - 3 35"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e3 g6 2. e4 Bg7 3. f4 h6 4. g4 b6 5. h4 Bb7 6. d3 f5 7. exf5 gxf5 8. Rh2 h5
@@ -506,7 +476,7 @@ Nc6 34. Qd5 Na5 35. Qxa8 Kb5 36. Nd4+ Ka4 37. Qd5 Nc4 38. Qxc4 Ka3 39. Qb3# 1-0
 [CurriculumStage "0"]
 [CurriculumStartPly "87"]
 [CurriculumStartFEN "8/1R2R3/8/1P1p3p/5p2/8/1Qk2PKP/8 b - - 0 44"]
-[CurriculumCriterion "at most 12 pieces; legal capture not immediately legally recapturable; no terminal result"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
 [DatasetSplit "train"]
 
 1. e4 e5 2. Nc3 Nc6 3. Nf3 Nf6 4. d4 exd4 5. Nxd4 Nxd4 6. Qxd4 d6 7. Bd3 Bg4 8.
@@ -518,3 +488,1606 @@ Rxe3 b5 27. Rae1 g5 28. Re7+ Kc6 29. Rf7 Ra8 30. a3 b4 31. cxb4 Kd5 32. Rc7 f5
 Rc1+ 40. Kg2 Rb1 41. a7 Rxb2 42. a8=Q Kd3 43. Qa3+ Kc2 44. Qxb2+ Kxb2 45. b6 d4
 46. Rbd7 Kc3 47. b7 d3 48. b8=Q d2 49. Qxf4 d1=Q 50. Rxd1 h4 51. Qc7+ Kb4 52.
 Qb7+ Kc5 53. Rc1+ Kd4 54. Qe4# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/m6c8eqiw"]
+[Date "????.??.??"]
+[Round "?"]
+[White "j-jorjik"]
+[Black "6WX"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:02:51"]
+[WhiteElo "1542"]
+[BlackElo "1404"]
+[WhiteRatingDiff "+8"]
+[BlackRatingDiff "-23"]
+[ECO "B01"]
+[Opening "Scandinavian Defense: Modern Variation #2"]
+[TimeControl "480+8"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "90"]
+[CurriculumStartFEN "2r5/8/5p2/3pkPp1/Pp1R2P1/1P2K3/8/8 w - - 7 46"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 d5 2. exd5 Nf6 3. Nc3 Nxd5 4. Nxd5 Qxd5 5. b3 e5 6. Bb2 Nc6 7. Nf3 Bd6 8.
+Bc4 Qa5 9. Bc3 Qb6 10. a4 a5 11. Bb5 O-O 12. Bxc6 bxc6 13. O-O Re8 14. Ng5 Bf5
+15. Qf3 Bg6 16. Rae1 h6 17. Ne4 Rad8 18. Nxd6 cxd6 19. d3 Qc5 20. Bb2 Qxc2 21.
+Re2 Qxd3 22. Re3 Qd5 23. Qxd5 cxd5 24. Rfe1 d4 25. Rf3 f6 26. Bc1 Rc8 27. Bd2
+Ra8 28. g4 Bf7 29. h3 Reb8 30. Rb1 e4 31. Rf4 d5 32. h4 Rb4 33. Bxb4 axb4 34.
+Rd1 d3 35. Kf1 Kf8 36. Rd2 Ke7 37. f3 g5 38. hxg5 hxg5 39. Rf5 Be6 40. fxe4
+Bxf5 41. exf5 Kd6 42. Rxd3 Ke5 43. Kf2 Kf4 44. Rd4+ Ke5 45. Ke3 Rc8 46. Rxb4
+Rc3+ 47. Ke2 d4 48. a5 Rc1 49. Ra4 Rb1 50. a6 Rxb3 51. a7 Re3+ 52. Kd2 Rg3 53.
+a8=Q Rxg4 54. Ra5+ Kf4 55. Qb8+ Ke4 56. Qb7+ Kf4 57. Qc7+ Ke4 58. Qc6+ Kf4 59.
+Qd6+ Ke4 60. Qd5+ Kf4 61. Qxd4+ Kg3 62. Ra3+ Kh4 63. Qf2+ Rg3 64. Ra4+ Kh3 65.
+Qf1+ Kh2 66. Ke2 Rg1 67. Qf2+ Rg2 68. Qxg2+ Kxg2 69. Ke3 Kg3 70. Ra6 Kg4 71.
+Ke4 Kh4 72. Rxf6 Kg4 73. Rg6 Kh5 74. Ke5 g4 75. Rg7 Kh6 76. f6 Kh5 77. f7 Kh4
+78. f8=Q Kg3 79. Qf4+ Kh4 80. Rh7# 1-0
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/qfn3p05z"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Krieg"]
+[Black "chess345"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:05:10"]
+[WhiteElo "1600"]
+[BlackElo "1863"]
+[WhiteRatingDiff "-5"]
+[BlackRatingDiff "+29"]
+[ECO "A45"]
+[Opening "Indian Game"]
+[TimeControl "60+1"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "69"]
+[CurriculumStartFEN "6k1/4pp2/4P1p1/7p/p5bP/5r2/6K1/2q5 b - - 0 35"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. d4 Nf6 2. e3 g6 3. Nf3 Bg7 4. Be2 O-O 5. O-O d6 6. c3 c5 7. dxc5 dxc5 8.
+Qxd8 Rxd8 9. b3 Nc6 10. Bb2 Ne4 11. a3 Na5 12. b4 Nb3 13. Ra2 Be6 14. Rd1 Rxd1+
+15. Bxd1 Rd8 16. Bxb3 Bxb3 17. Nbd2 Nxd2 18. Nxd2 Rxd2 19. Ra1 Rxb2 20. a4 Bxc3
+21. bxc5 Bxa4 22. c6 Bxc6 23. h3 a5 24. Kh2 b5 25. Rc1 b4 26. g3 a4 27. h4
+Rxf2+ 28. Kh3 h5 29. Rxc3 Bd7+ 30. g4 Bxg4+ 31. Kg3 Rf3+ 32. Kg2 bxc3 33. e4 c2
+34. e5 c1=Q 35. e6 Qf1+ 36. Kh2 Rh3# 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/ipj01q20"]
+[Date "????.??.??"]
+[Round "?"]
+[White "airtsart"]
+[Black "chess345"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:07:33"]
+[WhiteElo "1869"]
+[BlackElo "1649"]
+[WhiteRatingDiff "-4"]
+[BlackRatingDiff "+73"]
+[ECO "C01"]
+[Opening "French Defense: Exchange Variation"]
+[TimeControl "180+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "70"]
+[CurriculumStartFEN "8/6pk/6p1/7p/8/P4P2/1P1pQ1qP/1K6 w - - 0 36"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. d4 d5 3. exd5 exd5 4. Bd3 Nf6 5. Bg5 Bd6 6. Nc3 c6 7. Nge2 O-O 8.
+Qd2 Bg4 9. f3 Bh5 10. O-O-O Bg6 11. Rde1 b5 12. Bxg6 fxg6 13. Bf4 a5 14. Bxd6
+Qxd6 15. Ng3 a4 16. Re2 b4 17. Nd1 b3 18. a3 Na6 19. Rhe1 Rfe8 20. Rxe8+ Rxe8
+21. Rxe8+ Nxe8 22. Qa5 c5 23. dxc5 Nxc5 24. Nc3 bxc2 25. Kxc2 d4 26. Nce4 d3+
+27. Kd1 Nxe4 28. Nxe4 Qe6 29. Qxa4 h5 30. Ng5 Qe2+ 31. Kc1 Qe3+ 32. Kb1 Qxg5
+33. Qxe8+ Kh7 34. Qe1 d2 35. Qe2 Qxg2 36. Qxg2 d1=Q+ 37. Ka2 Qd5+ 38. Ka1 Qd1+
+39. Ka2 Qd5+ 40. b3 Kh6 41. Kb2 g5 42. b4 g4 43. Qf2 Qxf3 44. Qd2+ Kg6 45. a4
+h4 46. a5 g3 47. hxg3 hxg3 48. Qc2+ Qf5 49. Qc6+ Qf6+ 50. Qxf6+ Kxf6 51. a6 g2
+52. a7 g1=Q 53. a8=Q Qd4+ 54. Kb3 Qd3+ 55. Ka4 Qc2+ 56. Ka3 Qc1+ 57. Kb3 Qb1+
+58. Kc4 Qc2+ 59. Kb5 Qd3+ 60. Kb6 Qc4 61. Qc6+ Qxc6+ 62. Kxc6 g5 63. b5 g4 64.
+b6 g3 65. b7 g2 66. b8=Q g1=Q 67. Qd8+ Ke5 68. Qe7+ Kf4 69. Qf6+ Kg3 70. Qg5+
+Kf2 71. Qxg1+ Kxg1 1/2-1/2
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/grcc15yt"]
+[Date "????.??.??"]
+[Round "?"]
+[White "namesnik"]
+[Black "t4nk"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:08:35"]
+[WhiteElo "1543"]
+[BlackElo "1575"]
+[WhiteRatingDiff "+1"]
+[BlackRatingDiff "-1"]
+[ECO "A00"]
+[Opening "Gedult's Opening"]
+[TimeControl "0+1"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "89"]
+[CurriculumStartFEN "8/8/ppB5/3P4/4P3/2Nk2Q1/PP1B1K2/8 b - - 2 45"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. f3 c6 2. e4 b6 3. d4 a6 4. Ne2 Qc7 5. Ng3 Bb7 6. Be2 Qd8 7. O-O e6 8. Be3
+Bd6 9. c4 Bxg3 10. hxg3 Qc7 11. Kh2 h5 12. Bf2 h4 13. Kg1 hxg3 14. Be1 d6 15.
+Qd3 Qe7 16. f4 Qh4 17. Qxg3 Qh1+ 18. Kf2 Qh4 19. Qxh4 Rxh4 20. Bd2 Rh7 21. Nc3
+f6 22. Rh1 g6 23. Rxh7 Ne7 24. Rg7 Nd7 25. Rh7 Kf8 26. Rah1 Kg8 27. Rh8+ Kg7
+28. Rxa8 Bxa8 29. Bf3 f5 30. g4 fxg4 31. Bxg4 g5 32. Bxe6 Kf6 33. Bxd7 Bb7 34.
+Be8 Bc8 35. Rh6+ Kg7 36. Rxd6 Kf8 37. Rxc6 Bd7 38. Bxd7 Nxc6 39. Bxc6 Ke7 40.
+d5 Kd6 41. fxg5 Kc5 42. g6 Kxc4 43. g7 Kd4 44. g8=Q Kd3 45. Qg3+ Kxd2 46. Qe3+
+Kc2 47. Na4 b5 48. Qc3+ Kb1 49. Qd3+ Ka1 50. Qd1+ Kxa2 51. Qc2 bxa4 52. b3+ Ka3
+53. bxa4 a5 54. Bb5 Kb4 55. Qc4+ Ka3 56. Ke2 Kb2 57. Kd2 Ka1 58. Qd4+ Ka2 59.
+Bc4+ Ka3 60. Qa1+ Kb4 61. Qb2+ Kc5 62. Qc3 Kd6 63. Ba6 Ke7 64. Ke3 Kd6 65. Qd4
+Ke7 66. Kf4 Kf7 67. Qe5 Kf8 68. Kf5 Kf7 69. Qf6+ Ke8 70. Ke6 1/2-1/2
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/1xbgqkqe"]
+[Date "????.??.??"]
+[Round "?"]
+[White "FifthCategory"]
+[Black "chinokoli"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:10:21"]
+[WhiteElo "1889"]
+[BlackElo "1932"]
+[WhiteRatingDiff "-9"]
+[BlackRatingDiff "+9"]
+[ECO "B21"]
+[Opening "Sicilian Defense: Smith-Morra Gambit #2"]
+[TimeControl "180+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "87"]
+[CurriculumStartFEN "r7/5p2/4pk1r/3pP2P/8/2P3R1/4K3/7R b - - 0 44"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 c5 2. d4 cxd4 3. Qxd4 Nc6 4. Qd1 a6 5. c3 g6 6. Bc4 Bg7 7. Nf3 Nf6 8.
+Nbd2 O-O 9. O-O d6 10. a3 Bg4 11. h3 Bxf3 12. Qxf3 Ne5 13. Qe2 Nxc4 14. Qxc4 b5
+15. Qe2 Qb6 16. Re1 Nd7 17. Nf3 h6 18. Be3 Qb7 19. Rad1 Qxe4 20. Qd2 Qc6 21.
+Bxh6 Rfe8 22. Bxg7 Kxg7 23. Qd4+ Nf6 24. g4 Qc4 25. Kg2 Qxd4 26. Nxd4 e6 27.
+Kg3 d5 28. Re3 Rec8 29. Rde1 Rab8 30. f4 Ne4+ 31. Kf3 a5 32. h4 Rh8 33. Rh1 b4
+34. axb4 axb4 35. Nc6 Ra8 36. Nxb4 Nd2+ 37. Ke2 Nc4 38. Reh3 Nxb2 39. h5 gxh5
+40. gxh5 Rh6 41. Rg3+ Kf6 42. Nc6 Nc4 43. Ne5 Nxe5 44. fxe5+ Kxe5 45. Re3+ Kd6
+46. Kd3 f5 47. Rg3 Rah8 48. Rg5 Ke5 49. Ke3 Kf6 50. Rgg1 Rxh5 51. Rxh5 Rxh5 52.
+Kd4 Rh4+ 53. Kd3 Rc4 54. Rh1 Ke5 55. Rh5 Kf4 56. Rh4+ Kg3 57. Rxc4 dxc4+ 58.
+Kxc4 f4 59. Kd4 f3 60. c4 f2 61. c5 f1=Q 62. c6 Qc1 63. Ke5 Qxc6 64. Kf6 Qd5
+65. Ke7 Kf4 66. Kf6 Qd6 67. Kf7 Kf5 68. Kg7 e5 69. Kf7 Qf6+ 70. Ke8 Qg7 71. Kd8
+Ke6 72. Kc8 Kd6 73. Kb8 Kc6 74. Kc8 Qc7# 0-1
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/dmm8yyr7"]
+[Date "????.??.??"]
+[Round "?"]
+[White "LEGENDARY_ERFAN"]
+[Black "Hephesto"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:20:58"]
+[WhiteElo "1145"]
+[BlackElo "1844"]
+[WhiteRatingDiff "-3"]
+[BlackRatingDiff "+0"]
+[ECO "C50"]
+[Opening "Italian Game: Giuoco Pianissimo"]
+[TimeControl "60+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "56"]
+[CurriculumStartFEN "3r2k1/5pp1/5n1p/8/8/7P/5PP1/1R1q1K2 w - - 0 29"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Bc4 Nc6 3. d3 Bc5 4. Nf3 d6 5. h3 Be6 6. O-O Nf6 7. Nc3 h6 8. Nd5
+Bxd5 9. exd5 Nd4 10. Nxd4 Bxd4 11. Be3 Bb6 12. Bxb6 axb6 13. Re1 c6 14. b4 cxd5
+15. Bxd5 Nxd5 16. c4 Nf6 17. a4 O-O 18. c5 bxc5 19. bxc5 dxc5 20. a5 Rxa5 21.
+Rxa5 Qxa5 22. Rxe5 Qc3 23. d4 Qxd4 24. Qxd4 cxd4 25. Rb5 Rd8 26. Rxb7 d3 27.
+Rb1 d2 28. Kf1 d1=Q+ 29. Rxd1 Rxd1+ 30. Ke2 Ra1 31. Kd2 Ra3 32. f4 Nd5 33. f5
+Rg3 34. h4 Rxg2+ 35. Kd3 Rh2 36. Kd4 Nf6 37. Kc5 Rxh4 38. Kd6 Rh2 39. Kc7 Rd2
+40. Kc6 h5 41. Kc5 h4 42. Kc4 h3 43. Kc3 Rd8 44. Kc4 h2 45. Kc5 h1=Q 46. Kc4
+Qc1+ 47. Kb5 Rb8+ 48. Ka4 Qa1# 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/uglmi0pq"]
+[Date "????.??.??"]
+[Round "?"]
+[White "tiggran"]
+[Black "serge"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:24:12"]
+[WhiteElo "1566"]
+[BlackElo "1469"]
+[WhiteRatingDiff "+8"]
+[BlackRatingDiff "-8"]
+[ECO "C55"]
+[Opening "Italian Game: Anti-Fried Liver Defense"]
+[TimeControl "300+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "80"]
+[CurriculumStartFEN "6k1/6p1/1p5p/4KP2/3r4/P4N1P/1P4P1/8 w - - 1 41"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 h6 4. Nc3 Bc5 5. d3 Nf6 6. O-O Ng4 7. h3 Nxf2 8.
+Rxf2 Bxf2+ 9. Kxf2 O-O 10. Kg1 d6 11. Ne2 Re8 12. Ng3 Be6 13. Bxe6 Rxe6 14. c3
+Rg6 15. Nf1 Qf6 16. Be3 b6 17. Qe2 Ne7 18. N1d2 c5 19. Rf1 d5 20. Nd4 Qd6 21.
+Nb5 Qc6 22. Qf3 Rf8 23. Nxa7 Qb7 24. Nb5 Rf6 25. Qe2 Rxf1+ 26. Qxf1 f6 27. Qf3
+d4 28. Nd6 Qc6 29. Nf5 Nxf5 30. exf5 Qxf3 31. Nxf3 dxe3 32. Kf1 Rd8 33. Ke2 Rc8
+34. Kxe3 Rb8 35. d4 cxd4+ 36. cxd4 Re8 37. dxe5 fxe5 38. Ke4 Ra8 39. a3 Ra4+
+40. Kxe5 Rd4 41. Nxd4 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/31jlxrme"]
+[Date "????.??.??"]
+[Round "?"]
+[White "ADRNLNNJECTD"]
+[Black "Batalha"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:28:53"]
+[WhiteElo "1570"]
+[BlackElo "1470"]
+[WhiteRatingDiff "-14"]
+[BlackRatingDiff "+19"]
+[ECO "C03"]
+[Opening "French Defense: Tarrasch Variation"]
+[TimeControl "600+10"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "90"]
+[CurriculumStartFEN "8/3R2pp/4r3/2r2p2/p1k2P2/5K2/7P/8 w - - 0 46"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. d4 d5 3. Nd2 dxe4 4. Nxe4 Nf6 5. Bd3 Nxe4 6. Bxe4 f5 7. Bf3 Nc6 8.
+Ne2 Qf6 9. Be3 e5 10. d5 Ne7 11. O-O e4 12. Bf4 exf3 13. gxf3 Bd7 14. Bxc7 Ng6
+15. d6 Rc8 16. f4 Kf7 17. Qd5+ Qe6 18. Qxe6+ Bxe6 19. Nd4 Nxf4 20. Nxe6 Kxe6
+21. Rae1+ Kd7 22. Kh1 Bxd6 23. Bxd6 Kxd6 24. Rd1+ Nd5 25. f4 Rhe8 26. Rf3 b5
+27. b4 Kc6 28. Rfd3 Nxb4 29. Rd6+ Kc5 30. R1d4 Rc6 31. Rd7 Re1+ 32. Kg2 Nxc2
+33. Rd2 Ne3+ 34. Kf2 Ng2 35. Kxg2 Rg6+ 36. Kf2 Reg1 37. Rc2+ Kb6 38. a4 R1g2+
+39. Ke3 Rxc2 40. axb5 Kxb5 41. Rd5+ Rc5 42. Rd7 a5 43. Rb7+ Kc4 44. Rd7 Re6+
+45. Kf3 a4 46. Rxg7 a3 47. Rg1 a2 48. Ra1 Kb3 49. Kg3 Rc3+ 50. Kh4 Rg6 51. Re1
+Kb2 52. Re2+ Rc2 53. Re1 Rxh2# 0-1
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/rb0xcaov"]
+[Date "????.??.??"]
+[Round "?"]
+[White "TwoKings"]
+[Black "peter2"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:32:40"]
+[WhiteElo "1457"]
+[BlackElo "1533"]
+[WhiteRatingDiff "+13"]
+[BlackRatingDiff "-14"]
+[ECO "C44"]
+[Opening "Scotch Game"]
+[TimeControl "720+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "72"]
+[CurriculumStartFEN "8/1r6/5p2/3k2p1/5p1p/5P2/P3K1PP/1R6 w - - 0 37"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Nf3 Nc6 3. d4 d6 4. Bb5 Bd7 5. d5 Nce7 6. Bxd7+ Qxd7 7. Nc3 a6 8.
+Be3 h6 9. O-O Nf6 10. Nd2 Ng4 11. Qe2 Nxe3 12. Qxe3 f6 13. f3 c6 14. Ne2 cxd5
+15. exd5 Nxd5 16. Qb3 Nf4 17. Nxf4 exf4 18. Qb4 Qb5 19. Qxb5+ axb5 20. Ne4 d5
+21. Nc3 d4 22. Nxb5 Bc5 23. Kh1 Kf7 24. c3 dxc3 25. Nxc3 Bd4 26. Rad1 Bxc3 27.
+bxc3 Rhd8 28. Rb1 Rab8 29. Rf2 Rd3 30. Rc2 Ke6 31. Kg1 Kd5 32. Kf1 g5 33. Ke2
+Rxc3 34. Rxc3 h5 35. Rcb3 h4 36. Rxb7 Rxb7 37. Rxb7 g4 38. fxg4 h3 39. gxh3 f3+
+40. Kxf3 f5 41. a4 fxg4+ 42. hxg4 Kd4 43. a5 Kd3 44. a6 Kd2 45. a7 Kd1 46. a8=R
+Ke1 47. Kg2 Ke2 48. Re8+ 1-0
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/iwz4x6w4"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Krieg"]
+[Black "t4nk"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:35:02"]
+[WhiteElo "1631"]
+[BlackElo "1508"]
+[WhiteRatingDiff "+7"]
+[BlackRatingDiff "-8"]
+[ECO "D00"]
+[Opening "Queen's Pawn Game #2"]
+[TimeControl "0+1"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "87"]
+[CurriculumStartFEN "1b6/1k6/8/6R1/1P2P3/2P2K1P/1P1r4/8 b - - 10 44"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. d4 d5 2. e3 e5 3. Nf3 exd4 4. Nxd4 c5 5. Nf3 c4 6. Be2 d4 7. O-O dxe3 8.
+Bxe3 Qxd1 9. Rxd1 Nd7 10. Bxc4 Ndf6 11. Bxf7+ Kxf7 12. c3 Ne7 13. Nbd2 Nfd5 14.
+Nb3 Nxe3 15. fxe3 Bg4 16. Nfd4 Ke8 17. Re1 Rd8 18. h3 Bh5 19. g4 Bg6 20. Kg2
+Be4+ 21. Kg3 Bd5 22. Nf5 Nxf5+ 23. gxf5 Bd6+ 24. Kf2 Bxb3 25. axb3 b5 26. b4
+Rc8 27. Rxa7 Bc7 28. e4 Bb8 29. Rb7 Rc7 30. Rxb5 Ba7+ 31. Kf3 g6 32. Re5+ Kd8
+33. Rd1+ Kc8 34. Re6 Rd8 35. Rxd8+ Kxd8 36. Rd6+ Kc8 37. Ra6 Kb8 38. fxg6 hxg6
+39. Rxg6 Rf7+ 40. Kg3 Kb7 41. Rg4 Bb8+ 42. Kg2 Rd7 43. Rg5 Rd2+ 44. Kf3 Rxb2
+45. Ke3 Ba7+ 46. Kd3 Rb1 47. Rd5 Rd1+ 48. Kc4 Rxd5 49. Kxd5 Kc7 50. e5 Kd7 51.
+c4 Ke7 52. c5 Bb8 53. c6 Bc7 54. b5 Kd8 55. h4 Ba5 56. h5 Bd2 57. b6 Be3 58. b7
+Bb6 59. b8=Q+ Ke7 60. Qxb6 Kf7 61. Qb7+ Kg8 62. e6 Kf8 63. e7+ Ke8 64. Qc8+
+Kxe7 65. Qd7+ Kf6 66. c7 Kg5 67. c8=Q Kxh5 68. Qc4 Kg5 69. Qe6 Kh5 70. Kd4 Kg5
+71. Qcd5+ Kf4 72. Qdd7 Kg3 73. Qg4+ Kf2 74. Qdf5+ Ke1 75. Qge4+ Kd2 76. Qd3+
+Kc1 77. Qff1+ Kb2 78. Qfb1# 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/s9hl6ouh"]
+[Date "????.??.??"]
+[Round "?"]
+[White "lamobot"]
+[Black "rasmussenesq"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:37:10"]
+[WhiteElo "1281"]
+[BlackElo "1647"]
+[WhiteRatingDiff "+35"]
+[BlackRatingDiff "-20"]
+[ECO "B00"]
+[Opening "Nimzowitsch Defense: Kennedy Variation"]
+[TimeControl "120+3"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "124"]
+[CurriculumStartFEN "3k1r2/p5Q1/1p4QK/2p1P3/8/8/PP6/8 w - - 9 63"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. d4 Nc6 3. Bb5 exd4 4. Bxc6 dxc6 5. Nf3 c5 6. Bg5 Be7 7. Bxe7 Qxe7
+8. O-O Nf6 9. Re1 O-O 10. e5 Nd5 11. c3 Bg4 12. cxd4 cxd4 13. Qxd4 Bxf3 14.
+gxf3 Rad8 15. Nc3 Nxc3 16. Qxc3 c5 17. f4 b6 18. f5 Qg5+ 19. Kh1 Qxf5 20. Qg3
+Rd4 21. Rg1 g6 22. Raf1 Qe4+ 23. f3 Qf5 24. h4 h5 25. Qh2 Re8 26. Rg5 Qd3 27.
+Rf2 Qd1+ 28. Kg2 Rd2 29. Kh3 Rd4 30. f4 Kh7 31. f5 Rd3+ 32. Kg2 Rd2 33. fxg6+
+fxg6 34. Kh3 Rxf2 35. Qxf2 Qd3+ 36. Kh2 Kg7 37. Qf6+ Kg8 38. Rxg6+ Qxg6 39.
+Qxg6+ Kf8 40. Qxh5 Ke7 41. Qg6 Kd8 42. Kh3 Re7 43. Qf6 Ke8 44. h5 Rf7 45. Qg6
+Kf8 46. Kh4 Rg7 47. Qf6+ Rf7 48. Qh6+ Kg8 49. Qe6 Kg7 50. h6+ Kf8 51. Kh5 Re7
+52. Qf6+ Rf7 53. Qh8+ Ke7 54. h7 Rf5+ 55. Kh6 Rf8 56. Qg7+ Rf7 57. Qg5+ Ke8 58.
+h8=Q+ Rf8 59. Qhg7 Rf7 60. Qg8+ Rf8 61. Q5g6+ Ke7 62. Q8g7+ Kd8 63. Qxf8+ Kc7
+64. Qgd6+ Kb7 65. Qfe7+ Ka6 66. e6 Kb5 67. b3 a5 68. Qf4 c4 69. Qd7+ Kb4 70. e7
+Ka3 71. Qf2 b5 72. Qxb5 a4 73. Qxa4# 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/ga6ekktd"]
+[Date "????.??.??"]
+[Round "?"]
+[White "2girls1cup"]
+[Black "Krieg"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:40:53"]
+[WhiteElo "1803"]
+[BlackElo "1665"]
+[WhiteRatingDiff "-17"]
+[BlackRatingDiff "+15"]
+[ECO "B01"]
+[Opening "Scandinavian Defense: Mieses-Kotroc Variation"]
+[TimeControl "120+2"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "80"]
+[CurriculumStartFEN "6k1/3R1pp1/1p5p/3nK3/8/5P2/6rP/8 w - - 0 41"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 d5 2. exd5 Qxd5 3. Nc3 Qd8 4. Nf3 e6 5. Bc4 Be7 6. O-O b6 7. d4 Bb7 8. d5
+exd5 9. Nxd5 Bxd5 10. Bxd5 c6 11. Bb3 Qxd1 12. Rxd1 Nf6 13. Bf4 O-O 14. Rd3
+Nbd7 15. Rad1 Nc5 16. Rc3 Nxb3 17. axb3 c5 18. Rcd3 Rfd8 19. Ne5 Rxd3 20. Rxd3
+Ne4 21. Nc6 Bf6 22. f3 Ng5 23. Rd7 h6 24. Rxa7 Rc8 25. Ne7+ Bxe7 26. Rxe7 Ne6
+27. Bg3 Nd4 28. Rb7 Rc6 29. b4 cxb4 30. c3 bxc3 31. bxc3 Ne2+ 32. Kf2 Nxc3 33.
+Bc7 Nd5 34. Be5 Rc2+ 35. Kg3 Rc5 36. Bd4 Rb5 37. Kg4 Rb4 38. Kf5 Rxd4 39. Ke5
+Rd2 40. Rd7 Rxg2 41. Kxd5 Rd2+ 42. Kc6 Rxd7 43. Kxd7 b5 44. Kc6 b4 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/zyhneh6b"]
+[Date "????.??.??"]
+[Round "?"]
+[White "peter2"]
+[Black "throwaway"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:41:44"]
+[WhiteElo "1344"]
+[BlackElo "1252"]
+[WhiteRatingDiff "+10"]
+[BlackRatingDiff "-42"]
+[ECO "C26"]
+[Opening "Bishop's Opening: Vienna Hybrid, Spielmann Attack"]
+[TimeControl "300+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "71"]
+[CurriculumStartFEN "7r/p6P/2R5/5P2/4k3/1P6/P3K3/7R b - - 0 36"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Nc3 Nf6 3. Bc4 Bc5 4. d3 c6 5. Bg5 h6 6. Bxf6 gxf6 7. f3 d5 8. exd5
+cxd5 9. Bxd5 Nc6 10. Bxc6+ bxc6 11. Ne4 Qd4 12. c3 Qe3+ 13. Qe2 Bf5 14. Qxe3
+Bxe3 15. Nxf6+ Ke7 16. Ne4 Rhd8 17. Ke2 Bf4 18. g3 Bg5 19. h4 Bxe4 20. fxe4 Bf6
+21. Nf3 Rab8 22. b3 Rb5 23. g4 Rc5 24. Rac1 Rb8 25. g5 Bg7 26. Rc2 hxg5 27.
+Nxg5 f6 28. Nf3 f5 29. exf5 e4 30. dxe4 Bxc3 31. h5 Kf6 32. h6 Rh8 33. h7 Re5
+34. Nxe5 Kxe5 35. Rxc3 Kxe4 36. Rxc6 Kxf5 37. Rc7 a6 38. Ra7 Ke4 39. Rxa6 Kd4
+40. Rc6 Kd5 41. Rcc1 Kd4 42. a4 Kd5 43. a5 Kd6 44. b4 Ke7 45. a6 Kd6 46. b5 Ke7
+47. a7 Kf6 48. b6 Ke7 49. b7 Kd7 50. a8=Q Rc8 51. Rxc8 Ke6 52. Re8+ Kd6 53.
+Qd8+ Kc6 54. Rh6+ Kxb7 55. Re7# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/eyda5jr4"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Rambo007max"]
+[Black "mufasa"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:45:11"]
+[WhiteElo "1584"]
+[BlackElo "1663"]
+[WhiteRatingDiff "-9"]
+[BlackRatingDiff "+8"]
+[ECO "B20"]
+[Opening "Sicilian Defense: Bowdler Attack"]
+[TimeControl "600+6"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "86"]
+[CurriculumStartFEN "8/8/p6p/1p4k1/8/PP4r1/2P2r2/4RK2 w - - 0 44"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 c5 2. Bc4 e6 3. d4 cxd4 4. Qxd4 Nc6 5. Qd3 Nf6 6. Nf3 a6 7. O-O b5 8. Bb3
+Na5 9. Bg5 h6 10. Bh4 g5 11. Bg3 Bb7 12. Re1 g4 13. Nd4 d6 14. Bh4 e5 15. Nf5
+Be7 16. Bxf6 Bxf6 17. Nxd6+ Ke7 18. Nf5+ Ke8 19. Bd5 Bxd5 20. Qxd5 Qxd5 21.
+exd5 Nc4 22. b3 Nb6 23. Nc3 e4 24. Rxe4+ Kd7 25. Re3 Nxd5 26. Rd1 Bxc3 27. Rxc3
+Ke6 28. Nd4+ Kf6 29. Rc6+ Kg5 30. Ne2 Nb4 31. Rc5+ f5 32. a3 Na2 33. Ra1 Rhe8
+34. Kf1 Rad8 35. Nc3 Nxc3 36. Rxc3 Rd2 37. Rc5 Ree2 38. h4+ Kxh4 39. Rxf5 g3
+40. Rf4+ Kg5 41. fxg3 Rxg2 42. Re1 Rxg3 43. Rf2 Rxf2+ 44. Kxf2 Rc3 45. Re2 h5
+46. Rd2 h4 47. Kg2 a5 48. Rd5+ Kg4 49. Rxb5 Rxc2+ 50. Kf1 Kf3 51. Re5 Rc3 52.
+b4 Rxa3 53. b5 Rb3 54. Rh5 Rb1# 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/ajb2av2i"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Krieg"]
+[Black "2girls1cup"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:45:51"]
+[WhiteElo "1680"]
+[BlackElo "1786"]
+[WhiteRatingDiff "+13"]
+[BlackRatingDiff "-15"]
+[ECO "A43"]
+[Opening "Old Benoni Defense"]
+[TimeControl "120+2"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "66"]
+[CurriculumStartFEN "8/1p3pkp/1p4p1/1K6/8/1P2nPP1/7P/8 w - - 9 34"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. d4 c5 2. e3 cxd4 3. Qxd4 Nc6 4. Qd1 g6 5. Nf3 Bg7 6. Be2 Nf6 7. O-O O-O 8.
+Nbd2 d5 9. c3 e5 10. b3 d4 11. cxd4 exd4 12. Nxd4 Nxd4 13. exd4 Qxd4 14. Rb1
+Bf5 15. Bb2 Qb6 16. Ra1 Rad8 17. Bf3 Be4 18. Bxe4 Nxe4 19. Bxg7 Kxg7 20. Nc4
+Rxd1 21. Nxb6 Rxf1+ 22. Kxf1 axb6 23. Re1 Re8 24. f3 Nd2+ 25. Kf2 Rxe1 26. Kxe1
+Nb1 27. Kd1 Nc3+ 28. Kc2 Nxa2 29. g3 Nb4+ 30. Kc3 Nd5+ 31. Kd4 Nb4 32. Kc4 Nc2
+33. Kb5 Ne3 34. Kxb6 Kf6 35. Kxb7 Ke6 36. Kc6 Nd5 37. Kc5 Nc3 38. b4 Kd7 39. b5
+Kc7 40. b6+ Kb7 41. Kd6 f6 42. Ke7 Nd5+ 43. Ke6 Nxb6 44. Kxf6 Nd5+ 45. Kg7 Ne7
+46. Kxh7 Kc6 47. Kg7 Kd6 48. Kf6 Kd7 49. f4 Ke8 50. h4 Kf8 51. g4 Kg8 52. Kxe7
+Kh7 53. Kf6 Kh6 54. g5+ Kh5 55. f5 gxf5 56. Kxf5 Kxh4 57. Kf6 Kh5 58. g6 Kh6
+59. Kf7 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/vwa8ajti"]
+[Date "????.??.??"]
+[Round "?"]
+[White "lifeofmg"]
+[Black "AL3103"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:45:53"]
+[WhiteElo "1283"]
+[BlackElo "1224"]
+[WhiteRatingDiff "-76"]
+[BlackRatingDiff "+13"]
+[ECO "C40"]
+[Opening "King's Pawn Game: Damiano Defense"]
+[TimeControl "900+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "88"]
+[CurriculumStartFEN "8/P4k2/3p4/4p3/4P3/2Nq1PP1/r7/6K1 w - - 0 45"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Nf3 f6 3. Nc3 c5 4. d3 Qa5 5. Be2 d6 6. O-O g5 7. g3 h5 8. h3 g4 9.
+Nh4 Ne7 10. hxg4 hxg4 11. Bxg4 Bxg4 12. Qxg4 Rg8 13. Qh5+ Kd7 14. Bh6 Nbc6 15.
+Bxf8 Raxf8 16. Nf5 Ng6 17. Ne3 Qd8 18. Ned5 a6 19. Qf5+ Ke8 20. Qe6+ Nge7 21.
+Qxe7+ Nxe7 22. b3 Rh8 23. a4 Ng6 24. Rab1 Rfg8 25. b4 b5 26. axb5 Nh4 27. bxa6
+Qd7 28. bxc5 Qa7 29. Nxf6+ Kf7 30. Nxg8 Rxg8 31. Ra1 Nf3+ 32. Kg2 Nd2 33. Rfd1
+Nxe4 34. dxe4 Qxc5 35. Rd3 Qc8 36. Ra2 Rh8 37. a7 Qb7 38. Nd5 Qb1 39. Raa3 Qxc2
+40. Nc3 Qxd3 41. f3 Qd2+ 42. Kf1 Rh2 43. Ra2 Qd3+ 44. Kg1 Rxa2 45. Nxa2 Qa6 46.
+g4 Qxa2 47. a8=Q Qxa8 48. Kf2 Qa7+ 49. Kg3 Kg6 50. f4 Qc5 51. Kf3 d5 52. exd5
+Qxd5+ 53. Ke3 e4 54. f5+ Kg5 55. Kf2 Qd4+ 56. Kg3 e3 57. f6 Qxf6 58. Kg2 e2 59.
+Kg3 e1=Q+ 60. Kh3 Qh1+ 61. Kg3 Qh5 62. Kg2 Qxg4+ 63. Kh2 Kh4 64. Kh1 Qff3+ 65.
+Kh2 Qf2+ 66. Kh1 Qgg2# 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/fsafb6k4"]
+[Date "????.??.??"]
+[Round "?"]
+[White "sport"]
+[Black "dissident_with_love"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:43:55"]
+[WhiteElo "1480"]
+[BlackElo "1649"]
+[WhiteRatingDiff "+16"]
+[BlackRatingDiff "-16"]
+[ECO "C62"]
+[Opening "Ruy Lopez: Steinitz Defense"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "80"]
+[CurriculumStartFEN "8/8/2p3p1/p1p3P1/3k1KpP/PP6/8/8 w - - 0 41"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 d6 4. Bxc6+ bxc6 5. d4 Bg4 6. h3 Bxf3 7. Qxf3 exd4
+8. O-O Be7 9. e5 d5 10. e6 fxe6 11. Re1 Qd7 12. b3 Nf6 13. Bb2 c5 14. c3 dxc3
+15. Bxc3 O-O 16. Qe3 d4 17. Qxe6+ Qxe6 18. Rxe6 Bd6 19. Bd2 Rae8 20. Rxe8 Rxe8
+21. Na3 Re2 22. Bg5 Ne4 23. Bh4 d3 24. Kf1 Nc3 25. Bg3 Bxg3 26. fxg3 d2 27. Rd1
+Kf7 28. Nb5 Nxb5 29. Kxe2 Nc3+ 30. Kxd2 Nxd1 31. Kxd1 Ke6 32. Ke2 Ke5 33. Ke3
+c6 34. g4 g6 35. h4 a5 36. a3 h6 37. g3 Kd5 38. g5 h5 39. Kf4 Kd4 40. g4 hxg4
+41. Kxg4 Kc3 42. h5 gxh5+ 43. Kxh5 Kxb3 44. g6 c4 45. g7 c3 46. g8=Q+ Kb2 47.
+Qb8+ 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/go7w6jj7"]
+[Date "????.??.??"]
+[Round "?"]
+[White "2girls1cup"]
+[Black "Krieg"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:50:24"]
+[WhiteElo "1771"]
+[BlackElo "1693"]
+[WhiteRatingDiff "-3"]
+[BlackRatingDiff "+3"]
+[ECO "B01"]
+[Opening "Scandinavian Defense: Mieses-Kotroc Variation"]
+[TimeControl "120+2"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "80"]
+[CurriculumStartFEN "6k1/p1q2pp1/8/6p1/P6P/1P2QP2/6K1/8 w - - 0 41"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 d5 2. exd5 Qxd5 3. c4 Qd8 4. Nc3 e6 5. Nf3 Bb4 6. d4 Be7 7. d5 exd5 8.
+cxd5 Nf6 9. Qa4+ Bd7 10. Bb5 Bxb5 11. Qxb5+ c6 12. dxc6 Nxc6 13. Ne5 O-O 14.
+Nxc6 bxc6 15. Qxc6 Rc8 16. Qf3 Re8 17. O-O Bb4 18. Rd1 Qc7 19. Bf4 Qc5 20. Rac1
+Qf8 21. Nd5 Nxd5 22. Qxd5 Rxc1 23. Rxc1 Re1+ 24. Rxe1 Bxe1 25. Bd2 Bxd2 26.
+Qxd2 Qb8 27. h3 h6 28. b3 Qb6 29. Qd3 Qa5 30. a4 Qe1+ 31. Kh2 Qe5+ 32. g3 Qb2
+33. Kg2 Qf6 34. Qe3 Qa6 35. h4 Qb7+ 36. Qf3 Qb6 37. Qe3 Qb7+ 38. f3 Qd7 39. g4
+Qc7 40. g5 hxg5 41. hxg5 Qc2+ 42. Kg3 Qc7+ 43. f4 g6 44. Kf3 Qb7+ 45. Kg4 Qd7+
+46. Kg3 Qb7 47. Qd3 Qb6 48. Qf3 Qg1+ 49. Qg2 Qe3+ 50. Kg4 Qxb3 51. Qa8+ Kg7 52.
+Qxa7 Qe6+ 53. Kf3 Qd5+ 54. Ke3 Qe6+ 55. Kd3 Qf5+ 56. Ke3 Qh3+ 57. Ke4 Qf5+ 58.
+Ke3 Qh3+ 59. Kd4 Qf5 60. Ke3 1/2-1/2
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/c9qfp8es"]
+[Date "????.??.??"]
+[Round "?"]
+[White "peter2"]
+[Black "Killi"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:51:20"]
+[WhiteElo "1519"]
+[BlackElo "1572"]
+[WhiteRatingDiff "-9"]
+[BlackRatingDiff "+9"]
+[ECO "C28"]
+[Opening "Bishop's Opening: Vienna Hybrid"]
+[TimeControl "480+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "91"]
+[CurriculumStartFEN "8/7k/5P1p/1p2p1p1/5r2/PK6/8/5R2 b - - 0 46"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 Nc6 2. Nc3 e5 3. Bc4 Nf6 4. d3 h6 5. f3 Bb4 6. Bd2 Nd4 7. Nge2 Nxe2 8.
+Qxe2 d6 9. Nd5 Bxd2+ 10. Qxd2 Nxd5 11. Bxd5 Qe7 12. Qf2 c6 13. Bb3 a5 14. a3 b5
+15. Qg3 O-O 16. Ke2 a4 17. Ba2 Be6 18. h3 Bxa2 19. Rxa2 Qe6 20. Raa1 Ra7 21. f4
+Re7 22. f5 Qf6 23. Qg4 Kh7 24. g3 Rg8 25. h4 d5 26. Rad1 d4 27. Qf3 c5 28. g4
+g5 29. hxg5 Qxg5 30. Qh3 f6 31. Rdg1 c4 32. Qh5 Qe3+ 33. Kf1 cxd3 34. cxd3
+Qxd3+ 35. Kf2 Qe3+ 36. Kf1 d3 37. g5 Qe2+ 38. Qxe2 dxe2+ 39. Kxe2 Rxg5 40. Rxg5
+fxg5 41. Kd3 Rd7+ 42. Kc3 Rd4 43. b3 axb3 44. Kxb3 Rxe4 45. Rf1 Rf4 46. f6 Rxf1
+47. f7 Kg7 48. f8=Q+ Kxf8 49. Kb4 Rb1+ 50. Kc5 Ke7 51. a4 bxa4 52. Kd5 Rb5+ 53.
+Ke4 a3 54. Kf5 a2 55. Kg6 Rb6+ 56. Kh5 a1=Q 57. Kg4 0-1
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/7r4la14g"]
+[Date "????.??.??"]
+[Round "?"]
+[White "H___N"]
+[Black "TheWeebles"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:56:46"]
+[WhiteElo "1595"]
+[BlackElo "1546"]
+[WhiteRatingDiff "-37"]
+[BlackRatingDiff "+16"]
+[ECO "B20"]
+[Opening "Sicilian Defense: Staunton-Cochrane Variation"]
+[TimeControl "480+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "87"]
+[CurriculumStartFEN "8/5k1p/1R4p1/3pp3/6KP/2N1b3/8/8 b - - 0 44"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 c5 2. c4 Nc6 3. d3 g6 4. Nc3 Bg7 5. Be3 b6 6. Nf3 Bb7 7. Be2 Qc7 8. a4
+Nf6 9. O-O O-O 10. Qd2 Nb4 11. Nb5 Qc8 12. a5 a6 13. Nc3 b5 14. cxb5 axb5 15.
+Bxc5 Qxc5 16. d4 Qc7 17. Nxb5 Qd8 18. Qxb4 Ba6 19. Nc3 Rb8 20. Qa4 Bxe2 21.
+Nxe2 Nxe4 22. Rae1 d5 23. a6 Qb6 24. Rb1 Ra8 25. Qd7 Qd6 26. Qxd6 Nxd6 27. Ra1
+Rfb8 28. Rfb1 Rb6 29. b4 Rbxa6 30. Rxa6 Rxa6 31. b5 Rb6 32. Nc3 e6 33. h4 Nf5
+34. g3 Nxd4 35. Nxd4 Bxd4 36. Na4 Rb7 37. Kg2 f5 38. Kf3 e5 39. g4 fxg4+ 40.
+Kxg4 Bxf2 41. Rb2 Be3 42. b6 Kf7 43. Nc3 Rxb6 44. Rxb6 Bxb6 45. Nxd5 Bd4 46.
+Kg5 Ke6 47. Nf6 Be3+ 48. Kg4 Kxf6 49. Kf3 Bc1 50. h5 gxh5 51. Kg3 Kf5 52. Kh3
+e4 53. Kh4 Kf4 54. Kxh5 e3 55. Kh6 e2 56. Kxh7 e1=Q 57. Kh6 Bb2 58. Kh7 Qg3 59.
+Kh6 Kf5 60. Kh7 Qg8+ 61. Kh6 Qg7+ 62. Kh5 Qg5# 0-1
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/rgnpxeq9"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Krieg"]
+[Black "2girls1cup"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:04:03"]
+[WhiteElo "1623"]
+[BlackElo "1683"]
+[WhiteRatingDiff "-9"]
+[BlackRatingDiff "+9"]
+[ECO "A43"]
+[Opening "Benoni Defense: Benoni Gambit Accepted"]
+[TimeControl "60+1"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "44"]
+[CurriculumStartFEN "3r4/7R/2k2p2/8/8/2q1P3/P4PPP/5rK1 w - - 0 23"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. d4 c5 2. dxc5 Qa5+ 3. Bd2 Qxc5 4. b3 Nf6 5. c4 Nc6 6. e3 d5 7. Nf3 dxc4 8.
+Bxc4 Ne5 9. Bc3 Nxc4 10. bxc4 Qxc4 11. Bxf6 exf6 12. Nbd2 Bb4 13. Qa4+ Bd7 14.
+Qxd7+ Kxd7 15. Rb1 Bxd2+ 16. Nxd2 Qc3 17. Rxb7+ Kc6 18. Rxf7 Rad8 19. O-O Rxd2
+20. Rxg7 Rhd8 21. Rxa7 Rd1 22. Rxh7 Rxf1+ 23. Kxf1 Qd3+ 24. Ke1 Qd1# 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/p4t6m434"]
+[Date "????.??.??"]
+[Round "?"]
+[White "2girls1cup"]
+[Black "Krieg"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:58:59"]
+[WhiteElo "1754"]
+[BlackElo "1708"]
+[WhiteRatingDiff "+10"]
+[BlackRatingDiff "-9"]
+[ECO "B01"]
+[Opening "Scandinavian Defense: Mieses-Kotroc Variation"]
+[TimeControl "120+2"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "69"]
+[CurriculumStartFEN "8/5k1p/6p1/2B5/2P2P2/1P4P1/5K1P/2n5 b - - 0 35"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 d5 2. exd5 Qxd5 3. Nc3 Qd8 4. Bc4 e6 5. f4 Be7 6. Nf3 b6 7. O-O Bb7 8. d4
+c5 9. d5 exd5 10. Nxd5 Nf6 11. Nxe7 Qxd1 12. Bb5+ Bc6 13. Bxc6+ Nxc6 14. Rxd1
+Nxe7 15. b3 O-O 16. Bb2 Nfd5 17. g3 Ne3 18. Rd2 Ng6 19. Re1 Nf5 20. Ne5 Nxe5
+21. Bxe5 Rfd8 22. Red1 Rxd2 23. Rxd2 f6 24. Bc7 Re8 25. Kf2 Nd4 26. c3 Nf5 27.
+Rd8 Rxd8 28. Bxd8 g6 29. Bxf6 Kf7 30. Be5 Ne7 31. Bb8 Nd5 32. c4 Nb4 33. Bxa7
+Nxa2 34. Bxb6 Nc1 35. Bxc5 Nxb3 36. Ba7 Ke6 37. Ke3 Kd6 38. Ke4 Kc6 39. Ke5 Kb7
+40. Bg1 Kc6 41. h3 Nd2 42. Kf6 Nxc4 43. Kg7 Kd7 44. Kxh7 Ke6 45. Kxg6 Nd2 46.
+f5+ Ke7 47. Bc5+ Ke8 48. h4 Ne4 49. Ba3 Nxg3 50. f6 Ne4 51. f7+ Kd7 52. f8=Q
+Nd6 53. Qxd6+ Kc8 54. h5 Kb7 55. h6 Ka7 56. h7 Kb7 57. h8=Q Ka7 58. Qh7+ Ka8
+59. Qf8# 1-0
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/xrsqth2o"]
+[Date "????.??.??"]
+[Round "?"]
+[White "t4nk"]
+[Black "cheesedout"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:59:30"]
+[WhiteElo "1513"]
+[BlackElo "1907"]
+[WhiteRatingDiff "-3"]
+[BlackRatingDiff "+2"]
+[ECO "A00"]
+[Opening "Mieses Opening"]
+[TimeControl "0+1"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "78"]
+[CurriculumStartFEN "6k1/5p1p/R5p1/p2p4/P7/6P1/7r/2K5 w - - 0 40"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. d3 c5 2. c3 e6 3. b3 d5 4. a3 Nf6 5. c4 Be7 6. b4 O-O 7. a4 cxb4 8. Ra2 Qb6
+9. Rb2 a5 10. Rb3 Nc6 11. Qd2 Nd4 12. Qd1 Nxb3 13. Be3 Bc5 14. Qxb3 Bxe3 15.
+fxe3 Qxe3 16. Qc2 dxc4 17. Nf3 cxd3 18. Qxd3 Qxd3 19. exd3 b6 20. g3 Bb7 21.
+Bg2 Bxf3 22. Bxf3 Nd5 23. Bxd5 exd5 24. Rf1 Rfe8+ 25. Kd2 Re5 26. Rf3 Rae8 27.
+d4 Re4 28. Kd3 g6 29. Rf6 Re3+ 30. Kd2 R8e4 31. Kd1 Rd3+ 32. Kc2 Rexd4 33. Rxb6
+b3+ 34. Kb2 Rf3 35. Ra6 Rd2+ 36. Nxd2 Rf2 37. Kc3 b2 38. Kxb2 Rxd2+ 39. Kc1
+Rxh2 40. Rxa5 Rg2 41. Rxd5 Rxg3 42. Rd8+ Kg7 43. a5 Ra3 44. Ra8 h5 45. a6 h4
+46. a7 h3 47. Rh8 Kxh8 48. a8=Q+ Rxa8 49. Kd2 h2 50. Ke3 Ra4 51. Kf2 h1=Q 52.
+Kg3 Qe4 53. Kf2 Qd3 54. Kg1 Ra2 55. Kh1 Qd1# 0-1
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/pl0mbfcr"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Marzinkus"]
+[Black "Neuronchess"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "00:59:50"]
+[WhiteElo "1793"]
+[BlackElo "1731"]
+[WhiteRatingDiff "+10"]
+[BlackRatingDiff "-11"]
+[ECO "C43"]
+[Opening "Russian Game: Modern Attack, Center Variation"]
+[TimeControl "480+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "68"]
+[CurriculumStartFEN "7r/p7/5R1N/2P1k3/6p1/2P5/PP3P2/2K5 w - - 1 35"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Nf3 Nf6 3. d4 Nxe4 4. Bd3 d5 5. Nxe5 Bf5 6. Qf3 g6 7. Bxe4 dxe4 8.
+Qb3 Be6 9. Qxb7 Nd7 10. Nxd7 Bxd7 11. Bg5 Be7 12. Bxe7 Kxe7 13. Qxe4+ Kf8 14.
+Nc3 Qe7 15. Qxe7+ Kxe7 16. O-O-O Rhe8 17. Rhe1+ Kf8 18. Nd5 Rac8 19. Nf6 Rxe1
+20. Rxe1 Bf5 21. Nxh7+ Kg7 22. Ng5 f6 23. Re7+ Kh6 24. Nf7+ Kh5 25. h3 g5 26.
+g4+ Bxg4 27. hxg4+ Kxg4 28. Re6 f5 29. Rf6 Kf4 30. Nh6 g4 31. Rxf5+ Ke4 32. c3
+Rh8 33. Rf6 c5 34. dxc5 Ke5 35. Nxg4+ Kd5 36. Ne3+ Kxc5 37. b4+ Kb5 38. Kc2 Rh2
+39. Kb3 Rh4 40. a4# 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/cph70t38"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Kyklades"]
+[Black "sport"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:09:09"]
+[WhiteElo "1629"]
+[BlackElo "1502"]
+[WhiteRatingDiff "-15"]
+[BlackRatingDiff "+15"]
+[ECO "A40"]
+[Opening "Englund Gambit Declined, Reversed French"]
+[TimeControl "240+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "79"]
+[CurriculumStartFEN "1r6/2pk1p2/p7/P2P4/2K5/2P1B3/2n5/4q3 b - - 0 40"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e3 e5 2. d4 e4 3. Bc4 d5 4. Bb3 Bg4 5. Qxg4 Nf6 6. Qe2 Nc6 7. Nh3 h6 8. O-O
+Bd6 9. f4 g5 10. fxg5 hxg5 11. Nxg5 Bxh2+ 12. Kf2 Qd6 13. Ke1 Qg3+ 14. Qf2 Qxg5
+15. Bxd5 Bg3 16. Qxg3 Qxg3+ 17. Kd1 Qxg2 18. Nd2 Rh1 19. Bxc6+ bxc6 20. b3
+Rxf1+ 21. Nxf1 Qxf1+ 22. Kd2 Qf2+ 23. Kc3 Rb8 24. Ba3 Ng4 25. Rh1 Qxe3+ 26. Kc4
+Kd7 27. Rb1 Qf3 28. Bc5 a6 29. a4 e3 30. c3 e2 31. Rg1 Qe4 32. Re1 Nf2 33. Ba3
+Nd3 34. b4 Nxe1 35. b5 Nc2 36. bxc6+ Kxc6 37. Bc5 e1=Q 38. a5 Q4e3 39. d5+ Kd7
+40. Bxe3 Nxe3+ 41. Kc5 Qxc3# 0-1
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/d8qglqec"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Rodney"]
+[Black "jaquen81"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:11:04"]
+[WhiteElo "1516"]
+[BlackElo "1532"]
+[WhiteRatingDiff "-11"]
+[BlackRatingDiff "+10"]
+[ECO "D20"]
+[Opening "Queen's Gambit Accepted: Central Variation, Greco Variation"]
+[TimeControl "480+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "51"]
+[CurriculumStartFEN "1k4r1/R2R4/4p3/4Pn2/5P2/1r4P1/5K2/8 b - - 0 26"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. d4 d5 2. c4 dxc4 3. e4 b5 4. b3 cxb3 5. Bxb5+ Bd7 6. Bxd7+ Qxd7 7. axb3 e6
+8. e5 Nc6 9. Nf3 O-O-O 10. Be3 Bb4+ 11. Nbd2 Bxd2+ 12. Qxd2 f6 13. O-O fxe5 14.
+Nxe5 Nxe5 15. dxe5 Qxd2 16. Bxd2 Rxd2 17. Rxa7 Rb2 18. Rc1 Rxb3 19. Rcxc7+ Kb8
+20. g3 Nh6 21. Rxg7 Nf5 22. Rgd7 h5 23. f4 Rg8 24. Kg2 h4 25. Kf2 hxg3+ 26.
+hxg3 Nxg3 27. Rf7 Ne4+ 28. Ke2 0-1
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/wjmg3i9z"]
+[Date "????.??.??"]
+[Round "?"]
+[White "crazy2013"]
+[Black "Neuronchess"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:14:11"]
+[WhiteElo "1874"]
+[BlackElo "1720"]
+[WhiteRatingDiff "+87"]
+[BlackRatingDiff "-8"]
+[ECO "A43"]
+[Opening "Benoni Defense: Benoni Gambit Accepted"]
+[TimeControl "480+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "103"]
+[CurriculumStartFEN "6Q1/1p6/8/3PK3/3P4/4N3/1k3q2/7Q b - - 0 52"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. d4 c5 2. dxc5 d5 3. cxd6 Qxd6 4. Qxd6 exd6 5. Bf4 Nc6 6. e3 a6 7. Nf3 Bf5 8.
+Bd3 Bxd3 9. cxd3 O-O-O 10. O-O Nf6 11. Nc3 Nh5 12. Bg5 f6 13. Bh4 g5 14. Bg3
+Nxg3 15. fxg3 h5 16. Nd2 Bg7 17. Rac1 Kb8 18. Nd5 Rhf8 19. Nc4 Ne5 20. d4 Nxc4
+21. Rxc4 Rc8 22. b3 Rxc4 23. bxc4 f5 24. h3 f4 25. gxf4 gxf4 26. Nxf4 h4 27.
+Ng6 Rxf1+ 28. Kxf1 Kc7 29. Nxh4 Kb6 30. Nf5 Bf8 31. h4 Ka5 32. Ke2 Kb4 33. Kd3
+Ka3 34. h5 Kxa2 35. g4 a5 36. g5 a4 37. h6 a3 38. Kc3 Kb1 39. h7 a2 40. h8=Q
+a1=Q+ 41. Kd3 Qa3+ 42. Ke4 d5+ 43. cxd5 Bb4 44. g6 Qc3 45. g7 Qc2+ 46. Ke5 Qc7+
+47. Ke4 Qc2+ 48. Kf4 Qf2+ 49. Ke5 Bd2 50. g8=Q Bxe3 51. Qh1+ Kb2 52. Nxe3 Qxe3+
+53. Kd6 Qf4+ 54. Kc5 Qc7+ 55. Kb4 Qb6+ 56. Kc4 Qb3+ 57. Kc5 Qa3+ 58. Kb6 Qa6+
+59. Kc7 Qa5+ 60. Kd6 Qa3+ 61. Ke6 Qe3+ 62. Kf6 Qxd4+ 63. Kg6 Qg4+ 64. Kh7 Qf5+
+65. Kh8 b5 66. Qgg2+ Kb3 67. Qb1+ Kc4 68. Qxf5 b4 69. Qgc2+ Kb5 70. Qd7+ Kb6
+71. Qcc6+ Ka5 72. Qb5# 1-0
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/hgu2kah6"]
+[Date "????.??.??"]
+[Round "?"]
+[White "peter2"]
+[Black "treehugger"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:16:45"]
+[WhiteElo "1501"]
+[BlackElo "1494"]
+[WhiteRatingDiff "-12"]
+[BlackRatingDiff "+12"]
+[ECO "B00"]
+[Opening "Owen Defense"]
+[TimeControl "480+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "74"]
+[CurriculumStartFEN "4b3/5k2/5p2/8/p1Kn1pPp/5P1P/8/8 w - - 0 38"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 b6 2. Nc3 Bb7 3. Bc4 e6 4. f3 Bb4 5. d3 Bxc3+ 6. bxc3 d5 7. exd5 exd5 8.
+Bb5+ c6 9. Ba4 b5 10. Bb3 a5 11. a3 a4 12. Ba2 Bc8 13. Qe2+ Qe7 14. Qxe7+ Nxe7
+15. Ne2 Nd7 16. Bg5 f6 17. Bf4 g5 18. Bg3 h5 19. h3 h4 20. Bh2 Nf5 21. Kd2 Kf7
+22. Rhe1 Nc5 23. d4 Ne6 24. Bd6 Nxd6 25. Bxd5 cxd5 26. Kd3 Bd7 27. g3 Rae8 28.
+g4 Nf4+ 29. Nxf4 Rxe1 30. Rxe1 gxf4 31. c4 bxc4+ 32. Kc3 Nb5+ 33. Kb4 Re8 34.
+Rxe8 Bxe8 35. Kc5 Nxa3 36. Kxd5 Nxc2 37. Kxc4 Nxd4 38. Kxd4 a3 39. g5 fxg5 40.
+Ke4 a2 41. Kf5 a1=Q 42. Kxg5 Qf6+ 43. Kg4 Bd7+ 44. Kh5 Qg6+ 45. Kxh4 Bxh3 46.
+Kxh3 Qg3# 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/tg9m322f"]
+[Date "????.??.??"]
+[Round "?"]
+[White "airtsart"]
+[Black "nujabes"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:19:47"]
+[WhiteElo "1865"]
+[BlackElo "1633"]
+[WhiteRatingDiff "-7"]
+[BlackRatingDiff "+7"]
+[ECO "B02"]
+[Opening "Alekhine Defense: Scandinavian Variation, Geschev Gambit"]
+[TimeControl "180+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "86"]
+[CurriculumStartFEN "4r1k1/5p2/Q5p1/6Pp/p6P/1r6/5K2/8 w - - 0 44"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 d5 2. exd5 Nf6 3. Nc3 c6 4. dxc6 Nxc6 5. Nf3 Bg4 6. Be2 e5 7. h3 Bh5 8.
+g4 Bg6 9. g5 Ne4 10. Nxe4 Bxe4 11. h4 Nd4 12. Rh3 Nxc2+ 13. Kf1 Qd7 14. Rg3
+Nxa1 15. d3 Bc6 16. Nxe5 Qd5 17. d4 Qh1+ 18. Rg1 Bg2+ 19. Ke1 Qxg1+ 20. Kd2
+Bb4+ 21. Kd3 Be4+ 22. Kxe4 O-O 23. Qxg1 Nc2 24. Be3 Rad8 25. Bd3 Nxe3 26. fxe3
+Rfe8 27. Kf3 Bd6 28. Ng4 Re7 29. Qc1 Rde8 30. Qc2 h5 31. Bh7+ Kh8 32. Ne5 Bxe5
+33. dxe5 Rxe5 34. e4 g6 35. Qc7 R5e7 36. Qc4 Kxh7 37. Qd5 a6 38. b3 b5 39. a3
+Kg8 40. Qc6 Rxe4 41. Qxa6 Re3+ 42. Kf2 Rxb3 43. a4 bxa4 44. Qxa4 Rb2+ 45. Kf3
+Rh2 46. Qxe8+ Kg7 47. Qe5+ Kf8 48. Qh8+ Ke7 49. Qf6+ Kf8 50. Qd8+ Kg7 51. Qf6+
+Kf8 52. Qd8+ Kg7 53. Qf6+ Kf8 54. Qd6+ Kg7 55. Qxh2 Kf8 56. Qb8+ Kg7 57. Qe8
+Kh7 58. Qxf7+ Kh8 59. Qxg6 1/2-1/2
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/03zgrgn3"]
+[Date "????.??.??"]
+[Round "?"]
+[White "gabrielvictor"]
+[Black "Quentono"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:24:03"]
+[WhiteElo "1304"]
+[BlackElo "1648"]
+[WhiteRatingDiff "-3"]
+[BlackRatingDiff "+3"]
+[ECO "B01"]
+[Opening "Scandinavian Defense: Main Line"]
+[TimeControl "840+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "79"]
+[CurriculumStartFEN "8/1p3ppk/4p1bp/8/2B5/5P2/7P/1R4K1 b - - 0 40"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 d5 2. exd5 Qxd5 3. Nc3 Qa5 4. a4 c6 5. d3 Nf6 6. Bd2 Qc7 7. Nge2 Bg4 8.
+Bf4 Qc8 9. f3 Bh5 10. g4 Bg6 11. g5 Nd5 12. Nxd5 cxd5 13. Ng1 e6 14. Bh3 Be7
+15. Qe2 Bb4+ 16. c3 Ba5 17. Be5 O-O 18. b4 Bc7 19. Rc1 Bxe5 20. Qxe5 Bxd3 21.
+g6 Bxg6 22. Ne2 Nc6 23. Qg3 Qd8 24. Nf4 Ne5 25. O-O Nd3 26. Rcd1 Nxf4 27. Qxf4
+Qe7 28. c4 dxc4 29. Qxc4 Rac8 30. Qd4 Rfd8 31. Qxa7 Qxb4 32. Rxd8+ Rxd8 33. Qe3
+Qd4 34. Qxd4 Rxd4 35. Rc1 h6 36. Rc8+ Kh7 37. Rc1 Rxa4 38. Bf1 Rb4 39. Bc4 Rb1
+40. Rxb1 Bxb1 41. Bf1 Kg6 42. Bg2 Kf5 43. Bh3+ Kf4 44. Kf2 b5 45. Bf1 b4 46.
+Be2 b3 47. Ke1 Bc2 48. Kd2 e5 49. Bc4 f6 50. Kc3 Kxf3 51. Bxb3 Bxb3 52. Kxb3
+Kg2 0-1
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/ayxflpm0"]
+[Date "????.??.??"]
+[Round "?"]
+[White "4di4"]
+[Black "La-la-la"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:21:59"]
+[WhiteElo "1500"]
+[BlackElo "1500"]
+[WhiteRatingDiff "-163"]
+[BlackRatingDiff "+162"]
+[ECO "C42"]
+[Opening "Russian Game: Urusov Gambit"]
+[TimeControl "1320+8"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "65"]
+[CurriculumStartFEN "6k1/5p1p/6p1/pp4P1/8/2b4P/2P5/2K1R3 b - - 0 33"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Bc4 Nf6 3. Nf3 Nxe4 4. Nxe5 Qf6 5. f3 Qxe5 6. fxe4 Qxe4+ 7. Qe2
+Qxe2+ 8. Kxe2 Bc5 9. d3 O-O 10. Be3 Re8 11. d4 Bxd4 12. Kd3 Bxe3 13. Rf1 d5 14.
+Bxd5 Be6 15. Nc3 c6 16. Bc4 Bxc4+ 17. Kxc4 b5+ 18. Kd3 Bb6 19. Rae1 Na6 20. a3
+Nc5+ 21. Kd2 Rad8+ 22. Kc1 Ne6 23. h3 c5 24. Rd1 Nd4 25. Rfe1 Ba5 26. Rxe8+
+Rxe8 27. b4 cxb4 28. axb4 Bxb4 29. Rxd4 Bxc3 30. Rd1 g6 31. g4 a5 32. g5 Re1
+33. Rxe1 Bxe1 34. Kd1 a4 35. Kxe1 a3 36. Kd2 a2 37. c3 a1=Q 38. Kd3 Qb2 39. h4
+Kg7 40. Kd4 b4 41. h5 gxh5 42. g6 fxg6 43. Kd5 bxc3 44. Ke5 c2+ 45. Kd5 c1=Q
+46. Kd6 h4 47. Ke6 h3 0-1
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/e8pc6qoy"]
+[Date "????.??.??"]
+[Round "?"]
+[White "peter2"]
+[Black "sanuch111"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:35:31"]
+[WhiteElo "1502"]
+[BlackElo "1720"]
+[WhiteRatingDiff "-5"]
+[BlackRatingDiff "+6"]
+[ECO "C28"]
+[Opening "Vienna Game: Stanley Variation, Three Knights Variation"]
+[TimeControl "480+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "69"]
+[CurriculumStartFEN "8/7p/2b3k1/1pB5/2p4P/2P2P2/2PK4/8 b - - 0 35"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e5 2. Nc3 Nf6 3. Bc4 Nc6 4. f3 g6 5. a3 Bg7 6. Nd5 Nxd5 7. Bxd5 O-O 8.
+Bxc6 dxc6 9. d3 c5 10. Qd2 b6 11. Qg5 Qxg5 12. Bxg5 Bb7 13. g4 f6 14. Be3 Ba6
+15. h4 c4 16. d4 exd4 17. Bxd4 c5 18. Be3 Bb5 19. Ne2 Ba4 20. O-O-O Rad8 21.
+Rxd8 Rxd8 22. Rd1 Rxd1+ 23. Kxd1 Bd7 24. Nc3 f5 25. gxf5 Bxc3 26. bxc3 gxf5 27.
+exf5 Bxf5 28. Kd2 Kg7 29. a4 Kg6 30. Bf4 Bd7 31. Bb8 a6 32. Bc7 b5 33. axb5
+axb5 34. Bd6 Bc6 35. Bxc5 Bxf3 36. Ke3 Bd1 37. Kd4 Bxc2 38. Bb4 Kh5 39. Kc5 Ba4
+40. Kd5 Kxh4 41. Ke5 Kg3 42. Kf5 h5 43. Kg5 h4 44. Kh5 h3 45. Kg5 Kg2 46. Bd6
+h2 47. Bxh2 Kxh2 48. Kf4 Kg2 0-1
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/diqhnj15"]
+[Date "????.??.??"]
+[Round "?"]
+[White "moonwalker"]
+[Black "-jack69-"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:37:16"]
+[WhiteElo "2007"]
+[BlackElo "1931"]
+[WhiteRatingDiff "-18"]
+[BlackRatingDiff "+34"]
+[ECO "D37"]
+[Opening "Queen's Gambit Declined: Harrwitz Attack, Orthodox Defense"]
+[TimeControl "120+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "81"]
+[CurriculumStartFEN "r6k/6pp/2p5/8/2R5/Rp4KP/6P1/4r3 b - - 0 41"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. d4 e6 2. c4 d5 3. Nc3 Be7 4. Nf3 Nf6 5. Bf4 O-O 6. e3 c6 7. h3 Nbd7 8. c5
+Re8 9. b4 a5 10. a3 Ne4 11. Nxe4 dxe4 12. Ne5 Nxe5 13. Bxe5 f6 14. Bg3 Bf8 15.
+Qc2 axb4 16. Qxe4 Qd5 17. Qc2 Kh8 18. Rd1 bxa3 19. e4 Qd7 20. Bc4 Qd8 21. O-O
+Qa5 22. Ra1 e5 23. dxe5 fxe5 24. Bb3 Bxc5 25. Kh2 Bd4 26. Ra2 Be6 27. Bxe6 Rxe6
+28. f4 Ree8 29. fxe5 Bxe5 30. Bxe5 Qxe5+ 31. Kh1 Qxe4 32. Qb3 Qd5 33. Qc2 b5
+34. Rd1 Qe4 35. Qb3 b4 36. Rc1 Qd5 37. Rc4 Re1+ 38. Kh2 Qe5+ 39. Qg3 Qxg3+ 40.
+Kxg3 b3 41. Rxa3 Rxa3 42. Rxc6 b2+ 43. Kf2 Re8 44. Rb6 Ra2 45. Kg1 h6 46. Kh2
+Kh7 47. Rb4 Re1 48. Rb3 b1=Q 49. Rb4 Qxb4 50. h4 Qb2 51. Kg3 Qxg2+ 52. Kf4 Rf1+
+53. Ke5 Qe2+ 54. Kd6 Rd1+ 55. Kc5 Qc2+ 56. Kb4 Rb1# 0-1
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/hbnzj1yf"]
+[Date "????.??.??"]
+[Round "?"]
+[White "t4nk"]
+[Black "cheesedout"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:40:54"]
+[WhiteElo "1520"]
+[BlackElo "1876"]
+[WhiteRatingDiff "+10"]
+[BlackRatingDiff "-11"]
+[ECO "A00"]
+[Opening "Van't Kruijs Opening"]
+[TimeControl "0+1"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "88"]
+[CurriculumStartFEN "r1b5/k4p1p/p3p3/4P1K1/pn5p/8/8/8 w - - 0 45"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e3 c5 2. d3 e6 3. e4 d5 4. f4 dxe4 5. dxe4 c4 6. Qxd8+ Kxd8 7. Be3 Bb4+ 8.
+Nc3 Be7 9. Bxc4 Nf6 10. e5 Ng4 11. Nf3 Nxe3 12. Kd2 Nxc4+ 13. Kc1 Nc6 14. Rd1+
+Kc7 15. Nb5+ Kb6 16. Na3 Nxa3 17. bxa3 a6 18. Rb1+ Ka7 19. Nd2 Bxa3+ 20. Rb2
+Bxb2+ 21. Kxb2 Nb4 22. Nb3 Re8 23. Nd4 Rd8 24. Nb3 Rxd1 25. Ka3 Rb1 26. Nc5 Nd5
+27. Nb3 Rxb3+ 28. Kxb3 Ne3 29. Kb2 Nxg2 30. Kc1 Nxf4 31. Kd2 Nh3 32. Ke2 Ng1+
+33. Kf1 Nh3 34. Kg2 Nf4+ 35. Kf3 Nd5 36. Ke4 Nb4 37. a3 Nxc2 38. a4 Nb4 39. a5
+b6 40. h4 bxa5 41. h5 a4 42. h6 gxh6 43. Kf4 h5 44. Kg5 h4 45. Kf6 a3 46. Kxf7
+a2 47. Kg7 Bb7 48. Kxh7 Re8 49. Kg7 Re7+ 50. Kf6 Rc7 51. Kxe6 a1=Q 52. Kd6 Rc6+
+53. Kd7 Qxe5 54. Kd8 Rc7 1/2-1/2
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/tj8u99ci"]
+[Date "????.??.??"]
+[Round "?"]
+[White "kingofconcentration"]
+[Black "msun"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:41:10"]
+[WhiteElo "1633"]
+[BlackElo "1456"]
+[WhiteRatingDiff "-7"]
+[BlackRatingDiff "+5"]
+[ECO "B08"]
+[Opening "Pirc Defense: Classical Variation, Quiet System"]
+[TimeControl "300+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "63"]
+[CurriculumStartFEN "8/5p1p/2k3p1/1NP5/r7/PK5P/5PP1/8 b - - 4 32"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 g6 2. d4 Bg7 3. Nc3 d6 4. Nf3 Nf6 5. Be2 O-O 6. O-O c5 7. dxc5 Nc6 8.
+cxd6 Nb4 9. dxe7 Qxe7 10. Bd3 Bg4 11. h3 Be6 12. a3 Nxd3 13. Qxd3 Rfd8 14. Qe2
+Rac8 15. Be3 Bc4 16. Qe1 Bxf1 17. Kxf1 Nxe4 18. Nxe4 Qxe4 19. Bxa7 Bxb2 20.
+Qxe4 Bxa1 21. Bd4 Bxd4 22. Nxd4 Re8 23. Qxb7 Rcd8 24. c3 Rb8 25. Qxb8 Rxb8 26.
+Ke2 Ra8 27. Nb5 Kf8 28. c4 Ke7 29. Kd3 Kd7 30. c5 Kc6 31. Kc4 Ra4+ 32. Kb3 Ra5
+33. a4 Kxc5 34. Nc3 Ra8 35. Ne4+ Kd5 36. Nf6+ Kd4 37. Nxh7 Kd3 38. Ng5 Ke2 39.
+f4 Kf2 40. g4 Kg3 41. f5 gxf5 42. gxf5 Kf4 43. Nxf7 Kxf5 44. Kb4 Kg6 45. Nd6
+Kh5 46. a5 Kh4 47. Kb5 Kxh3 48. Kb6 Kg4 49. a6 Kf4 50. Kb7 Rxa6 51. Kxa6
+1/2-1/2
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/y3bmuxy8"]
+[Date "????.??.??"]
+[Round "?"]
+[White "cheesedout"]
+[Black "t4nk"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:44:45"]
+[WhiteElo "1868"]
+[BlackElo "1513"]
+[WhiteRatingDiff "+4"]
+[BlackRatingDiff "-4"]
+[ECO "A40"]
+[Opening "Queen's Pawn"]
+[TimeControl "0+1"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "94"]
+[CurriculumStartFEN "8/3k4/1p1p4/1K1P4/p5q1/P1N1B3/1P6/8 w - - 0 48"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. d4 h6 2. c4 a6 3. Nc3 h5 4. Nf3 a5 5. Bg5 a4 6. a3 h4 7. Qc2 f6 8. Bd2 g5 9.
+e3 g4 10. Ng1 d6 11. O-O-O Nh6 12. f3 Bf5 13. fxg4 Bxc2 14. Kxc2 Nxg4 15. Nf3
+Nh6 16. h3 Qd7 17. g3 Nf7 18. g4 f5 19. gxf5 Qxf5+ 20. Bd3 Qxf3 21. Rhf1 Qg2
+22. Rg1 Qxh3 23. Rdf1 Qe6 24. Bg6 Rg8 25. Bxf7+ Kd7 26. Bxe6+ Kxe6 27. Rxg8 Kd7
+28. Rgxf8 Nc6 29. R8f7 Re8 30. d5 Nd8 31. Rf8 Rxf8 32. Rxf8 Ne6 33. Rf1 Nd8 34.
+e4 Nf7 35. c5 Ng5 36. cxd6 h3 37. Bxg5 h2 38. Rg1 hxg1=Q 39. Bd2 Qg2 40. Kd3
+Qg3+ 41. Be3 Qh3 42. e5 Qf1+ 43. Ke4 Qg2+ 44. Kd4 Qg4+ 45. Kc5 b6+ 46. Kb5 cxd6
+47. exd6 exd6 48. Bxb6 Qg1 49. Bxg1 Kc7 50. Bb6+ Kb7 51. Nxa4 Ka8 52. Kc6 Kb8
+53. Kxd6 Kc8 54. Bg1 Kd8 55. Kc6 Kc8 56. d6 Kb8 57. d7 Ka8 58. d8=Q# 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/rg6qt23g"]
+[Date "????.??.??"]
+[Round "?"]
+[White "tiggran"]
+[Black "msun"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:51:08"]
+[WhiteElo "1574"]
+[BlackElo "1461"]
+[WhiteRatingDiff "+8"]
+[BlackRatingDiff "-8"]
+[ECO "B08"]
+[Opening "Pirc Defense: Classical Variation, Quiet System"]
+[TimeControl "300+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "49"]
+[CurriculumStartFEN "3N2k1/4p2p/8/5p2/3b4/7P/P4RPK/8 b - - 0 25"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 g6 2. d4 Bg7 3. Nf3 d6 4. Nc3 Nf6 5. Be2 O-O 6. Be3 Nbd7 7. O-O c5 8.
+dxc5 Nxc5 9. Bd3 Ng4 10. Bxc5 dxc5 11. h3 Ne5 12. Nxe5 Bxe5 13. Qf3 f5 14. exf5
+Bxf5 15. Bxf5 Rxf5 16. Qxb7 Rb8 17. Qxa7 Rxb2 18. Na4 Rxc2 19. Nxc5 Bd4 20. Ne6
+Bxa7 21. Nxd8 Bxf2+ 22. Kh2 Bd4 23. Rxf5 gxf5 24. Rf1 Rf2 25. Rxf2 Bxf2 26. a4
+e5 27. a5 e4 28. a6 Ba7 29. Nc6 Bc5 30. a7 Bxa7 31. Nxa7 e3 32. Kg1 f4 33. Kf1
+Kf7 34. Nb5 Ke6 35. Nd4+ Ke5 36. Ne2 Ke4 37. Ke1 h5 38. Nc3+ Kd4 39. Ne2+ Ke4
+40. Kd1 h4 41. Kc2 f3 42. Nc3+ Kf4 43. Nd5+ Kg3 44. Nxe3 f2 45. Kd1 Kh2 46. Ke2
+Kg1 47. Kf3 f1=Q+ 48. Nxf1 Kxf1 49. Kg4 Kxg2 50. Kxh4 Kf3 51. Kg5 Kg3 52. h4
+Kh3 53. h5 1-0
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/txk4qm2h"]
+[Date "????.??.??"]
+[Round "?"]
+[White "t4nk"]
+[Black "cheesedout"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "01:53:56"]
+[WhiteElo "1503"]
+[BlackElo "1878"]
+[WhiteRatingDiff "-3"]
+[BlackRatingDiff "+4"]
+[ECO "A00"]
+[Opening "Van't Kruijs Opening"]
+[TimeControl "0+1"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "81"]
+[CurriculumStartFEN "1r4k1/5ppp/Q7/1q6/4p3/KPP5/P7/8 b - - 0 41"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e3 c5 2. Bb5 e6 3. Qe2 a6 4. Ba4 b5 5. Bb3 d5 6. c3 Nf6 7. Bc2 Be7 8. Bd1
+O-O 9. Qd3 Nc6 10. Be2 c4 11. Qc2 e5 12. d3 cxd3 13. Bxd3 d4 14. Qd1 dxe3 15.
+Bxe3 Bg4 16. Be2 Bxe2 17. Qxe2 Qc7 18. Qd1 Rad8 19. Qe2 Ne4 20. Nf3 Na5 21.
+Nbd2 Nxd2 22. Nxd2 Nc4 23. Nxc4 bxc4 24. O-O Bf6 25. Rfd1 Rxd1+ 26. Qxd1 e4 27.
+Qe2 Be5 28. Rd1 Bxh2+ 29. Kf1 Bf4 30. Bxf4 Qxf4 31. g3 Qh6 32. f3 Qh1+ 33. Kf2
+Qh2+ 34. Ke3 Qxg3 35. Qxc4 Qxf3+ 36. Kd4 Rd8+ 37. Kc5 Qxd1 38. Qxa6 Qd5+ 39.
+Kb4 Rb8+ 40. Ka3 Qb5 41. b3 Qxa6+ 42. Kb2 Qd3 43. a3 e3 44. c4 e2 45. b4 e1=Q
+46. c5 Qec3+ 47. Ka2 Qdc2# 0-1
+
+[Event "Rated Bullet game"]
+[Site "https://lichess.org/hbzk28yq"]
+[Date "????.??.??"]
+[Round "?"]
+[White "LEGENDARY_ERFAN"]
+[Black "RookieRook"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "02:10:41"]
+[WhiteElo "1444"]
+[BlackElo "1507"]
+[WhiteRatingDiff "-27"]
+[BlackRatingDiff "+9"]
+[ECO "B06"]
+[Opening "Modern Defense"]
+[TimeControl "60+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "71"]
+[CurriculumStartFEN "6k1/5p1p/4p1p1/6PP/p2b4/7K/5P2/2r5 b - - 0 36"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 g6 2. Bc4 Bg7 3. d3 e6 4. Nf3 Nf6 5. O-O d5 6. exd5 Nxd5 7. Bxd5 Qxd5 8.
+Nc3 Qd8 9. h3 Nd7 10. Re1 b6 11. Bf4 Bb7 12. Bg5 Nf6 13. Re5 O-O 14. a3 Qd7 15.
+Bxf6 Bxf6 16. Re4 Bxe4 17. dxe4 Bg7 18. Qxd7 Rad8 19. Qxc7 Rd2 20. Rd1 Rxc2 21.
+Nd4 Rxb2 22. Nc6 Rc2 23. Nb5 Bf6 24. Rd8 Rxd8 25. Nxd8 Rxc7 26. Nc6 Rxc6 27.
+Nxa7 Rc5 28. a4 Bd4 29. g3 Rc1+ 30. Kg2 b5 31. h4 Bxa7 32. e5 bxa4 33. h5 Bd4
+34. g4 Bxe5 35. Kh3 Bd4 36. g5 Rc2 37. Kh4 Rxf2 38. Kh3 Rf5 39. Kh4 Bf2+ 40.
+Kh3 Rxg5 41. Kh2 Rxh5+ 42. Kg2 Bc5 43. Kf3 Be7 44. Ke2 a3 45. Kd3 Rb5 46. Kc2
+a2 47. Kd2 Rb8 48. Kd3 a1=Q 49. Ke3 Qc3+ 50. Ke2 Rb2+ 51. Kf1 Qc1# 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/fh83dodh"]
+[Date "????.??.??"]
+[Round "?"]
+[White "zlate"]
+[Black "lamobot"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "02:19:16"]
+[WhiteElo "1614"]
+[BlackElo "1360"]
+[WhiteRatingDiff "-7"]
+[BlackRatingDiff "+12"]
+[ECO "B02"]
+[Opening "Alekhine Defense: Scandinavian Variation"]
+[TimeControl "180+3"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "72"]
+[CurriculumStartFEN "4k3/1pp4p/5b2/P5P1/5p2/P4K2/7P/8 w - - 0 37"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 Nf6 2. Nc3 d5 3. e5 Ne4 4. Nxe4 dxe4 5. d3 Qd5 6. Be2 exd3 7. Qxd3 Qxe5
+8. Qb5+ Qxb5 9. Bxb5+ Bd7 10. Bxd7+ Nxd7 11. b3 O-O-O 12. Bb2 f6 13. Nf3 e5 14.
+O-O Bb4 15. a3 Ba5 16. b4 Bb6 17. c4 a5 18. c5 Ba7 19. bxa5 Nxc5 20. Bc3 Rd3
+21. Bb4 Nb3 22. Rab1 Rhd8 23. Ne1 Nd2 24. Nxd3 Nxb1 25. Rxb1 Rxd3 26. Bf8 Rd2
+27. Rf1 Rd4 28. Bxg7 Rf4 29. g3 Rf5 30. Kg2 Kd7 31. f4 Bd4 32. g4 Rxf4 33. Rxf4
+exf4 34. Kf3 Be5 35. g5 Ke8 36. Bxf6 Bxf6 37. gxf6 Kf7 38. Kxf4 Kxf6 39. a4 Ke6
+40. Ke4 Kd6 41. Kd4 c5+ 42. Kc4 Kc6 43. Kc3 Kd5 44. Kd3 c4+ 45. Kc3 Kc5 46. h4
+h5 47. a6 bxa6 48. a5 Kb5 49. Kd4 Kxa5 50. Kxc4 Ka4 51. Kc3 Ka3 52. Kc2 Ka2 53.
+Kc3 Ka3 54. Kc4 a5 55. Kb5 a4 56. Kc4 Ka2 57. Kc3 a3 58. Kc2 Ka1 59. Kc1 a2 60.
+Kc2 1/2-1/2
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/ob2optu9"]
+[Date "????.??.??"]
+[Round "?"]
+[White "sport"]
+[Black "cougar1"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "02:32:44"]
+[WhiteElo "1522"]
+[BlackElo "1664"]
+[WhiteRatingDiff "-7"]
+[BlackRatingDiff "+7"]
+[ECO "B20"]
+[Opening "Sicilian Defense: Bowdler Attack"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "62"]
+[CurriculumStartFEN "r7/8/1k2q1n1/1r6/3p4/7P/5PP1/R1R3K1 w - - 0 32"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 c5 2. Bc4 Nc6 3. Nf3 a6 4. c3 e6 5. b4 b5 6. Bb3 c4 7. Bc2 Be7 8. d3 cxd3
+9. Bxd3 d5 10. e5 Qb6 11. O-O Bd7 12. Bg5 a5 13. Bxe7 Ngxe7 14. Ng5 axb4 15.
+Qh5 Nxe5 16. Nxh7 O-O-O 17. Qxe5 Ng6 18. Qxg7 Rdg8 19. Qxf7 Be8 20. Qxe6+ Qxe6
+21. a4 Rxh7 22. a5 Rgh8 23. h3 Rh4 24. a6 Bc6 25. a7 Kc7 26. cxb4 Rxb4 27. Nc3
+d4 28. Nxb5+ Bxb5 29. Rfc1+ Kb6 30. Bxb5 Rxb5 31. a8=Q Rxa8 32. Rxa8 Qd6 33.
+Ra4 d3 34. Rc8 d2 35. Rb8+ Qxb8 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/zlyuk9av"]
+[Date "????.??.??"]
+[Round "?"]
+[White "sport"]
+[Black "cougar1"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "02:39:40"]
+[WhiteElo "1515"]
+[BlackElo "1671"]
+[WhiteRatingDiff "+16"]
+[BlackRatingDiff "-16"]
+[ECO "B06"]
+[Opening "Modern Defense"]
+[TimeControl "300+3"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "69"]
+[CurriculumStartFEN "6b1/2R5/8/pp1p1p2/3P2kP/8/P2N4/6K1 b - - 0 35"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 g6 2. Nf3 Bh6 3. Bc4 e6 4. d4 Bxc1 5. Qxc1 Nf6 6. e5 Nd5 7. Bxd5 exd5 8.
+O-O O-O 9. Qh6 f5 10. Ng5 Qe7 11. h4 Nc6 12. c3 d6 13. h5 dxe5 14. hxg6 hxg6
+15. Qxg6+ Qg7 16. Qxg7+ Kxg7 17. dxe5 Nxe5 18. Re1 Kf6 19. Nh7+ Kf7 20. Nxf8
+Nd3 21. Re3 Nxb2 22. Nh7 Kg6 23. Rh3 Be6 24. f4 Rh8 25. Ng5 Rxh3 26. gxh3 Bg8
+27. h4 Kh5 28. Nf3 Nd3 29. Nbd2 Nxf4 30. Re1 Ne6 31. Re5 Kg4 32. Nd4 Nxd4 33.
+cxd4 b5 34. Re7 a5 35. Rxc7 Kxh4 36. a3 f4 37. Rb7 Be6 38. Rxb5 a4 39. Rb7 Bg4
+40. Ra7 Bd1 41. Kf2 Kg4 42. Rd7 f3 43. Rxd5 Kf4 44. Rd8 Be2 45. d5 Bb5 46. d6
+Ke5 47. Nxf3+ Ke6 48. Nd4+ Kd5 49. Nxb5 Kc4 50. Na7 Kb3 51. d7 Kxa3 52. Rh8 Kb2
+53. d8=Q a3 54. Qd2+ Kb3 55. Rb8+ Ka4 56. Qb4# 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/rpt85995"]
+[Date "????.??.??"]
+[Round "?"]
+[White "namesnik"]
+[Black "ow055"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "02:44:57"]
+[WhiteElo "1689"]
+[BlackElo "1804"]
+[WhiteRatingDiff "-9"]
+[BlackRatingDiff "+8"]
+[ECO "B27"]
+[Opening "Sicilian Defense: Katalimov Variation"]
+[TimeControl "180+1"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "53"]
+[CurriculumStartFEN "2r3k1/R4p2/6p1/8/P1B5/2p1K3/1r4PP/8 b - - 1 27"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 c5 2. Nf3 b6 3. d4 cxd4 4. Nxd4 Bb7 5. Bc4 g6 6. O-O Bg7 7. Nc3 Nc6 8.
+Nxc6 dxc6 9. f4 c5 10. f5 Nf6 11. Be3 O-O 12. fxg6 hxg6 13. Rxf6 Qxd1+ 14. Rxd1
+Bxf6 15. Rd7 Bxc3 16. bxc3 Bxe4 17. Rxe7 Rae8 18. Rxa7 Bd5 19. Bxd5 Rxe3 20.
+Kf2 Rxc3 21. Bb3 c4 22. Ba4 b5 23. Bxb5 Rxc2+ 24. Kf3 Rc8 25. Ke3 Rb2 26. a4 c3
+27. Bc4 c2 0-1
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/r9j5j00y"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Alexey_K"]
+[Black "Quentono"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "02:53:47"]
+[WhiteElo "1480"]
+[BlackElo "1648"]
+[WhiteRatingDiff "+17"]
+[BlackRatingDiff "-18"]
+[ECO "B01"]
+[Opening "Scandinavian Defense"]
+[TimeControl "840+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "70"]
+[CurriculumStartFEN "7k/2p3p1/p3N2p/5Q1P/1p6/6K1/r7/8 w - - 0 36"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 d5 2. d3 dxe4 3. d4 Bf5 4. Nc3 e6 5. f3 exf3 6. Nxf3 Bg4 7. Be2 a6 8. Ne5
+Bxe2 9. Qxe2 Qh4+ 10. g3 Qxd4 11. Nf3 Be7 12. Nxd4 Nf6 13. O-O Nbd7 14. Bg5 h6
+15. Bxf6 Nxf6 16. Rad1 O-O 17. Qe5 Bd6 18. Qe2 Rad8 19. Ne4 Nxe4 20. Qxe4 Rd7
+21. h4 Bxg3 22. Ne2 Bd6 23. h5 Rfd8 24. Nc3 b5 25. Qc6 b4 26. Ne4 Bh2+ 27. Kxh2
+Rxd1 28. Rxd1 Rxd1 29. Qe8+ Kh7 30. Qxf7 Re1 31. Qxe6 Re2+ 32. Kg3 Rxc2 33.
+Qf5+ Kh8 34. Nc5 Rxb2 35. Ne6 Rxa2 36. Qf8+ 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/eso8v7s5"]
+[Date "????.??.??"]
+[Round "?"]
+[White "cougar1"]
+[Black "Naitero_Nagasaki"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "02:58:54"]
+[WhiteElo "1644"]
+[BlackElo "1838"]
+[WhiteRatingDiff "-5"]
+[BlackRatingDiff "+5"]
+[ECO "D00"]
+[Opening "Queen's Pawn Opening: Veresov Attack, Irish Gambit"]
+[TimeControl "180+2"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "81"]
+[CurriculumStartFEN "6k1/4qpp1/p1b5/P3P2K/3Q4/5r1P/8/8 b - - 0 41"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. d4 d5 2. Nc3 c5 3. dxc5 Nf6 4. Bg5 e6 5. Bxf6 Qxf6 6. Nf3 Bxc5 7. e4 Bb4 8.
+Bb5+ Nc6 9. Bxc6+ bxc6 10. O-O Ba6 11. e5 Qd8 12. Re1 Qa5 13. a3 Bxc3 14. bxc3
+Qxc3 15. Re3 Qa5 16. Nd4 Qc7 17. Rc3 Qxe5 18. Rxc6 Bb7 19. Rc7 Qxc7 20. Nb5 Qb6
+21. a4 a6 22. Nc3 Rc8 23. Rb1 Qa7 24. Ne2 O-O 25. Nf4 Rc4 26. g3 Rfc8 27. Qh5
+Rxf4 28. gxf4 Rxc2 29. Qh4 Rc8 30. Qe7 Rb8 31. a5 Bc6 32. Qd6 Rxb1+ 33. Kg2 Qa8
+34. Kg3 Rb3+ 35. f3 d4 36. Kh4 Rxf3 37. h3 Qe8 38. Qxd4 e5 39. fxe5 Qe7+ 40.
+Kg4 h5+ 41. Kxh5 Rxh3+ 42. Kg4 Qh4+ 43. Kf5 Rf3+ 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/har9zm09"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Maklaud695"]
+[Black "cadmandior"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "03:25:16"]
+[WhiteElo "1796"]
+[BlackElo "1622"]
+[WhiteRatingDiff "+6"]
+[BlackRatingDiff "-6"]
+[ECO "C00"]
+[Opening "French Defense: La Bourdonnais Variation"]
+[TimeControl "240+1"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "66"]
+[CurriculumStartFEN "8/3p3p/2b5/5q1k/4P2P/P2P4/1PP5/2K5 w - - 0 34"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 e6 2. f4 b6 3. Nf3 Bb7 4. Nc3 Ne7 5. Be2 Ng6 6. d3 Nh4 7. Nxh4 Qxh4+ 8.
+g3 Qh3 9. Bf1 Qh6 10. Bg2 Qf6 11. Qe2 Qd8 12. Bd2 Bb4 13. O-O-O Bxc3 14. Bxc3
+Na6 15. a3 Nc5 16. Bxg7 Rg8 17. Bh6 Rg6 18. Bg5 f6 19. f5 Rxg5 20. fxe6 Nxe6
+21. h4 Nd4 22. Qe3 Rxg3 23. Qxd4 Rxg2 24. Rhg1 Rxg1 25. Rxg1 Qe7 26. Rg8+ Kf7
+27. Rxa8 Bxa8 28. Qc4+ Kg6 29. Qxc7 Kh5 30. Qxa7 Qf8 31. Qxb6 f5 32. Qb5 Bc6
+33. Qxf5+ Qxf5 34. exf5 Kxh4 35. Kd2 Kg5 36. f6 Kxf6 37. b4 h5 38. Ke3 h4 39.
+Kf2 Kg5 40. Kg1 Kg4 41. Kh2 h3 42. c4 d5 43. b5 Bb7 44. c5 d4 45. c6 Bc8 46. b6
+Kf3 47. b7 Bxb7 48. cxb7 Ke3 49. b8=Q Kxd3 50. Qb3+ Ke4 51. Qxh3 d3 52. Qf1 Ke3
+53. Qe1+ Kd4 54. a4 Kc4 55. a5 Kb3 56. a6 Kc2 57. a7 d2 58. Qe4+ Kc1 59. Qc4+
+Kd1 60. a8=Q Ke1 61. Qa1+ d1=Q 62. Qe4+ Kd2 63. Qed4+ Ke1 64. Qdxd1+ Kf2 65.
+Qf6+ Ke3 66. Qe5+ Kf2 67. Qde2# 1-0
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/52j6e03r"]
+[Date "????.??.??"]
+[Round "?"]
+[White "Maklaud695"]
+[Black "vegeta"]
+[Result "0-1"]
+[UTCDate "2013.01.01"]
+[UTCTime "03:44:17"]
+[WhiteElo "1814"]
+[BlackElo "1710"]
+[WhiteRatingDiff "-14"]
+[BlackRatingDiff "+14"]
+[ECO "B56"]
+[Opening "Sicilian Defense: Classical Variation"]
+[TimeControl "300+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "61"]
+[CurriculumStartFEN "4r1k1/p4p2/2p3p1/7P/1P4p1/3B4/2P2K2/8 b - - 1 31"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 Nc6 6. Bb5 Bd7 7. Nxc6 bxc6 8.
+Bd3 e5 9. O-O Be7 10. Bd2 O-O 11. a3 Be6 12. b4 d5 13. Bg5 d4 14. Ne2 h6 15.
+Bxf6 Bxf6 16. f4 Bg4 17. Qd2 exf4 18. Qxf4 Bxe2 19. Bxe2 d3 20. Bxd3 Bxa1 21.
+Rxa1 Qd4+ 22. Kf1 Qxa1+ 23. Ke2 Qxa3 24. e5 Qc3 25. Qe4 g6 26. h4 h5 27. g4
+hxg4 28. h5 Qxe5 29. Qxe5 Rfe8 30. Qxe8+ Rxe8+ 31. Kf2 gxh5 32. Kg3 0-1
+
+[Event "Rated Blitz game"]
+[Site "https://lichess.org/2bt5tx6q"]
+[Date "????.??.??"]
+[Round "?"]
+[White "tiggran"]
+[Black "adamsrj"]
+[Result "1/2-1/2"]
+[UTCDate "2013.01.01"]
+[UTCTime "03:53:06"]
+[WhiteElo "1602"]
+[BlackElo "1505"]
+[WhiteRatingDiff "-3"]
+[BlackRatingDiff "+3"]
+[ECO "B84"]
+[Opening "Sicilian Defense: Scheveningen Variation, Classical Variation"]
+[TimeControl "300+0"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "85"]
+[CurriculumStartFEN "1r3R2/8/3p2k1/4p1p1/1p2P3/1P6/1P2B3/1K6 b - - 0 43"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be2 e6 7. Be3 Be7 8. f3
+O-O 9. Qd2 Qc7 10. O-O-O Nbd7 11. Kb1 h6 12. g4 Qd8 13. h4 Nh7 14. Bf2 e5 15.
+Nb3 f6 16. f4 exf4 17. Qxf4 Ne5 18. Bd4 Re8 19. Bxe5 fxe5 20. Bc4+ Kh8 21. Qf3
+Bxh4 22. Rdg1 Bg5 23. Nd5 b5 24. Bd3 Be6 25. Ne3 Bxb3 26. cxb3 Rb8 27. Nf5 Qf6
+28. Rf1 g6 29. Nxh6 Qxf3 30. Rxf3 Bxh6 31. Rxh6 Kg7 32. g5 Nxg5 33. Rhh3 Nxf3
+34. Rxf3 a5 35. Rf1 g5 36. Rd1 a4 37. Be2 axb3 38. axb3 Red8 39. Rd5 b4 40. Rd1
+Kf6 41. Rf1+ Kg6 42. Rf5 Rf8 43. Rxf8 Rxf8 44. Bc4 g4 45. Ka2 Kg5 46. Be6 Kf4
+47. Bc4 Kxe4 48. Bf1 Kf3 49. Bd3 g3 50. Bc4 g2 51. Bf1 gxf1=Q 1/2-1/2
+
+[Event "Rated Classical game"]
+[Site "https://lichess.org/hu3j6csj"]
+[Date "????.??.??"]
+[Round "?"]
+[White "919191"]
+[Black "luuletaja"]
+[Result "1-0"]
+[UTCDate "2013.01.01"]
+[UTCTime "03:55:39"]
+[WhiteElo "1402"]
+[BlackElo "1322"]
+[WhiteRatingDiff "+9"]
+[BlackRatingDiff "-13"]
+[ECO "B01"]
+[Opening "Scandinavian Defense: Mieses-Kotroc Variation"]
+[TimeControl "300+12"]
+[Termination "Normal"]
+[CurriculumStage "0"]
+[CurriculumStartPly "78"]
+[CurriculumStartFEN "r7/2p5/P2k2p1/8/R6p/4b3/2P1K1PP/8 w - - 0 40"]
+[CurriculumCriterion "at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result"]
+[DatasetSplit "train"]
+
+1. e4 d5 2. exd5 Qxd5 3. Nc3 Qe5+ 4. Be2 Be6 5. Nf3 Qd6 6. O-O Nd7 7. Ne4 Qc6
+8. d3 O-O-O 9. Nd4 Qa6 10. Nxe6 fxe6 11. d4 Qa5 12. Bd2 Qd5 13. Nc3 Qxd4 14.
+Be3 Qxd1 15. Raxd1 g6 16. Bg4 e5 17. Bxd7+ Rxd7 18. Rxd7 Kxd7 19. Nd5 Nf6 20.
+Nc3 e6 21. Rd1+ Bd6 22. Bxa7 Ra8 23. Be3 Ng4 24. Bd2 Rf8 25. f3 Nf6 26. a4 Nd5
+27. Nxd5 exd5 28. b4 e4 29. fxe4 dxe4 30. b5 h5 31. a5 h4 32. a6 bxa6 33. bxa6
+Ra8 34. Ra1 Bc5+ 35. Kf1 e3 36. Bc1 Bd4 37. Ra4 Bc5 38. Ke2 Kd6 39. Bxe3 Bxe3
+40. Kxe3 Re8+ 41. Kd3 c5 42. Rxh4 Ra8 43. Rh6 Rxa6 44. Rxg6+ Kd5 45. Rxa6 c4+
+46. Kc3 1-0

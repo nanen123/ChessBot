@@ -2,11 +2,13 @@
 Requires chess==1.11.2 and zstandard==0.23.0. See Data/Curriculum/README.md.
 """
 import argparse, hashlib, io, json, sys
+sys.dont_write_bytecode = True
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'output/training-validation/pgn-deps'))
 import chess
 import chess.pgn
 import zstandard
+from ChessTactics import capture_margin
 
 SOURCE = 'https://database.lichess.org/standard/lichess_db_standard_rated_2013-01.pgn.zst'
 NAMES = ['capture', 'exchange', 'mate', 'endgame', 'middlegame', 'fullgame']
@@ -43,7 +45,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('source', type=Path)
     ap.add_argument('--out', type=Path, default=Path('Data/Curriculum'))
+    ap.add_argument('--train-count', type=int, default=64)
+    ap.add_argument('--eval-count', type=int, default=16)
     args = ap.parse_args()
+    if min(args.train_count, args.eval_count) < 2 or args.train_count % 2 or args.eval_count % 2:
+        ap.error('Counts must be positive even numbers >= 2')
     args.out.mkdir(parents=True, exist_ok=True)
     counts = {n: {'train': 0, 'eval': 0} for n in NAMES}
     seen = set()
@@ -53,7 +59,7 @@ def main():
     scanned = 0
 
     def want(name, split):
-        return counts[name][split] < (16 if split == 'train' else 4)
+        return counts[name][split] < (args.train_count if split == 'train' else args.eval_count)
 
     def add(name, split, game, board, ply, criterion, solution=None, category=None):
         key = (name, ' '.join(board.fen().split()[:4]))
@@ -61,7 +67,7 @@ def main():
             return
         if category:
             ck = (name, split, category)
-            if subcounts.get(ck, 0) >= (8 if split == 'train' else 2):
+            if subcounts.get(ck, 0) >= (args.train_count // 2 if split == 'train' else args.eval_count // 2):
                 return
             subcounts[ck] = subcounts.get(ck, 0) + 1
         seen.add(key)
@@ -112,11 +118,10 @@ def main():
                     captures = list(board.generate_legal_captures())
                     for cap in captures:
                         board.push(cap)
-                        recaptured = any(r.to_square == cap.to_square for r in board.generate_legal_captures())
                         terminal = board.is_game_over(claim_draw=True)
                         board.pop()
-                        if not recaptured and not terminal:
-                            add('capture', split, game, board, ply, 'at most 12 pieces; legal capture not immediately legally recapturable; no terminal result', cap.uci())
+                        if not terminal and capture_margin(board, cap) > 0:
+                            add('capture', split, game, board, ply, 'at most 12 pieces; positive material gain against every immediate reply; no mate-in-one conceded; no terminal result', cap.uci())
                             used.add('capture')
                             break
                 if 'exchange' not in used and want('exchange', split) and 8 <= pieces <= 20:
@@ -133,7 +138,7 @@ def main():
                 if want('mate', split) and ply >= len(moves) - 3:
                     m1 = mate_one(board)
                     category = 'mateIn1' if m1 else 'mateIn2'
-                    quota = 8 if split == 'train' else 2
+                    quota = args.train_count // 2 if split == 'train' else args.eval_count // 2
                     if subcounts.get(('mate', split, category), 0) < quota:
                         winning = m1 or mate_two(board)
                         if winning:
@@ -158,7 +163,7 @@ def main():
             (args.out / f'{NAMES.index(name):02d}_{name}.{split}.pgn').write_text('\n\n'.join(exports[name][split]) + '\n', encoding='utf-8')
     (args.out/'positions.jsonl').write_text(''.join(json.dumps(r, ensure_ascii=False)+'\n' for r in records), encoding='utf-8')
     manifest = dict(source=SOURCE, sourceLicense='CC0-1.0', sourceSha256=hashlib.sha256(args.source.read_bytes()).hexdigest(),
-                    gamesScanned=scanned, counts=counts, note='Small deterministic starter selection; not random, engine-quality, or Unity-integrated. Full games retained; start at annotated ply.')
+                    gamesScanned=scanned, counts=counts, note='Deterministic selection; not random or engine-quality. Generate the Unity resource separately. Full games retained; start at annotated ply.')
     (args.out/'manifest.json').write_text(json.dumps(manifest, indent=2)+'\n', encoding='utf-8')
     print(json.dumps(manifest, indent=2), flush=True)
 

@@ -5,10 +5,12 @@ sys.path.insert(0, 'output/training-validation/pgn-deps')
 sys.path.insert(0, 'Tools')
 import chess, chess.pgn
 from PrepareCurriculumPgn import mate_one, mate_two
+from ChessTactics import capture_margin
 root = Path('Data/Curriculum')
+expected = sum(sum(v.values()) for v in json.loads((root/'manifest.json').read_text())['counts'].values())
 records = [json.loads(x) for x in (root/'positions.jsonl').read_text(encoding='utf-8').splitlines()]
 by_key = {(r['stage'], r['split'], r['gameUrl'], r['startPly']): r for r in records}
-assert len(by_key) == len(records) == 120
+assert len(by_key) == len(records) == expected
 sites = {'train': set(), 'eval': set()}
 count = 0
 for path in root.glob('*.pgn'):
@@ -25,6 +27,8 @@ for path in root.glob('*.pgn'):
             assert board.fen() == game.headers['CurriculumStartFEN'] == record['fen']
             assert [m.uci() for m in moves[:ply]] == record['movesToStart']
             assert board.is_valid() and not board.is_game_over(claim_draw=True)
+            if stage == 0:
+                assert capture_margin(board, chess.Move.from_uci(record['solutionFirstMove'])) > 0
             if stage == 2:
                 m1 = mate_one(board)
                 if record['category'] == 'mateIn1':
@@ -37,7 +41,7 @@ for path in root.glob('*.pgn'):
                 board.push(move)
             sites[split].add(game.headers['Site'])
             count += 1
-assert count == 120
+assert count == expected
 assert not sites['train'] & sites['eval']
-print('PASS: 120 PGN records, complete legal replay, exact start FEN, forced mates, disjoint source-game splits')
+print(f'PASS: {expected} PGN records, complete legal replay, exact start FEN, forced mates, disjoint source-game splits')
 print('Unique source games:', {k: len(v) for k,v in sites.items()})

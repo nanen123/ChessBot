@@ -39,55 +39,7 @@ env_settings:
   num_envs: 1
 torch_settings:
   device: cuda
-# PgnTraining is the Unity default; rebuild the player to bundle train-only PGN positions.
-# Sampled by each board only when its next episode begins.
+# Success-based promotion is controlled by Tools/TrainChessSuccess.py.
+# Plain mlagents-learn intentionally stays at stage 0.
 environment_parameters:
-  curriculum_stage:
-    curriculum:
-      - name: Capture
-        completion_criteria:
-          measure: progress
-          behavior: ChessV1
-          signal_smoothing: false
-          min_lesson_length: 100
-          threshold: 0.03
-          require_reset: false
-        value: 0
-      - name: CaptureAndDefense
-        completion_criteria:
-          measure: progress
-          behavior: ChessV1
-          signal_smoothing: false
-          min_lesson_length: 100
-          threshold: 0.07
-          require_reset: false
-        value: 1
-      - name: MateInOneOrTwo
-        completion_criteria:
-          measure: progress
-          behavior: ChessV1
-          signal_smoothing: false
-          min_lesson_length: 100
-          threshold: 0.11
-          require_reset: false
-        value: 2
-      - name: Endgames
-        completion_criteria:
-          measure: progress
-          behavior: ChessV1
-          signal_smoothing: false
-          min_lesson_length: 100
-          threshold: 0.16
-          require_reset: false
-        value: 3
-      - name: Middlegames
-        completion_criteria:
-          measure: progress
-          behavior: ChessV1
-          signal_smoothing: false
-          min_lesson_length: 100
-          threshold: 0.24
-          require_reset: false
-        value: 4
-      - name: FullGames
-        value: 5
+  curriculum_stage: 0

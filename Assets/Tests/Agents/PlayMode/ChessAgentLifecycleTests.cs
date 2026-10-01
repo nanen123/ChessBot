@@ -190,6 +190,49 @@ namespace ChessBot.Tests
             }
             yield return null;
         }
+        [TestCase(false)]
+        [TestCase(true)]
+        public void FirstMoveQuietAndPoisonedCaptureFailImmediately(bool poison)
+        {
+            var lessons=ChessCurriculum.Defaults();
+            lessons[0].Positions=new[] { poison ? "7k/8/8/8/8/r7/p7/R6K w - - 0 1" : "7k/8/8/8/8/8/p7/R6K w - - 0 1" };
+            typeof(ChessTrainingEnvironment).GetField("_colorSequence", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(_environment,0);
+            StartLesson(0,lessons);
+            var agent=_environment.White; agent.SetReward(0); _environment.Black.SetReward(0);
+            int finished=0;
+            System.Action<ChessBot.Chess.Application.GameResult,bool,float,float> check=(result,interrupted,white,black)=>
+            { finished++; Assert.That(interrupted,Is.False); Assert.That(white,Is.EqualTo(-0.1f).Within(0.0001)); };
+            _environment.EpisodeCompleted+=check;
+            agent.RequestTurn(); agent.OnActionReceived(new ActionBuffers(new float[0],new[] {ChessActionEncoder.Encode(Move.Parse(poison ? "a1a2" : "h1g1"))}));
+            Assert.That(_environment.Game.TurnVersion,Is.EqualTo(1));
+            Academy.Instance.EnvironmentStep(); Assert.That(finished,Is.EqualTo(1));
+            _environment.EpisodeCompleted-=check;
+        }
+        [TestCase(1,0.005f,0.05f,-0.01f,-0.015f)]
+        [TestCase(1,0.005f,0.006f,-0.006f,-0.006f)]
+        [TestCase(1,0f,0.05f,0f,0f)]
+        [TestCase(3,0.005f,0.05f,0f,0f)]
+        public void RepetitionPenaltyIsScopedCappedAndKeepsMovesLegal(int stage,float penalty,float cap,float white,float black)
+        {
+            var flags=System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            typeof(ChessTrainingEnvironment).GetField("_colorSequence",flags).SetValue(_environment,0);
+            typeof(ChessTrainingEnvironment).GetField("_repetitionPenalty",flags).SetValue(_environment,penalty);
+            typeof(ChessTrainingEnvironment).GetField("_maximumRepetitionPenaltyPerAgent",flags).SetValue(_environment,cap);
+            var lessons=ChessCurriculum.Defaults(); lessons[stage].Positions=new[] {BoardState.InitialFen}; StartLesson(stage,lessons);
+            _environment.White.SetReward(0); _environment.Black.SetReward(0);
+            foreach (var uci in new[] {"g1f3","g8f6","f3g1","f6g8","g1f3","g8f6","f3g1","f6g8"})
+            {
+                var agent=_environment.Game.Board.SideToMove==PieceColor.White ? _environment.White : _environment.Black;
+                agent.RequestTurn(); int action=ChessActionEncoder.Encode(Move.Parse(uci));
+                Assert.That(agent.LegalActions.ContainsKey(action),Is.True);
+                agent.OnActionReceived(new ActionBuffers(new float[0],new[] {action}));
+            }
+            Assert.That(_environment.RepeatedPositions,Is.EqualTo(5));
+            Assert.That(_environment.White.GetCumulativeReward(),Is.EqualTo(white).Within(0.0001));
+            Assert.That(_environment.Black.GetCumulativeReward(),Is.EqualTo(black).Within(0.0001));
+            Assert.That(ChessActionEncoder.LegalActions(_environment.Game).ContainsKey(8576),Is.True);
+            StartLesson(stage,lessons); Assert.That(_environment.RepeatedPositions,Is.Zero);
+        }
         private sealed class RecordingMask : IDiscreteActionMask
         {
             public readonly bool[] Enabled = new bool[ChessActionEncoder.ActionCount];

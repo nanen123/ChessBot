@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ChessBot.Agents;
 using ChessBot.Chess.Application;
 using ChessBot.Chess.Core;
@@ -34,6 +35,13 @@ namespace ChessBot.Training
         public void ConfigurePositionSource(CurriculumPositionSource source) => _positionSource = source;
         [SerializeField, Range(0, 5)] private int _previewLesson;
         [SerializeField] private ChessLesson[] _lessons = ChessCurriculum.Defaults();
+        [Header("Early lesson repetition (stages 0-2 only)")]
+        [SerializeField, Min(0), Tooltip("Penalty to the moving agent on revisiting an episode position. 0 disables it.")] private float _repetitionPenalty = 0.005f;
+        [SerializeField, Min(2)] private int _repetitionPenaltyFromOccurrence = 2;
+        [SerializeField, Min(0)] private float _maximumRepetitionPenaltyPerAgent = 0.05f;
+        private readonly Dictionary<string, int> _episodePositions = new Dictionary<string, int>();
+        private float _whiteRepetitionPenalty, _blackRepetitionPenalty;
+        public int RepeatedPositions { get; private set; }
         private ChessLesson _lesson;
         private int _episodeLimit, _materialGain, _taskOutcome = 2, _colorSequence;
         private PieceColor _focusColor;
@@ -67,7 +75,7 @@ namespace ChessBot.Training
         private void Awake()
         {
             if (_white == null || _black == null || _white == _black || _maximumPlies < 2 || !ValidReward(_captureReward) || !ValidReward(_winReward) || !ValidReward(_minimumWinReward) || _minimumWinReward > _winReward ||
-                _winRewardDecayPlies < 0 || !ValidReward(_lossRewardMultiplier) || !Finite(_whiteDrawReward) || !Finite(_blackDrawReward))
+                _winRewardDecayPlies < 0 || !ValidReward(_lossRewardMultiplier) || !Finite(_whiteDrawReward) || !Finite(_blackDrawReward) || !ValidReward(_repetitionPenalty) || !ValidReward(_maximumRepetitionPenaltyPerAgent) || _repetitionPenaltyFromOccurrence < 2)
                 throw new InvalidOperationException("Training environment references or reward settings are invalid.");
             if (_useCurriculum)
             {
@@ -150,7 +158,7 @@ namespace ChessBot.Training
             // Sample the global lesson only at a coordinated episode boundary.
             ActiveLesson = _useCurriculum ? Mathf.Clamp(Mathf.RoundToInt(Academy.Instance.EnvironmentParameters.GetWithDefault("curriculum_stage", _previewLesson)), 0, 5) : -1;
             _lesson = ActiveLesson < 0 ? null : _lessons[ActiveLesson];
-            _episodeLimit = _lesson == null ? _maximumPlies : _lesson.MaximumPlies;
+            _episodeLimit = _lesson == null ? _maximumPlies : (_lesson.Ending == CurriculumEnding.FirstMoveFavorableCapture ? 1 : _lesson.MaximumPlies);
             _sample = null;
             _sampleMirrored = _lesson != null && ActiveLesson < 5 && (_colorSequence++ % 2) != 0;
             if (_lesson != null && _positionSource == CurriculumPositionSource.PgnTraining)
@@ -166,6 +174,8 @@ namespace ChessBot.Training
             }
             _initialFen = Game.Board.ToFen(); _focusColor = Game.Board.SideToMove;
             _materialGain = 0; _taskOutcome = 2;
+            _episodePositions.Clear(); _episodePositions[ChessRules.RepetitionKey(Game.Board)] = 1;
+            RepeatedPositions = 0; _whiteRepetitionPenalty = _blackRepetitionPenalty = 0;
         }
         public void Submit(ChessAgent agent, int action)
         {
@@ -174,11 +184,15 @@ namespace ChessBot.Training
             if (agent.RequestedGameId != Game.GameId || agent.RequestedTurn != Game.TurnVersion || agent.Color != Game.Board.SideToMove) return;
             if (!agent.TryConsume(action, out var command)) { FailAction(action); return; }
             var before = Game.Board;
+            bool favorable = _lesson != null && _lesson.Ending == CurriculumEnding.FirstMoveFavorableCapture &&
+                !command.IsDrawClaim && command.Move.HasValue && ChessTacticalAssessment.FavorableCapture(before, command.Move.Value);
             bool accepted = command.IsDrawClaim
                 ? Game.ClaimDraw(agent.Color, agent.RequestedGameId, agent.RequestedTurn, command.Move)
                 : command.Move.HasValue && Game.SubmitMove(agent.Color, agent.RequestedGameId, agent.RequestedTurn, command.Move.Value);
             if (!accepted) { FailAction(action); return; }
             float captureReward = command.IsDrawClaim ? 0f : ChessRewardPolicy.CaptureReward(before, command.Move.Value, _captureReward);
+            // A one-move puzzle cannot expose a later recapture: do not reward a failed sacrifice.
+            if (_lesson != null && _lesson.Ending == CurriculumEnding.FirstMoveFavorableCapture && !favorable) captureReward = 0;
             if (captureReward > 0f)
             {
                 agent.AddReward(captureReward);
@@ -187,10 +201,23 @@ namespace ChessBot.Training
             var captured = command.IsDrawClaim ? default(Piece) : ChessRewardPolicy.CapturedPiece(before, command.Move.Value);
             _materialGain += ChessRewardPolicy.MaterialValue(captured.Type) * (agent.Color == _focusColor ? 1 : -1);
             if (_lesson != null && _lesson.Ending != CurriculumEnding.FullGame && !Game.Result.IsFinished)
-                _taskOutcome = ChessCurriculum.TaskOutcome(_lesson, Game.TurnVersion, !captured.IsEmpty, _materialGain);
+                _taskOutcome = ChessCurriculum.TaskOutcome(_lesson, Game.TurnVersion, !captured.IsEmpty, _materialGain, favorable);
+            if (!command.IsDrawClaim) ApplyRepetitionPenalty(agent);
             // Full-game time limits interrupt; finite puzzle horizons are task terminals.
             _interrupted = !Game.Result.IsFinished && _taskOutcome == 2 && Game.TurnVersion >= MaximumPlies;
             _endPending = Game.Result.IsFinished || _interrupted || _taskOutcome != 2;
+        }
+        private void ApplyRepetitionPenalty(ChessAgent agent)
+        {
+            string key = ChessRules.RepetitionKey(Game.Board);
+            _episodePositions.TryGetValue(key, out int count); _episodePositions[key] = ++count;
+            if (count < 2) return;
+            RepeatedPositions++;
+            if (ActiveLesson < 0 || ActiveLesson > 2 || Game.Result.IsFinished || count < _repetitionPenaltyFromOccurrence) return;
+            float spent = agent == _white ? _whiteRepetitionPenalty : _blackRepetitionPenalty;
+            float penalty = Mathf.Min(_repetitionPenalty, Mathf.Max(0, _maximumRepetitionPenaltyPerAgent - spent));
+            agent.AddReward(-penalty);
+            if (agent == _white) _whiteRepetitionPenalty += penalty; else _blackRepetitionPenalty += penalty;
         }
         private void FailAction(int action)
         {
@@ -226,6 +253,8 @@ namespace ChessBot.Training
             float whiteReward = _white.GetCumulativeReward(), blackReward = _black.GetCumulativeReward();
             _recorder?.Write(Game, _interrupted, whiteReward, blackReward, _initialFen, ActiveLesson, _focusColor, _taskOutcome, _sample, _sampleMirrored);
             if (_interrupted) InterruptedGames++; else if (Game.Result.IsFinished) CompletedGames++;
+            Academy.Instance.StatsRecorder.Add("Chess/RepeatedPositions", RepeatedPositions);
+            Academy.Instance.StatsRecorder.Add("Chess/RepetitionPenalty", _whiteRepetitionPenalty + _blackRepetitionPenalty);
             Academy.Instance.StatsRecorder.Add("Chess/Plies", Game.TurnVersion);
             Academy.Instance.StatsRecorder.Add("Chess/Interrupted", _interrupted ? 1 : 0);
             Academy.Instance.StatsRecorder.Add("Chess/WhiteReward", whiteReward);

@@ -130,16 +130,72 @@ MonoBehaviour:
   m_EditorClassIdentifier: ChessBot.Training::ChessBot.Training.ChessTrainingEnvironment
   _white: {fileID: 2349248760488226189}
   _black: {fileID: 1425761790078756998}
-  _captureReward: 0.03
+  _captureReward: 0.1
   _winReward: 1
   _minimumWinReward: 0.5
   _winRewardDecayPlies: 0
   _lossRewardMultiplier: 1
-  _whiteDrawReward: -0.2
-  _blackDrawReward: 0.2
+  _whiteDrawReward: 0
+  _blackDrawReward: 0
   _maximumPlies: 512
   _allowHeuristicPreview: 0
   _recordGames: 1
+  _useCurriculum: 1
+  _positionSource: 1
+  _previewLesson: 0
+  _lessons:
+  - Name: Immediate capture
+    Ending: 4
+    MaximumPlies: 1
+    SuccessReward: 0.1
+    FailurePenalty: 0.1
+    Positions:
+    - 7k/8/8/8/8/8/p7/R6K w - - 0 1
+    - 7k/8/8/8/8/2p5/8/1N5K w - - 0 1
+    - 7k/8/8/8/8/8/1r6/B6K w - - 0 1
+  - Name: Capture and defense
+    Ending: 1
+    MaximumPlies: 12
+    SuccessReward: 0.1
+    FailurePenalty: 0.1
+    Positions:
+    - 7k/8/8/8/8/r7/p7/R6K w - - 0 1
+    - 7k/8/8/8/8/r7/q7/R6K w - - 0 1
+    - 7k/8/8/8/8/2p5/1p6/B6K w - - 0 1
+  - Name: Mate in one or two
+    Ending: 2
+    MaximumPlies: 3
+    SuccessReward: 0
+    FailurePenalty: 0.1
+    Positions:
+    - 7k/8/5KQ1/8/8/8/8/8 w - - 0 1
+    - 7k/8/5K2/4Q3/8/8/8/8 w - - 0 1
+  - Name: Simple endgames
+    Ending: 3
+    MaximumPlies: 100
+    SuccessReward: 0
+    FailurePenalty: 0
+    Positions:
+    - 7k/8/8/8/3K4/8/8/Q7 w - - 0 1
+    - 7k/8/8/8/3K4/8/8/R7 w - - 0 1
+  - Name: Middlegames
+    Ending: 3
+    MaximumPlies: 256
+    SuccessReward: 0
+    FailurePenalty: 0
+    Positions:
+    - r1bq1rk1/2pnbppp/p2p1n2/1p2p3/3PP3/1BP2N1P/PP3PP1/RNBQR1K1 w - - 1 11
+    - r2q1rk1/pb1nbpp1/1p2pn1p/2pp4/2PP3B/2NBPN2/PP3PPP/2RQ1RK1 w - c6 0 11
+  - Name: Full games
+    Ending: 3
+    MaximumPlies: 512
+    SuccessReward: 0
+    FailurePenalty: 0
+    Positions:
+    - rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+  _repetitionPenalty: 0.005
+  _repetitionPenaltyFromOccurrence: 2
+  _maximumRepetitionPenaltyPerAgent: 0.1
 --- !u!1 &6084761910822482585
 GameObject:
   m_ObjectHideFlags: 0
