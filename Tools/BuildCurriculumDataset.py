@@ -29,14 +29,15 @@ for stage in range(6):
                 board.push(move)
             assert board.fen() == game.headers['CurriculumStartFEN']
             assert board.is_valid() and not board.is_game_over(claim_draw=True)
-            samples.append(dict(stage=stage, split='train', sourceGame=game.headers['Site'],
+            samples.append(dict(stage=stage, category=game.headers.get("CurriculumCategory", "capture"), difficulty=int(game.headers.get('CaptureDifficulty', '-1')), split='train', sourceGame=game.headers['Site'],
                                 startPly=ply, initialFen=initial, fen=board.fen(en_passant='fen'),
                                 moves=[m.uci() for m in moves[:ply]]))
             train_sites.add(game.headers['Site'])
 assert not train_sites & eval_sites, 'Source game leakage between train and eval'
+assert {s['difficulty'] for s in samples if s['stage']==0}=={0,1,2}, 'Run ExpandCaptureCurriculum.py before building the resource'
 assert all(any(s['stage'] == n for s in samples) for n in range(6))
 payload = json.dumps(samples, sort_keys=True, separators=(',', ':'))
-dataset = dict(version=1, split='train', datasetId=hashlib.sha256(payload.encode()).hexdigest(), samples=samples)
+dataset = dict(version=3, split='train', datasetId=hashlib.sha256(payload.encode()).hexdigest(), samples=samples)
 target = Path('Assets/Resources/ChessCurriculumTraining.json')
 target.write_text(json.dumps(dataset, indent=2)+'\n', encoding='utf-8')
 print(f'Wrote {len(samples)} training samples; evaluation PGNs excluded; dataset {dataset["datasetId"]}')

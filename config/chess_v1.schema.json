@@ -53,7 +53,7 @@
     "firstMoveCapture": "No capture reward for an unfavorable stage-0 capture"
   },
   "curriculum": {
-    "version": 3,
+    "version": 5,
     "parameter": "curriculum_stage",
     "stages": 6,
     "maximumPliesByStage": [
@@ -82,9 +82,40 @@
     ],
     "settingsSource": "ChessTrainingEnvironment Inspector; values here are defaults",
     "positionSource": "PgnTraining",
-    "datasetId": "0f6237040ea094816d519440f8f74e0989cd65fc4ea647a74d54ed50a466afd3",
-    "history": "Prior PGN repetition retained; episode plies and rewards start at zero",
-    "promotion": "Held-out success; Tools/TrainChessSuccess.py; config/chess_evaluation.yaml"
+    "datasetId": "a66d8c23c1597af056b4e8ed7a75902dadb7882b9ee32f97303acdfcfc2a9f5c",
+    "history": "Prior PGN repetition retained; templates lazily replayed and cached; episode plies/rewards start at zero",
+    "promotion": "Held-out success; Tools/TrainChessSuccess.py; config/chess_evaluation.yaml",
+    "captureParameter": "capture_difficulty",
+    "captureDifficulties": [
+      "free_capture",
+      "safe_capture",
+      "favorable_exchange"
+    ],
+    "captureTrainPerDifficulty": 1024,
+    "captureEvalPerDifficulty": 64,
+    "captureReviewProbability": 0.2,
+    "datasetVersion": 3,
+    "trainSamplesPerStage": [
+      3072,
+      3072,
+      2048,
+      2048,
+      5120,
+      1025
+    ],
+    "evalSamplesPerStage": [
+      192,
+      192,
+      128,
+      128,
+      256,
+      129
+    ],
+    "fullGameOpeningPlies": [
+      6,
+      8
+    ],
+    "standardStartProbability": 0.2
   },
   "maximumPlies": 512,
   "limitation": "Arbitrary blocked dead positions are not fully recognized by the current core. This is an initial experimental training setup."

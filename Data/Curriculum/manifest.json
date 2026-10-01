@@ -5,29 +5,111 @@
   "gamesScanned": 4829,
   "counts": {
     "capture": {
-      "train": 64,
-      "eval": 16
+      "train": 3072,
+      "eval": 192
     },
     "exchange": {
-      "train": 64,
-      "eval": 16
+      "train": 3072,
+      "eval": 192
     },
     "mate": {
-      "train": 64,
-      "eval": 16
+      "train": 2048,
+      "eval": 128
     },
     "endgame": {
-      "train": 64,
-      "eval": 16
+      "train": 2048,
+      "eval": 128
     },
     "middlegame": {
-      "train": 64,
-      "eval": 16
+      "train": 5120,
+      "eval": 256
     },
     "fullgame": {
-      "train": 64,
-      "eval": 16
+      "train": 1025,
+      "eval": 129
     }
   },
-  "note": "Deterministic selection; not random or engine-quality. Generate the Unity resource separately. Full games retained; start at annotated ply."
+  "note": "Deterministic selection; not random or engine-quality. Generate the Unity resource separately. Full games retained; start at annotated ply.",
+  "captureExpansion": {
+    "gamesScanned": 30352,
+    "sourceSha256": "aa40b3671fa3cf1072eb182892cd90b0e1e003a4a5943492f64b77e7f3fd1635",
+    "counts": {
+      "train": [
+        1024,
+        1024,
+        1024
+      ],
+      "eval": [
+        64,
+        64,
+        64
+      ]
+    },
+    "labels": [
+      "free_capture",
+      "safe_capture",
+      "favorable_exchange"
+    ],
+    "perGamePerDifficulty": 1,
+    "mirrorDeduplicated": true
+  },
+  "remainingExpansion": {
+    "gamesScanned": 68892,
+    "sourceSha256": "aa40b3671fa3cf1072eb182892cd90b0e1e003a4a5943492f64b77e7f3fd1635",
+    "categories": {
+      "train": {
+        "1": {
+          "safe_gain": 1024,
+          "favorable_exchange": 1024,
+          "capture_choice": 1024
+        },
+        "2": {
+          "mateIn1": 1024,
+          "mateIn2": 1024
+        },
+        "3": {
+          "KQK": 1024,
+          "KRK": 1024
+        },
+        "4": {
+          "middlegame": 5120
+        },
+        "5": {
+          "opening3": 512,
+          "opening4": 512,
+          "standard": 1
+        }
+      },
+      "eval": {
+        "1": {
+          "safe_gain": 64,
+          "favorable_exchange": 64,
+          "capture_choice": 64
+        },
+        "2": {
+          "mateIn1": 64,
+          "mateIn2": 64
+        },
+        "3": {
+          "KQK": 64,
+          "KRK": 64
+        },
+        "4": {
+          "middlegame": 256
+        },
+        "5": {
+          "opening3": 64,
+          "opening4": 64,
+          "standard": 1
+        }
+      }
+    },
+    "openingPlies": [
+      6,
+      8
+    ],
+    "standardStartProbability": 0.2,
+    "openingEcoCapFraction": 0.05,
+    "openingPrefixCapFraction": 0.0625
+  }
 }

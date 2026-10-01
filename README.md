@@ -121,3 +121,7 @@ EditMode 59개와 PlayMode 5개 테스트를 통과했다. 실제 Windows 학습
 ## 성공률 기반 학습
 
 현재 학습은 `python Tools/TrainChessSuccess.py config/chess_sac.yaml` 실행기에 기존 학습 인자를 붙여 시작한다. 평가 성공률과 이전 단계 유지 기준을 연속 통과해야 승급한다. 일반 mlagents-learn만 사용하면 단계 0에 머문다. 준비·실행·결과 확인은 [자동 평가 안내](Codex/006.AutomaticEvaluation.md)를 참고한다.
+
+0단계는 공짜 포획 → 안전한 포획 → 유리한 교환의 세 난이도로 진행한다. 난이도별 훈련 1,024개·평가 64개와 훈련/평가 성공률 비교를 제공한다. 데이터 확장 후에는 Training 재빌드와 새 run-id가 필요하다.
+
+1~5단계도 확장되어 전체 학습 배치는 16,385개다. 전체 대국은 기본적으로 실제 3~4수 오프닝 80%와 표준 초기 배치 20%를 섞는다. Inspector의 Standard Start Probability로 조절한다. 단계별 수량과 재빌드·새 실행 안내는 [커리큘럼](Codex/005.Curriculum.md)을 따른다.

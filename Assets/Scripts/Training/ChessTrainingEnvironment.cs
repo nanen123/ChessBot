@@ -34,6 +34,11 @@ namespace ChessBot.Training
         public int SourceStartPly => _sample?.StartPly ?? 0;
         public void ConfigurePositionSource(CurriculumPositionSource source) => _positionSource = source;
         [SerializeField, Range(0, 5)] private int _previewLesson;
+        [SerializeField, Range(0, 2), Tooltip("Stage 0: free capture, safe capture, favorable exchange. Python overrides this at episode boundaries.")] private int _previewCaptureDifficulty;
+        public int ActiveCaptureDifficulty { get; private set; } = -1;
+        [SerializeField, Range(0f, 1f), Tooltip("In capture levels 1 and 2, sample a previous level this fraction of episodes to retain earlier skills.")] private float _captureReviewProbability = 0.2f;
+        [SerializeField, Range(0f, 1f), Tooltip("Stage 5: probability of starting from the standard board. Otherwise use a real opening after 3 or 4 moves per side.")] private float _standardStartProbability = 0.2f;
+        public int SampledCaptureDifficulty => ActiveLesson == 0 ? (_sample?.Difficulty ?? ActiveCaptureDifficulty) : -1;
         [SerializeField] private ChessLesson[] _lessons = ChessCurriculum.Defaults();
         [Header("Early lesson repetition (stages 0-2 only)")]
         [SerializeField, Min(0), Tooltip("Penalty to the moving agent on revisiting an episode position. 0 disables it.")] private float _repetitionPenalty = 0.005f;
@@ -75,7 +80,7 @@ namespace ChessBot.Training
         private void Awake()
         {
             if (_white == null || _black == null || _white == _black || _maximumPlies < 2 || !ValidReward(_captureReward) || !ValidReward(_winReward) || !ValidReward(_minimumWinReward) || _minimumWinReward > _winReward ||
-                _winRewardDecayPlies < 0 || !ValidReward(_lossRewardMultiplier) || !Finite(_whiteDrawReward) || !Finite(_blackDrawReward) || !ValidReward(_repetitionPenalty) || !ValidReward(_maximumRepetitionPenaltyPerAgent) || _repetitionPenaltyFromOccurrence < 2)
+                _winRewardDecayPlies < 0 || !ValidReward(_lossRewardMultiplier) || !Finite(_whiteDrawReward) || !Finite(_blackDrawReward) || !ValidReward(_repetitionPenalty) || !ValidReward(_maximumRepetitionPenaltyPerAgent) || _repetitionPenaltyFromOccurrence < 2 || !Finite(_captureReviewProbability) || _captureReviewProbability < 0 || _captureReviewProbability > 1 || !Finite(_standardStartProbability) || _standardStartProbability < 0 || _standardStartProbability > 1)
                 throw new InvalidOperationException("Training environment references or reward settings are invalid.");
             if (_useCurriculum)
             {
@@ -157,6 +162,7 @@ namespace ChessBot.Training
         {
             // Sample the global lesson only at a coordinated episode boundary.
             ActiveLesson = _useCurriculum ? Mathf.Clamp(Mathf.RoundToInt(Academy.Instance.EnvironmentParameters.GetWithDefault("curriculum_stage", _previewLesson)), 0, 5) : -1;
+            ActiveCaptureDifficulty = ActiveLesson == 0 ? Mathf.Clamp(Mathf.RoundToInt(Academy.Instance.EnvironmentParameters.GetWithDefault("capture_difficulty", _previewCaptureDifficulty)), 0, 2) : -1;
             _lesson = ActiveLesson < 0 ? null : _lessons[ActiveLesson];
             _episodeLimit = _lesson == null ? _maximumPlies : (_lesson.Ending == CurriculumEnding.FirstMoveFavorableCapture ? 1 : _lesson.MaximumPlies);
             _sample = null;
@@ -164,7 +170,15 @@ namespace ChessBot.Training
             if (_lesson != null && _positionSource == CurriculumPositionSource.PgnTraining)
             {
                 var data = ChessCurriculumDataset.LoadBundled();
-                _sample = data.Get(ActiveLesson, UnityEngine.Random.Range(0, data.Count(ActiveLesson)));
+                int difficulty = ActiveCaptureDifficulty;
+                if (ActiveLesson == 0 && difficulty > 0 && UnityEngine.Random.value < _captureReviewProbability)
+                    difficulty = UnityEngine.Random.Range(0, difficulty);
+                if (ActiveLesson == 5)
+                {
+                    bool standard = UnityEngine.Random.value < _standardStartProbability;
+                    _sample = data.FullGameSample(standard, UnityEngine.Random.Range(0, data.FullGameCount(standard)));
+                }
+                else _sample = data.Get(ActiveLesson, difficulty, UnityEngine.Random.Range(0, data.Count(ActiveLesson, difficulty)));
                 _sample.Apply(Game, _sampleMirrored);
             }
             else
@@ -249,9 +263,14 @@ namespace ChessBot.Training
                 bool success = Game.Result.IsFinished ? Game.Result.Winner == _focusColor : _taskOutcome == 1;
                 Academy.Instance.StatsRecorder.Add($"Curriculum/Lesson{ActiveLesson}/Success", success ? 1 : 0);
                 Academy.Instance.StatsRecorder.Add("Curriculum/Stage", ActiveLesson);
+                if (ActiveLesson == 0)
+                {
+                    Academy.Instance.StatsRecorder.Add($"Curriculum/Capture{SampledCaptureDifficulty}/Success", success ? 1 : 0);
+                    Academy.Instance.StatsRecorder.Add("Curriculum/CaptureDifficulty", ActiveCaptureDifficulty);
+                }
             }
             float whiteReward = _white.GetCumulativeReward(), blackReward = _black.GetCumulativeReward();
-            _recorder?.Write(Game, _interrupted, whiteReward, blackReward, _initialFen, ActiveLesson, _focusColor, _taskOutcome, _sample, _sampleMirrored);
+            _recorder?.Write(Game, _interrupted, whiteReward, blackReward, _initialFen, ActiveLesson, _focusColor, _taskOutcome, _sample, _sampleMirrored, ActiveCaptureDifficulty);
             if (_interrupted) InterruptedGames++; else if (Game.Result.IsFinished) CompletedGames++;
             Academy.Instance.StatsRecorder.Add("Chess/RepeatedPositions", RepeatedPositions);
             Academy.Instance.StatsRecorder.Add("Chess/RepetitionPenalty", _whiteRepetitionPenalty + _blackRepetitionPenalty);

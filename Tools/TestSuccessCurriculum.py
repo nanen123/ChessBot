@@ -12,7 +12,7 @@ class GateTests(unittest.TestCase):
         self.config.update(evaluation_interval=10,minimum_stage_steps=20,consecutive_passes=2)
         self.gate=SuccessGate(self.config,'test')
     def report(self, stage=0, rate=1):
-        return {'stages':[dict(stage=s,episodes=32,success_rate=rate) for s in range(stage+1)]}
+        return {'stages':[dict(stage=s,episodes=self.config["minimum_episodes"],success_rate=rate,**({'difficulties':[dict(difficulty=d,episodes=128,success_rate=rate) for d in range(3)]} if s==0 else {})) for s in range(stage+1)]}
     def test_time_alone_cannot_promote(self):
         for step in (100,200,300): self.assertFalse(self.gate.accept(self.report(rate=0),step))
         self.assertEqual(self.gate.state['stage'],0)
@@ -20,10 +20,11 @@ class GateTests(unittest.TestCase):
         self.assertFalse(self.gate.accept(self.report(),10))
         self.assertFalse(self.gate.accept(self.report(),20))
         self.assertTrue(self.gate.accept(self.report(),30))
-        self.assertEqual(self.gate.state['stage'],1)
+        self.assertEqual(self.gate.state['stage'],0)
+        self.assertEqual(self.gate.state['capture_difficulty'],1)
     def test_failed_previous_lesson_blocks_promotion(self):
-        self.gate.state.update(stage=1,stage_started_step=0)
-        report=self.report(1); report['stages'][0]['success_rate']=0
+        self.gate.state.update(stage=1,capture_difficulty=2,stage_started_step=0)
+        report=self.report(1); report['stages'][0]['difficulties'][0]['success_rate']=0
         self.assertFalse(self.gate.accept(report,100)); self.assertEqual(self.gate.state['consecutive'],0)
     def test_failure_breaks_streak(self):
         self.gate.accept(self.report(),100)
@@ -39,14 +40,36 @@ class GateTests(unittest.TestCase):
     def test_duplicate_and_missing_samples_rejected(self):
         self.gate.accept(self.report(),100)
         with self.assertRaises(ValueError): self.gate.accept(self.report(),100)
-        report=self.report();report['stages'][0]['episodes']=1
+        report=self.report();report['stages'][0]['difficulties'][0]['episodes']=1
         with self.assertRaises(ValueError): self.gate.accept(report,110)
+    def test_capture_levels_must_all_pass_before_exchange_stage(self):
+        for phase in range(3):
+            self.assertFalse(self.gate.accept(self.report(),100+phase*200))
+            self.assertTrue(self.gate.accept(self.report(),110+phase*200))
+            self.assertEqual(self.gate.state['stage'],1 if phase==2 else 0)
+            self.assertEqual(self.gate.state['capture_difficulty'],min(2,phase+1))
+    def test_previous_capture_difficulty_retention_blocks_promotion(self):
+        self.gate.state['capture_difficulty']=1
+        report=self.report();report['stages'][0]['difficulties'][0]['success_rate']=0
+        self.assertFalse(self.gate.accept(report,100))
+        self.assertEqual(self.gate.state['consecutive'],0)
     def test_final_stage_never_exceeds_five(self):
-        self.gate.state['stage']=5
+        self.gate.state.update(stage=5,capture_difficulty=2)
         self.assertFalse(self.gate.accept(self.report(5),100));self.assertFalse(self.gate.accept(self.report(5),110))
         self.assertEqual(self.gate.state['stage'],5)
 
 class EvaluationTests(unittest.TestCase):
+    def test_balanced_categories_and_single_standard_start(self):
+        from EvaluateChess import balanced_samples
+        from collections import Counter
+        rows=[dict(category=c,gameUrl=f'{c}-{i}',startPly=6) for c,n in [('opening3',64),('opening4',64),('standard',1)] for i in range(n)]
+        selected=balanced_samples(rows,128,42)
+        self.assertEqual(Counter(r['category'] for r in selected),dict(opening3=64,opening4=63,standard=1))
+        self.assertEqual(selected,balanced_samples(list(reversed(rows)),128,42))
+        self.assertEqual(len({r['gameUrl'] for r in selected}),128)
+        with self.assertRaises(ValueError):balanced_samples(rows,130,42)
+
+
     def test_mate_checks_all_defender_replies(self):
         class Solver:
             def choose(self,b,p,l):
@@ -68,6 +91,34 @@ class EvaluationTests(unittest.TestCase):
         self.assertAlmostEqual(float(obs[0,840]),.6)
         self.assertEqual(float(obs[0,841]),1)
         self.assertEqual(float(obs[0,843]),0)
+
+class CaptureDifficultyTests(unittest.TestCase):
+    def test_classification_and_color_symmetry(self):
+        from ExpandCaptureCurriculum import classify,canonical
+        cases=[('7k/8/8/8/8/8/p7/R6K w - - 0 1',0),
+               ('7k/1ppp4/8/8/8/8/p7/R6K w - - 0 1',1),
+               ('7k/8/8/8/8/r7/q7/R6K w - - 0 1',2)]
+        for fen,difficulty in cases:
+            board=chess.Board(fen)
+            self.assertEqual(classify(board)[0],difficulty)
+            self.assertEqual(classify(board.mirror())[0],difficulty)
+            self.assertEqual(canonical(board),canonical(board.mirror()))
+        self.assertIsNone(classify(chess.Board('7k/8/8/8/8/r7/p7/R6K w - - 0 1')))
+    def test_evaluation_reports_train_gap_and_only_reached_levels(self):
+        from unittest.mock import patch
+        from EvaluateChess import evaluate
+        rows=[dict(stage=0,difficulty=d,split=split,gameUrl=f'{split}-{d}',startPly=1) for d in range(3) for split in ['train','eval']]
+        def fake_play(model,record,mirrored,limit,seed):
+            return dict(success=record['split']=='train',result='first_move_failed',plies=1,metrics=dict(favorable_capture_opportunities=1,missed_favorable_captures=1,repeated_positions=0))
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);(root/'positions.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows));(root/'model.onnx').write_bytes(b'test')
+            config=dict(positions='positions.jsonl',samples_per_stage=1,maximum_plies=[1,12,3,100,256,512],seed=1,capture_samples_per_difficulty=1,capture_training_samples=1)
+            with patch('EvaluateChess.ROOT',root),patch('EvaluateChess.Model'),patch('EvaluateChess.play',side_effect=fake_play):
+                report=evaluate(root/'model.onnx',config,0,1)
+            levels=report['stages'][0]['difficulties'];self.assertEqual([r['difficulty'] for r in levels],[0,1])
+            for level in levels:
+                self.assertEqual(level['success_rate'],0);self.assertEqual(level['training_success_rate'],1)
+                self.assertEqual(level['episodes'],2)
 
 class DiagnosticTests(unittest.TestCase):
     def test_tactics(self):

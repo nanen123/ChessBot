@@ -47,12 +47,12 @@ namespace ChessBot.Tests
             var mirrored = move[0].ToString() + (9-(move[1]-'0')) + move[2] + (9-(move[3]-'0')) + move.Substring(4);
             Assert.That(ChessTacticalAssessment.FavorableCapture(BoardState.FromFen(ChessCurriculum.SwapColors(fen)), Move.Parse(mirrored)), Is.EqualTo(expected));
         }
-        [Test] public void EveryBundledCapturePuzzleHasAFavorableMove()
+        [Test] public void SampledCaptureDifficultiesHaveFavorableMoves()
         {
             var data=ChessCurriculumDataset.LoadBundled();
-            for (int i=0;i<data.Count(0);i++) foreach (bool mirrored in new[] {false,true})
+            for(int difficulty=0;difficulty<3;difficulty++) for (int i=0;i<16;i++) foreach (bool mirrored in new[] {false,true})
             {
-                var game=new ChessGameController(); data.Get(0,i).Apply(game,mirrored);
+                var game=new ChessGameController(); data.Get(0,difficulty,i*64).Apply(game,mirrored);
                 Assert.That(game.LegalMoves.Any(m=>ChessTacticalAssessment.FavorableCapture(game.Board,m)), Is.True, game.Board.ToFen());
             }
         }

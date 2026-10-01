@@ -185,7 +185,7 @@ namespace ChessBot.Tests
                 Assert.That(_environment.Black.GetCumulativeReward(), Is.Zero);
                 Assert.That(_environment.Game.Result.IsFinished, Is.False);
                 if (stage < 5) Assert.That(_environment.SourceStartPly, Is.GreaterThan(0));
-                else Assert.That(_environment.Game.Board.ToFen(), Is.EqualTo(BoardState.InitialFen));
+                else Assert.That(_environment.SourceStartPly, Is.EqualTo(0).Or.EqualTo(6).Or.EqualTo(8));
                 Assert.That(ChessActionEncoder.LegalActions(_environment.Game).Count, Is.GreaterThan(0));
             }
             yield return null;
@@ -232,6 +232,47 @@ namespace ChessBot.Tests
             Assert.That(_environment.Black.GetCumulativeReward(),Is.EqualTo(black).Within(0.0001));
             Assert.That(ChessActionEncoder.LegalActions(_environment.Game).ContainsKey(8576),Is.True);
             StartLesson(stage,lessons); Assert.That(_environment.RepeatedPositions,Is.Zero);
+        }
+        [TestCase(0f)]
+        [TestCase(1f)]
+        public void FullGameStartProbabilitySelectsOpeningOrStandard(float probability)
+        {
+            var flags=System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            _environment.ConfigurePositionSource(CurriculumPositionSource.PgnTraining);
+            _environment.ConfigureCurriculum(true,5);
+            typeof(ChessTrainingEnvironment).GetField("_standardStartProbability",flags).SetValue(_environment,probability);
+            for(int i=0;i<12;i++)
+            {
+                typeof(ChessTrainingEnvironment).GetMethod("ResetEpisode",flags).Invoke(_environment,null);
+                Assert.That(_environment.SourceStartPly,probability==1 ? Is.EqualTo(0) : Is.EqualTo(6).Or.EqualTo(8));
+                Assert.That(_environment.Game.Board.SideToMove,Is.EqualTo(PieceColor.White));
+                Assert.That(_environment.Game.TurnVersion,Is.Zero);
+                Assert.That(_environment.Game.Moves,Is.Empty);
+                Assert.That(_environment.White.GetCumulativeReward(),Is.Zero);
+                Assert.That(_environment.Black.GetCumulativeReward(),Is.Zero);
+            }
+        }
+        [TestCase(0f)]
+        [TestCase(1f)]
+        public void CaptureDifficultyChangesOnlyWhenEpisodeResets(float reviewProbability)
+        {
+            var flags=System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            _environment.ConfigurePositionSource(CurriculumPositionSource.PgnTraining);
+            _environment.ConfigureCurriculum(true,0);
+            typeof(ChessTrainingEnvironment).GetField("_captureReviewProbability",flags).SetValue(_environment,reviewProbability);
+            for(int difficulty=0;difficulty<3;difficulty++)
+            {
+                int previous=_environment.ActiveCaptureDifficulty;
+                typeof(ChessTrainingEnvironment).GetField("_previewCaptureDifficulty",flags).SetValue(_environment,difficulty);
+                Assert.That(_environment.ActiveCaptureDifficulty,Is.EqualTo(previous));
+                typeof(ChessTrainingEnvironment).GetMethod("ResetEpisode",flags).Invoke(_environment,null);
+                Assert.That(_environment.ActiveCaptureDifficulty,Is.EqualTo(difficulty));
+                Assert.That(_environment.Game.TurnVersion,Is.Zero);
+                var sample=(ChessCurriculumDataset.Sample)typeof(ChessTrainingEnvironment).GetField("_sample",flags).GetValue(_environment);
+                if (reviewProbability == 0 || difficulty == 0) Assert.That(sample.Difficulty,Is.EqualTo(difficulty));
+                else Assert.That(sample.Difficulty,Is.LessThan(difficulty));
+                Assert.That(_environment.SampledCaptureDifficulty,Is.EqualTo(sample.Difficulty));
+            }
         }
         private sealed class RecordingMask : IDiscreteActionMask
         {

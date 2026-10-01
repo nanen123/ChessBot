@@ -1,13 +1,19 @@
 # Evaluation positions are validation data used for promotion, not final blind tests.
 positions: Data/Curriculum/positions.jsonl
 seed: 20261001
-samples_per_stage: 16
-evaluation_version: 2
+samples_per_stage: 128
+evaluation_version: 4
+capture_samples_per_difficulty: 64
+capture_training_samples: 64
+capture_minimum_episodes: 128
+capture_promotion_thresholds: [0.90, 0.85, 0.85]
+capture_retention_thresholds: [0.80, 0.75, 0.75]
 maximum_plies: [1, 12, 3, 100, 256, 512]
 evaluation_interval: 50000
 minimum_stage_steps: 100000
 consecutive_passes: 2
-minimum_episodes: 32
+minimum_episodes: 256
+# Index 0 below is reserved; capture_* thresholds control all stage-0 difficulties.
 promotion_thresholds: [0.85, 0.70, 0.85, 0.70, 0.55]
 # Previously passed lessons must not regress below these floors.
 retention_thresholds: [0.75, 0.60, 0.75, 0.60, 0.45]

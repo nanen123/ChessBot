@@ -142,6 +142,9 @@ MonoBehaviour:
   _recordGames: 1
   _useCurriculum: 1
   _positionSource: 1
+  _previewCaptureDifficulty: 0
+  _captureReviewProbability: 0.2
+  _standardStartProbability: 0.2
   _previewLesson: 0
   _lessons:
   - Name: Immediate capture

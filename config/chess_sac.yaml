@@ -43,3 +43,4 @@ torch_settings:
 # Plain mlagents-learn intentionally stays at stage 0.
 environment_parameters:
   curriculum_stage: 0
+  capture_difficulty: 0
