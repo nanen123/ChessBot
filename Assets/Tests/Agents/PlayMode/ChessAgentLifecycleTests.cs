@@ -56,8 +56,19 @@ namespace ChessBot.Tests
             Assert.That(seen, Is.True);
             Assert.That(_environment.TaskEpisodes, Is.GreaterThan(0));
             Assert.That(_environment.RejectedActions, Is.Zero);
-            Assert.That(_environment.White.CompletedEpisodes, Is.EqualTo(_environment.Black.CompletedEpisodes));
+            Assert.That(_environment.White.EpisodeBeginCount, Is.EqualTo(_environment.Black.EpisodeBeginCount));
             yield return null;
+        }
+        [Test] public void RepeatedIdleEpisodeDoesNotCarryRewardIntoNextDecision()
+        {
+            var agent = _environment.White;
+            agent.EndEpisode();
+            int begins = agent.EpisodeBeginCount;
+            agent.AddReward(-0.5f); agent.EndEpisode();
+            Assert.That(agent.EpisodeBeginCount, Is.EqualTo(begins + 1));
+            Assert.That(agent.GetCumulativeReward(), Is.Zero);
+            agent.AddReward(0.25f); agent.EndEpisode();
+            Assert.That(agent.GetCumulativeReward(), Is.Zero);
         }
         [UnityTest] public IEnumerator BothAgentsInterruptAndResetTogether()
         {

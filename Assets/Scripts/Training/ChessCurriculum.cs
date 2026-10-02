@@ -55,6 +55,13 @@ namespace ChessBot.Training
             if (fields[3] != "-") fields[3] = fields[3][0].ToString() + (9 - (fields[3][1] - '0'));
             return string.Join(" ", fields);
         }
+        public static int SampleCaptureDifficulty(int active, float review, bool repair, float a, float b, float draw)
+        {
+            if (active < 0 || active > 2 || !(review >= 0 && review <= 1) || !(a >= 0 && b >= 0 && a + b <= 1) || !(draw >= 0 && draw < 1)) throw new ArgumentOutOfRangeException();
+            if (active == 2 && repair) return draw < a ? 0 : draw < a + b ? 1 : 2;
+            if (active == 0 || draw >= review) return active;
+            return Math.Min(active - 1, (int)(draw / review * active));
+        }
         public static int TaskOutcome(ChessLesson lesson, int plies, bool capture, int materialGain, bool favorableCapture = false)
         {
             if (lesson.Ending == CurriculumEnding.FirstMoveFavorableCapture) return plies < 1 ? 2 : favorableCapture ? 1 : -1;

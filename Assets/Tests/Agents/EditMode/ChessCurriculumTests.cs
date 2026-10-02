@@ -64,6 +64,25 @@ namespace ChessBot.Tests
             var results = game.LegalMoves.Select(m => { ChessRules.TryApply(board, m, out var next); return ForceMate(next, attacker, remaining - 1); });
             return board.SideToMove == attacker ? results.Any(x => x) : results.All(x => x);
         }
+        [TestCase(true, 1000, 5000, 4000)]
+        [TestCase(false, 1000, 1000, 8000)]
+        public void CaptureRepairUsesExpectedMix(bool repair, int a, int b, int c)
+        {
+            var counts = new int[3];
+            for (int i = 0; i < 10000; i++) counts[ChessCurriculum.SampleCaptureDifficulty(2,0.2f,repair,0.1f,0.5f,(i+0.5f)/10000)]++;
+            Assert.That(counts, Is.EqualTo(new[] {a,b,c}));
+        }
+        [Test] public void CaptureRepairDoesNotExposeFutureLevelsAndRejectsInvalidWeights()
+        {
+            for (int i = 0; i < 1000; i++)
+            {
+                float draw = (i+0.5f)/1000;
+                Assert.That(ChessCurriculum.SampleCaptureDifficulty(0,0.2f,true,0.1f,0.5f,draw), Is.Zero);
+                Assert.That(ChessCurriculum.SampleCaptureDifficulty(1,0.2f,true,0.1f,0.5f,draw), Is.LessThanOrEqualTo(1));
+            }
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => ChessCurriculum.SampleCaptureDifficulty(2,0.2f,true,0.6f,0.5f,0.1f));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => ChessCurriculum.SampleCaptureDifficulty(2,0.2f,true,float.NaN,0.5f,0.1f));
+        }
         [Test] public void TaskHorizonsDoNotEndBeforeRecaptureAndDistinguishNeutral()
         {
             var lessons = ChessCurriculum.Defaults();

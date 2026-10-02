@@ -42,6 +42,7 @@ namespace ChessBot.Training
         [Header("Generated capture practice (stage 0)")]
         [SerializeField, Range(0f, 1f), Tooltip("Fraction of stage-0 episodes that attempt a new coordinate arrangement. Python capture_generation_probability overrides this. Failed attempts keep the PGN position.")] private float _captureGenerationProbability = 0.5f;
         [SerializeField, Range(1, 64), Tooltip("Maximum candidate positions per requested generated episode; bounded to limit CPU work.")] private int _captureGenerationAttempts = 12;
+        public bool CaptureRepairActive { get; private set; }
         private ChessCaptureGenerator _captureGenerator;
         private string _generatorBaseFen;
         public bool GeneratedPosition { get; private set; }
@@ -177,14 +178,22 @@ namespace ChessBot.Training
             ActiveCaptureDifficulty = ActiveLesson == 0 ? Mathf.Clamp(Mathf.RoundToInt(Academy.Instance.EnvironmentParameters.GetWithDefault("capture_difficulty", _previewCaptureDifficulty)), 0, 2) : -1;
             _lesson = ActiveLesson < 0 ? null : _lessons[ActiveLesson];
             _episodeLimit = _lesson == null ? _maximumPlies : (_lesson.Ending == CurriculumEnding.FirstMoveFavorableCapture ? 1 : _lesson.MaximumPlies);
-            _sample = null; GeneratedPosition = false; _generatorBaseFen = null;
+            _sample = null; CaptureRepairActive = false; GeneratedPosition = false; _generatorBaseFen = null;
             _sampleMirrored = _lesson != null && ActiveLesson < 5 && (_colorSequence++ % 2) != 0;
             if (_lesson != null && _positionSource == CurriculumPositionSource.PgnTraining)
             {
                 var data = ChessCurriculumDataset.LoadBundled();
                 int difficulty = ActiveCaptureDifficulty;
-                if (ActiveLesson == 0 && difficulty > 0 && UnityEngine.Random.value < _captureReviewProbability)
-                    difficulty = UnityEngine.Random.Range(0, difficulty);
+                if (ActiveLesson == 0)
+                {
+                    var parameters = Academy.Instance.EnvironmentParameters;
+                    CaptureRepairActive = difficulty == 2 && parameters.GetWithDefault("capture_repair_active", 0) > 0.5f;
+                    float a = parameters.GetWithDefault("capture_repair_a_probability", 0.1f);
+                    float b = parameters.GetWithDefault("capture_repair_b_probability", 0.5f);
+                    difficulty = ChessCurriculum.SampleCaptureDifficulty(difficulty, _captureReviewProbability, CaptureRepairActive, a, b, UnityEngine.Random.Range(0, 1000000) / 1000000f);
+                    Academy.Instance.StatsRecorder.Add("Curriculum/CaptureRepairActive", CaptureRepairActive ? 1 : 0);
+                    for (int level = 0; level < 3; level++) Academy.Instance.StatsRecorder.Add($"Curriculum/CaptureSampling/{level}", difficulty == level ? 1 : 0);
+                }
                 if (ActiveLesson == 5)
                 {
                     bool standard = UnityEngine.Random.value < _standardStartProbability;

@@ -12,11 +12,35 @@ class SuccessGate:
         if config['samples_per_stage']*2<config['minimum_episodes'] or config['capture_samples_per_difficulty']*2<config['capture_minimum_episodes']:raise ValueError('Not enough evaluation episodes')
         if config.get('require_independent_validation',False) and (config.get('generalization_samples',0)*2 < config.get('independent_minimum_episodes',64)):
             raise ValueError('Not enough independent validation episodes')
+        repair=config.get('capture_b_repair',{})
+        if repair.get('enabled',False):
+            if not config.get('require_independent_validation',False):raise ValueError('Capture repair requires independent validation')
+            if not config['capture_retention_thresholds'][1] <= repair.get('recovery_threshold',0.8) <= 1:raise ValueError('Invalid capture recovery threshold')
+            if type(repair.get('recovery_passes',2)) is not int or repair.get('recovery_passes',2)<1:raise ValueError('Invalid capture recovery pass count')
         self.config=config
         self.state=state or dict(version=2,fingerprint=fingerprint,stage=0,capture_difficulty=0,stage_started_step=0,last_evaluation_step=0,consecutive=0)
         if self.state['version']!=2 or self.state['fingerprint']!=fingerprint:raise ValueError('Evaluation data/config changed; use a new run ID')
         if not 0<=self.state['stage']<=5 or not 0<=self.state['capture_difficulty']<=2:raise ValueError('Invalid saved curriculum phase')
         if self.state['stage']>0 and self.state['capture_difficulty']!=2:raise ValueError('Capture curriculum was not completed')
+        self.state.setdefault('capture_repair_active',False)
+        self.state.setdefault('capture_recovery_passes',0)
+        if type(self.state['capture_repair_active']) is not bool or type(self.state['capture_recovery_passes']) is not int or self.state['capture_recovery_passes']<0:raise ValueError('Invalid saved capture repair state')
+        if self.state['capture_repair_active'] and (not repair.get('enabled',False) or self.state['stage']!=0 or self.state['capture_difficulty']!=2):raise ValueError('Capture repair is only valid in stage 0-C')
+    def start_capture_b_repair(self,source_state):
+        if not self.config.get('capture_b_repair',{}).get('enabled',False):raise ValueError('Enable capture_b_repair in evaluation config')
+        if source_state.get('version')!=2 or source_state.get('capture_difficulty')!=2 or source_state.get('stage') not in range(6):raise ValueError('Source run must have reached capture difficulty 2')
+        self.state.update(stage=0,capture_difficulty=2,capture_repair_active=True,capture_recovery_passes=0)
+    def update_capture_repair(self,result):
+        settings=self.config.get('capture_b_repair',{})
+        if not settings.get('enabled',False) or self.state['stage']!=0 or self.state['capture_difficulty']!=2:return
+        if result.get('independent_episodes',0)<self.config.get('independent_minimum_episodes',64):raise ValueError('Missing capture repair validation episodes')
+        rate=min(result['success_rate'],result['independent_success_rate'])
+        if not self.state['capture_repair_active'] and rate<self.config['capture_retention_thresholds'][1]:
+            self.state.update(capture_repair_active=True,capture_recovery_passes=0)
+        if self.state['capture_repair_active']:
+            count=self.state['capture_recovery_passes']+1 if rate>=settings.get('recovery_threshold',0.8) else 0
+            self.state['capture_recovery_passes']=count
+            if count>=settings.get('recovery_passes',2):self.state['capture_repair_active']=False
     def due(self,step):return step-self.state['last_evaluation_step']>=self.config['evaluation_interval']
     def accept(self,report,step):
         stage=self.state['stage'];difficulty=self.state['capture_difficulty'];by_stage={s['stage']:s for s in report['stages']}
@@ -48,10 +72,11 @@ class SuccessGate:
                                 group=categories.get(name,{})
                                 if group.get('episodes',0)<self.config.get('category_minimum_episodes',16):raise ValueError('Missing category validation: '+name)
                                 passed &= group['success_rate']>=threshold
+        if stage==0 and difficulty==2:self.update_capture_repair(levels[1])
         passed &= step-self.state['stage_started_step']>=self.config['minimum_stage_steps']
         self.state['consecutive']=self.state['consecutive']+1 if passed else 0
         self.state['last_evaluation_step']=step
-        promote=stage<5 and self.state['consecutive']>=self.config['consecutive_passes']
+        promote=stage<5 and not self.state['capture_repair_active'] and self.state['consecutive']>=self.config['consecutive_passes']
         if promote:
             if stage==0 and difficulty<2:self.state['capture_difficulty']+=1
             else:self.state['stage']+=1

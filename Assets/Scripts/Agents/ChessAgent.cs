@@ -21,6 +21,7 @@ namespace ChessBot.Agents
         public Guid RequestedGameId { get; private set; }
         public int RequestedTurn { get; private set; }
         public bool DecisionPending { get; private set; }
+        public int EpisodeBeginCount { get; private set; }
         public IReadOnlyDictionary<int, ChessCommand> LegalActions => _legalActions;
         public void Bind(MonoBehaviour host, PieceColor color)
         {
@@ -39,6 +40,9 @@ namespace ChessBot.Agents
         }
         public override void OnEpisodeBegin()
         {
+            // An idle opponent can finish consecutive one-ply puzzles without a decision.
+            // ML-Agents skips its repeated Done notification; discard that idle reward here.
+            SetReward(0); EpisodeBeginCount++;
             DecisionPending = false; _legalActions.Clear();
             _host?.AgentReady(this); // Shared board reset belongs exclusively to the host.
         }

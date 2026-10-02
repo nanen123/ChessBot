@@ -53,7 +53,7 @@
     "firstMoveCapture": "No capture reward for an unfavorable stage-0 capture"
   },
   "curriculum": {
-    "version": 7,
+    "version": 8,
     "parameter": "curriculum_stage",
     "stages": 6,
     "maximumPliesByStage": [
@@ -139,6 +139,20 @@
       "parameter": "capture_generation_probability",
       "history": "Synthetic fresh start; no castling, en passant or prior repetition",
       "exclusions": "All fixed positions and legacy validation; color/file symmetry identities; rights ignored conservatively"
+    },
+    "captureRepair": {
+      "activeStage": 0,
+      "activeDifficulty": 2,
+      "targetDifficulty": 1,
+      "probabilities": [
+        0.1,
+        0.5,
+        0.4
+      ],
+      "recoveryThreshold": 0.8,
+      "recoveryPasses": 2,
+      "entryThreshold": "capture_retention_thresholds[1]",
+      "state": "success_curriculum.json"
     }
   },
   "maximumPlies": 512,

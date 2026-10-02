@@ -46,3 +46,7 @@ environment_parameters:
   capture_difficulty: 0
   # Fresh capture positions; 0 disables generation for a controlled baseline.
   capture_generation_probability: 0.5
+  # TrainChessSuccess controls the switch; probabilities apply only during 0-C repair.
+  capture_repair_active: 0
+  capture_repair_a_probability: 0.10
+  capture_repair_b_probability: 0.50

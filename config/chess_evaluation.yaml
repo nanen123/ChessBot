@@ -27,4 +27,10 @@ require_category_validation: true
 category_minimum_episodes: 16
 
 # Changes the resume fingerprint when the runtime training distribution changes.
-training_distribution_version: 7
+training_distribution_version: 8
+
+# Automatic focused review while learning 0-C; both validation sets must recover.
+capture_b_repair:
+  enabled: true
+  recovery_threshold: 0.80
+  recovery_passes: 2

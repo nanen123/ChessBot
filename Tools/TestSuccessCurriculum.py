@@ -69,6 +69,47 @@ class GateTests(unittest.TestCase):
         self.gate=SuccessGate(self.config,'test')
     def report(self, stage=0, rate=1):
         return {'stages':[dict(stage=s,episodes=self.config["minimum_episodes"],success_rate=rate,independent_success_rate=rate,independent_episodes=64,**({'difficulties':[dict(difficulty=d,episodes=128,success_rate=rate,independent_success_rate=rate,independent_episodes=64) for d in range(3)]} if s==0 else {})) for s in range(stage+1)]}
+    def test_capture_repair_activates_and_blocks_early_promotion(self):
+        self.gate.state.update(capture_difficulty=2)
+        report=self.report();b=report['stages'][0]['difficulties'][1]
+        b['success_rate']=0.74
+        self.assertFalse(self.gate.accept(report,100))
+        self.assertTrue(self.gate.state['capture_repair_active'])
+        b['success_rate']=0.79
+        for step in (110,120,130):self.assertFalse(self.gate.accept(report,step))
+        self.assertEqual(self.gate.state['capture_recovery_passes'],0)
+        b['success_rate']=0.8
+        self.assertFalse(self.gate.accept(report,140))
+        self.assertTrue(self.gate.accept(report,150))
+        self.assertFalse(self.gate.state['capture_repair_active'])
+        self.assertEqual(self.gate.state['stage'],1)
+    def test_capture_recovery_requires_both_sets_and_consecutive_results(self):
+        self.gate.start_capture_b_repair(dict(version=2,stage=0,capture_difficulty=2))
+        report=self.report();b=report['stages'][0]['difficulties'][1]
+        self.gate.accept(report,100)
+        b['independent_success_rate']=0.79
+        self.assertFalse(self.gate.accept(report,110))
+        self.assertEqual(self.gate.state['capture_recovery_passes'],0)
+        b['independent_success_rate']=0.8
+        self.assertFalse(self.gate.accept(report,120))
+        saved=json.loads(json.dumps(self.gate.state))
+        self.gate=SuccessGate(self.config,'test',saved)
+        self.assertTrue(self.gate.accept(report,130))
+    def test_capture_repair_returns_to_normal_and_can_reactivate(self):
+        self.gate.start_capture_b_repair(dict(version=2,stage=0,capture_difficulty=2))
+        report=self.report();report['stages'][0]['difficulties'][2]['success_rate']=0.5
+        for step in (100,110):self.assertFalse(self.gate.accept(report,step))
+        self.assertFalse(self.gate.state['capture_repair_active'])
+        report['stages'][0]['difficulties'][1]['independent_success_rate']=0.7
+        self.gate.accept(report,120)
+        self.assertTrue(self.gate.state['capture_repair_active'])
+    def test_capture_repair_does_not_change_earlier_phase(self):
+        self.gate.accept(self.report(rate=0.5),100)
+        self.assertFalse(self.gate.state['capture_repair_active'])
+        with self.assertRaises(ValueError):self.gate.start_capture_b_repair(dict(version=2,stage=0,capture_difficulty=1))
+        report=self.report();self.gate.start_capture_b_repair(dict(version=2,stage=0,capture_difficulty=2))
+        report['stages'][0]['difficulties'][1]['independent_episodes']=0
+        with self.assertRaises(ValueError):self.gate.accept(report,110)
     def test_independent_validation_blocks_memorized_success(self):
         report=self.report();report['stages'][0]['difficulties'][0]['independent_success_rate']=0.5
         self.assertFalse(self.gate.accept(report,100))
