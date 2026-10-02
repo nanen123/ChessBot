@@ -39,6 +39,17 @@ namespace ChessBot.Training
         [SerializeField, Range(0f, 1f), Tooltip("In capture levels 1 and 2, sample a previous level this fraction of episodes to retain earlier skills.")] private float _captureReviewProbability = 0.2f;
         [SerializeField, Range(0f, 1f), Tooltip("Stage 5: probability of starting from the standard board. Otherwise use a real opening after 3 or 4 moves per side.")] private float _standardStartProbability = 0.2f;
         [SerializeField, Tooltip("Choose curriculum strata uniformly before choosing a position. Prevents frequent piece/opening types from dominating training.")] private bool _balanceCurriculumSamples = true;
+        [Header("Generated capture practice (stage 0)")]
+        [SerializeField, Range(0f, 1f), Tooltip("Fraction of stage-0 episodes that attempt a new coordinate arrangement. Python capture_generation_probability overrides this. Failed attempts keep the PGN position.")] private float _captureGenerationProbability = 0.5f;
+        [SerializeField, Range(1, 64), Tooltip("Maximum candidate positions per requested generated episode; bounded to limit CPU work.")] private int _captureGenerationAttempts = 12;
+        private ChessCaptureGenerator _captureGenerator;
+        private string _generatorBaseFen;
+        public bool GeneratedPosition { get; private set; }
+        public void ConfigureCaptureGeneration(float probability, int attempts = 12)
+        {
+            if (!Finite(probability) || probability < 0 || probability > 1 || attempts < 1 || attempts > 64) throw new ArgumentOutOfRangeException();
+            _captureGenerationProbability = probability; _captureGenerationAttempts = attempts;
+        }
         public int SampledCaptureDifficulty => ActiveLesson == 0 ? (_sample?.Difficulty ?? ActiveCaptureDifficulty) : -1;
         [SerializeField] private ChessLesson[] _lessons = ChessCurriculum.Defaults();
         [Header("Early lesson repetition (stages 0-2 only)")]
@@ -80,7 +91,7 @@ namespace ChessBot.Training
         }
         private void Awake()
         {
-            if (_white == null || _black == null || _white == _black || _maximumPlies < 2 || !ValidReward(_captureReward) || !ValidReward(_winReward) || !ValidReward(_minimumWinReward) || _minimumWinReward > _winReward ||
+            if (!Finite(_captureGenerationProbability) || _captureGenerationProbability < 0 || _captureGenerationProbability > 1 || _captureGenerationAttempts < 1 || _captureGenerationAttempts > 64 || _white == null || _black == null || _white == _black || _maximumPlies < 2 || !ValidReward(_captureReward) || !ValidReward(_winReward) || !ValidReward(_minimumWinReward) || _minimumWinReward > _winReward ||
                 _winRewardDecayPlies < 0 || !ValidReward(_lossRewardMultiplier) || !Finite(_whiteDrawReward) || !Finite(_blackDrawReward) || !ValidReward(_repetitionPenalty) || !ValidReward(_maximumRepetitionPenaltyPerAgent) || _repetitionPenaltyFromOccurrence < 2 || !Finite(_captureReviewProbability) || _captureReviewProbability < 0 || _captureReviewProbability > 1 || !Finite(_standardStartProbability) || _standardStartProbability < 0 || _standardStartProbability > 1)
                 throw new InvalidOperationException("Training environment references or reward settings are invalid.");
             if (_useCurriculum)
@@ -166,7 +177,7 @@ namespace ChessBot.Training
             ActiveCaptureDifficulty = ActiveLesson == 0 ? Mathf.Clamp(Mathf.RoundToInt(Academy.Instance.EnvironmentParameters.GetWithDefault("capture_difficulty", _previewCaptureDifficulty)), 0, 2) : -1;
             _lesson = ActiveLesson < 0 ? null : _lessons[ActiveLesson];
             _episodeLimit = _lesson == null ? _maximumPlies : (_lesson.Ending == CurriculumEnding.FirstMoveFavorableCapture ? 1 : _lesson.MaximumPlies);
-            _sample = null;
+            _sample = null; GeneratedPosition = false; _generatorBaseFen = null;
             _sampleMirrored = _lesson != null && ActiveLesson < 5 && (_colorSequence++ % 2) != 0;
             if (_lesson != null && _positionSource == CurriculumPositionSource.PgnTraining)
             {
@@ -181,6 +192,7 @@ namespace ChessBot.Training
                 }
                 else _sample = _balanceCurriculumSamples ? data.SampleBalanced(ActiveLesson, difficulty) : data.Get(ActiveLesson, difficulty, UnityEngine.Random.Range(0, data.Count(ActiveLesson, difficulty)));
                 _sample.Apply(Game, _sampleMirrored);
+                if (ActiveLesson == 0) TryGenerateCapture();
             }
             else
             {
@@ -191,6 +203,29 @@ namespace ChessBot.Training
             _materialGain = 0; _taskOutcome = 2;
             _episodePositions.Clear(); _episodePositions[ChessRules.RepetitionKey(Game.Board)] = 1;
             RepeatedPositions = 0; _whiteRepetitionPenalty = _blackRepetitionPenalty = 0;
+        }
+        private void TryGenerateCapture()
+        {
+            float probability = Academy.Instance.EnvironmentParameters.GetWithDefault("capture_generation_probability", _captureGenerationProbability);
+            if (!Finite(probability) || probability < 0 || probability > 1) throw new InvalidOperationException("capture_generation_probability must be between 0 and 1.");
+            bool requested = UnityEngine.Random.value < probability;
+            int attempts = 0;
+            if (requested)
+            {
+                if (_captureGenerator == null) _captureGenerator = new ChessCaptureGenerator(UnityEngine.Random.Range(0, int.MaxValue), ChessCaptureExclusions.LoadBundled());
+                var source = Game.Board;
+                if (!Enum.TryParse(_sample.Stratum, true, out PieceType target)) throw new InvalidOperationException("Unknown capture stratum: " + _sample.Stratum);
+                if (_captureGenerator.TryGenerate(source, SampledCaptureDifficulty, target, _captureGenerationAttempts, out var generated))
+                {
+                    _generatorBaseFen = source.ToFen(); GeneratedPosition = true;
+                    Game.Reset(generated); // Synthetic start has no valid historical repetition/castling/EP rights.
+                }
+                attempts = _captureGenerator.LastAttempts;
+                Academy.Instance.StatsRecorder.Add("Curriculum/GeneratedCapture/Acceptance", GeneratedPosition ? 1 : 0);
+                Academy.Instance.StatsRecorder.Add($"Curriculum/GeneratedCapture/{_sample.Stratum}/Acceptance", GeneratedPosition ? 1 : 0);
+            }
+            Academy.Instance.StatsRecorder.Add("Curriculum/GeneratedCapture/Fraction", GeneratedPosition ? 1 : 0);
+            Academy.Instance.StatsRecorder.Add("Curriculum/GeneratedCapture/Attempts", attempts);
         }
         public void Submit(ChessAgent agent, int action)
         {
@@ -268,10 +303,11 @@ namespace ChessBot.Training
                 {
                     Academy.Instance.StatsRecorder.Add($"Curriculum/Capture{SampledCaptureDifficulty}/Success", success ? 1 : 0);
                     Academy.Instance.StatsRecorder.Add("Curriculum/CaptureDifficulty", ActiveCaptureDifficulty);
+                    Academy.Instance.StatsRecorder.Add(GeneratedPosition ? "Curriculum/GeneratedCapture/Success" : "Curriculum/PgnCapture/Success", success ? 1 : 0);
                 }
             }
             float whiteReward = _white.GetCumulativeReward(), blackReward = _black.GetCumulativeReward();
-            _recorder?.Write(Game, _interrupted, whiteReward, blackReward, _initialFen, ActiveLesson, _focusColor, _taskOutcome, _sample, _sampleMirrored, ActiveCaptureDifficulty);
+            _recorder?.Write(Game, _interrupted, whiteReward, blackReward, _initialFen, ActiveLesson, _focusColor, _taskOutcome, _sample, _sampleMirrored, ActiveCaptureDifficulty, GeneratedPosition, _generatorBaseFen);
             if (_interrupted) InterruptedGames++; else if (Game.Result.IsFinished) CompletedGames++;
             Academy.Instance.StatsRecorder.Add("Chess/RepeatedPositions", RepeatedPositions);
             Academy.Instance.StatsRecorder.Add("Chess/RepetitionPenalty", _whiteRepetitionPenalty + _blackRepetitionPenalty);

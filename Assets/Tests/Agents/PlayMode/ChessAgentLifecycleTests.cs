@@ -39,6 +39,26 @@ namespace ChessBot.Tests
             Object.DestroyImmediate(_root);
             if (Academy.IsInitialized) Academy.Instance.Dispose();
         }
+        [UnityTest] public IEnumerator GeneratedCaptureUsesNormalMasksRewardsAndCoordinatedReset()
+        {
+            _environment.ConfigureCurriculum(true, 0);
+            _environment.ConfigureCaptureGeneration(1, 32);
+            bool seen = false;
+            for (int i = 0; i < 100; i++)
+            {
+                Academy.Instance.EnvironmentStep();
+                if (!_environment.GeneratedPosition || _environment.ActiveLesson != 0) continue;
+                seen = true;
+                Assert.That(_environment.MaximumPlies, Is.EqualTo(1));
+                Assert.That(_environment.Game.TurnVersion, Is.LessThanOrEqualTo(1));
+                Assert.That(_environment.Game.Board.CastlingRights, Is.Zero);
+            }
+            Assert.That(seen, Is.True);
+            Assert.That(_environment.TaskEpisodes, Is.GreaterThan(0));
+            Assert.That(_environment.RejectedActions, Is.Zero);
+            Assert.That(_environment.White.CompletedEpisodes, Is.EqualTo(_environment.Black.CompletedEpisodes));
+            yield return null;
+        }
         [UnityTest] public IEnumerator BothAgentsInterruptAndResetTogether()
         {
             int completions = 0;

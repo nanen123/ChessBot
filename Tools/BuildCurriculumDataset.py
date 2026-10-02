@@ -7,6 +7,8 @@ import chess.pgn
 if Path('Data/Curriculum/Generalization/additional.jsonl').exists():
     from PrepareGeneralizationDataset import main
     main()
+    from BuildCaptureExclusions import build
+    build()
     raise SystemExit(0)
 
 source = Path('Data/Curriculum')

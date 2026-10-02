@@ -44,3 +44,5 @@ torch_settings:
 environment_parameters:
   curriculum_stage: 0
   capture_difficulty: 0
+  # Fresh capture positions; 0 disables generation for a controlled baseline.
+  capture_generation_probability: 0.5

@@ -146,6 +146,8 @@ MonoBehaviour:
   _captureReviewProbability: 0.2
   _standardStartProbability: 0.2
   _balanceCurriculumSamples: 1
+  _captureGenerationProbability: 0.5
+  _captureGenerationAttempts: 12
   _previewLesson: 0
   _lessons:
   - Name: Immediate capture

@@ -53,7 +53,7 @@
     "firstMoveCapture": "No capture reward for an unfavorable stage-0 capture"
   },
   "curriculum": {
-    "version": 6,
+    "version": 7,
     "parameter": "curriculum_stage",
     "stages": 6,
     "maximumPliesByStage": [
@@ -125,7 +125,21 @@
       64
     ],
     "balancedSampling": true,
-    "horizontalAugmentation": "stages 0..4 only when castling rights absent; replay since last irreversible move"
+    "horizontalAugmentation": "stages 0..4 only when castling rights absent; replay since last irreversible move",
+    "generatedCapture": {
+      "version": 1,
+      "stage": 0,
+      "difficulties": [
+        0,
+        1,
+        2
+      ],
+      "attemptProbability": 0.5,
+      "maximumAttempts": 12,
+      "parameter": "capture_generation_probability",
+      "history": "Synthetic fresh start; no castling, en passant or prior repetition",
+      "exclusions": "All fixed positions and legacy validation; color/file symmetry identities; rights ignored conservatively"
+    }
   },
   "maximumPlies": 512,
   "limitation": "Arbitrary blocked dead positions are not fully recognized by the current core. This is an initial experimental training setup."

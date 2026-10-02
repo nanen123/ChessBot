@@ -189,6 +189,16 @@ class CaptureDifficultyTests(unittest.TestCase):
                 self.assertEqual(level['episodes'],2)
 
 class DiagnosticTests(unittest.TestCase):
+    def test_capture_geometry_uses_real_terminal_outcomes(self):
+        from DiagnoseCaptureGeometry import normalize_outcome
+        mate=dict(fen='8/7Q/8/8/6k1/4K3/1pp5/1R6 w - - 5 49',selected='b1g1',success=False,failure='quiet')
+        normalize_outcome(mate)
+        self.assertTrue(mate['success']);self.assertFalse(mate['favorable_capture_selected'])
+        normalize_outcome(mate);self.assertFalse(mate['favorable_capture_selected'])
+        draw=dict(fen='7k/8/8/8/8/1n6/B7/7K w - - 0 1',selected='a2b3',success=True,failure='none')
+        normalize_outcome(draw)
+        self.assertFalse(draw['success']);self.assertEqual(draw['failure'],'draw')
+
     def test_tactics(self):
         from ChessTactics import capture_margin
         for fen,uci,expected in [

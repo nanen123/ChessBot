@@ -12,7 +12,7 @@ namespace ChessBot.Training
     {
         private readonly string _path = Path.Combine(UnityEngine.Application.persistentDataPath, "ChessTraining", Guid.NewGuid() + ".jsonl");
         private bool _failed;
-        public void Write(ChessGameController game, bool interrupted, float whiteReward, float blackReward, string initialFen = BoardState.InitialFen, int lesson = -1, PieceColor focus = PieceColor.White, int taskOutcome = 2, ChessCurriculumDataset.Sample sample = null, bool mirrored = false, int captureDifficulty = -1)
+        public void Write(ChessGameController game, bool interrupted, float whiteReward, float blackReward, string initialFen = BoardState.InitialFen, int lesson = -1, PieceColor focus = PieceColor.White, int taskOutcome = 2, ChessCurriculumDataset.Sample sample = null, bool mirrored = false, int captureDifficulty = -1, bool generatedPosition = false, string generatorBaseFen = null)
         {
             if (_failed) return;
             try
@@ -20,10 +20,11 @@ namespace ChessBot.Training
                 Directory.CreateDirectory(Path.GetDirectoryName(_path));
                 var record = new Record
                 {
+                    generatedPosition = generatedPosition, generatorVersion = generatedPosition ? ChessCaptureGenerator.Version : 0, generatorBaseFen = generatorBaseFen,
                     curriculumStratum = sample?.Stratum, sourceHorizontal = sample?.Horizontal ?? false, historyOffset = sample?.HistoryOffset ?? 0, curriculumCategory = sample?.Category, sourceGame = sample?.SourceGame, sourceStartPly = sample?.StartPly ?? 0, sourceMirrored = mirrored,
                     datasetId = sample == null ? null : ChessCurriculumDataset.LoadBundled().Id,
-                    historyInitialFen = sample == null ? initialFen : mirrored ? ChessCurriculum.SwapColors(sample.HistoryInitialFen) : sample.HistoryInitialFen,
-                    historyMoves = sample?.HistoryMoves(mirrored) ?? new string[0],
+                    historyInitialFen = generatedPosition || sample == null ? initialFen : mirrored ? ChessCurriculum.SwapColors(sample.HistoryInitialFen) : sample.HistoryInitialFen,
+                    historyMoves = generatedPosition ? new string[0] : sample?.HistoryMoves(mirrored) ?? new string[0],
                     schemaVersion = ChessActionEncoder.SchemaVersion, behavior = ChessActionEncoder.BehaviorName,
                     gameId = game.GameId.ToString(), initialFen = initialFen, finalFen = game.Board.ToFen(),
                     moves = new List<string>(game.Moves).ToArray(), reason = interrupted ? "TrainingPlyLimit" : game.Result.IsFinished ? game.Result.Reason.ToString() : "CurriculumTask",
@@ -39,6 +40,9 @@ namespace ChessBot.Training
         [Serializable] private sealed class Record
         {
             public int schemaVersion, whiteTeam = 0, blackTeam = 1, curriculumStage, captureDifficulty, sampledCaptureDifficulty;
+            public bool generatedPosition;
+            public int generatorVersion;
+            public string generatorBaseFen;
             public string curriculumStratum;
             public bool sourceHorizontal;
             public int historyOffset;
