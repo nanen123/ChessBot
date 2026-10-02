@@ -4,6 +4,11 @@ from pathlib import Path
 sys.path.insert(0, 'output/training-validation/pgn-deps')
 import chess.pgn
 
+if Path('Data/Curriculum/Generalization/additional.jsonl').exists():
+    from PrepareGeneralizationDataset import main
+    main()
+    raise SystemExit(0)
+
 source = Path('Data/Curriculum')
 samples = []
 train_sites, eval_sites = set(), set()

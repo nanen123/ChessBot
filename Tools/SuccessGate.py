@@ -10,6 +10,8 @@ class SuccessGate:
             if len(config[key])!=size or any(not 0<=x<=1 for x in config[key]):raise ValueError(f'Invalid {key}')
         if len(config['maximum_plies'])!=6 or any(x<1 for x in config['maximum_plies']):raise ValueError('Invalid ply limits')
         if config['samples_per_stage']*2<config['minimum_episodes'] or config['capture_samples_per_difficulty']*2<config['capture_minimum_episodes']:raise ValueError('Not enough evaluation episodes')
+        if config.get('require_independent_validation',False) and (config.get('generalization_samples',0)*2 < config.get('independent_minimum_episodes',64)):
+            raise ValueError('Not enough independent validation episodes')
         self.config=config
         self.state=state or dict(version=2,fingerprint=fingerprint,stage=0,capture_difficulty=0,stage_started_step=0,last_evaluation_step=0,consecutive=0)
         if self.state['version']!=2 or self.state['fingerprint']!=fingerprint:raise ValueError('Evaluation data/config changed; use a new run ID')
@@ -19,6 +21,10 @@ class SuccessGate:
     def accept(self,report,step):
         stage=self.state['stage'];difficulty=self.state['capture_difficulty'];by_stage={s['stage']:s for s in report['stages']}
         if step<=self.state['last_evaluation_step']:raise ValueError('Repeated or older evaluation cannot count toward promotion')
+        def independent_pass(result,threshold):
+            if not self.config.get('require_independent_validation',False):return True
+            if result.get('independent_episodes',0)<self.config.get('independent_minimum_episodes',64):raise ValueError('Missing independent validation episodes')
+            return result['independent_success_rate']>=threshold
         passed=True
         for lesson in range(stage+1):
             r=by_stage[lesson]
@@ -28,12 +34,20 @@ class SuccessGate:
                     result=levels[level]
                     if result['episodes']<self.config['capture_minimum_episodes']:raise ValueError('Insufficient evaluated capture episodes')
                     thresholds=self.config['capture_promotion_thresholds'] if stage==0 and level==difficulty else self.config['capture_retention_thresholds']
-                    passed &= result['success_rate']>=thresholds[level]
+                    passed &= result['success_rate']>=thresholds[level] and independent_pass(result,thresholds[level])
             else:
                 if r['episodes']<self.config['minimum_episodes']:raise ValueError('Insufficient evaluated episodes')
                 if lesson<5:
                     threshold=self.config['promotion_thresholds'][lesson] if lesson==stage else self.config['retention_thresholds'][lesson]
-                    passed &= r['success_rate']>=threshold
+                    passed &= r['success_rate']>=threshold and independent_pass(r,threshold)
+                    if self.config.get('require_category_validation',False) and lesson in (1,2,3):
+                        required={1:['safe_gain','favorable_exchange','capture_choice'],2:['mateIn1','mateIn2'],3:['KQK','KRK']}[lesson]
+                        for source in [r,r.get('independent',{})]:
+                            categories={c['category']:c for c in source.get('categories',[])}
+                            for name in required:
+                                group=categories.get(name,{})
+                                if group.get('episodes',0)<self.config.get('category_minimum_episodes',16):raise ValueError('Missing category validation: '+name)
+                                passed &= group['success_rate']>=threshold
         passed &= step-self.state['stage_started_step']>=self.config['minimum_stage_steps']
         self.state['consecutive']=self.state['consecutive']+1 if passed else 0
         self.state['last_evaluation_step']=step

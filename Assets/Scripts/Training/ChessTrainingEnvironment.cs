@@ -38,6 +38,7 @@ namespace ChessBot.Training
         public int ActiveCaptureDifficulty { get; private set; } = -1;
         [SerializeField, Range(0f, 1f), Tooltip("In capture levels 1 and 2, sample a previous level this fraction of episodes to retain earlier skills.")] private float _captureReviewProbability = 0.2f;
         [SerializeField, Range(0f, 1f), Tooltip("Stage 5: probability of starting from the standard board. Otherwise use a real opening after 3 or 4 moves per side.")] private float _standardStartProbability = 0.2f;
+        [SerializeField, Tooltip("Choose curriculum strata uniformly before choosing a position. Prevents frequent piece/opening types from dominating training.")] private bool _balanceCurriculumSamples = true;
         public int SampledCaptureDifficulty => ActiveLesson == 0 ? (_sample?.Difficulty ?? ActiveCaptureDifficulty) : -1;
         [SerializeField] private ChessLesson[] _lessons = ChessCurriculum.Defaults();
         [Header("Early lesson repetition (stages 0-2 only)")]
@@ -176,9 +177,9 @@ namespace ChessBot.Training
                 if (ActiveLesson == 5)
                 {
                     bool standard = UnityEngine.Random.value < _standardStartProbability;
-                    _sample = data.FullGameSample(standard, UnityEngine.Random.Range(0, data.FullGameCount(standard)));
+                    _sample = _balanceCurriculumSamples ? data.SampleBalanced(ActiveLesson, difficulty, standard) : data.FullGameSample(standard, UnityEngine.Random.Range(0, data.FullGameCount(standard)));
                 }
-                else _sample = data.Get(ActiveLesson, difficulty, UnityEngine.Random.Range(0, data.Count(ActiveLesson, difficulty)));
+                else _sample = _balanceCurriculumSamples ? data.SampleBalanced(ActiveLesson, difficulty) : data.Get(ActiveLesson, difficulty, UnityEngine.Random.Range(0, data.Count(ActiveLesson, difficulty)));
                 _sample.Apply(Game, _sampleMirrored);
             }
             else

@@ -19,8 +19,9 @@ namespace ChessBot.Training
         }
         [Serializable] private sealed class Entry
         {
-            public int stage, startPly, difficulty;
-            public string split, sourceGame, initialFen, fen, category;
+            public int stage, startPly, difficulty, historyOffset;
+            public bool horizontal;
+            public string split, sourceGame, initialFen, fen, category, stratum;
             public string[] moves;
         }
         public sealed class Sample
@@ -28,13 +29,16 @@ namespace ChessBot.Training
             private ChessGameController _original, _mirrored;
             private readonly string _expectedFen;
             public string Category { get; }
+            public string Stratum { get; }
+            public bool Horizontal { get; }
+            public int HistoryOffset { get; }
             public int Difficulty { get; }
             public string SourceGame { get; }
             public int StartPly { get; }
             public string HistoryInitialFen { get; }
             private readonly string[] _moves;
-            internal Sample(string category, int difficulty, string source, string initial, string[] moves, string expectedFen)
-            { Category = category; Difficulty = difficulty; SourceGame = source; HistoryInitialFen = initial; _moves = (string[])moves.Clone(); StartPly = moves.Length; _expectedFen = expectedFen; }
+            internal Sample(string stratum, bool horizontal, int historyOffset, int startPly, string category, int difficulty, string source, string initial, string[] moves, string expectedFen)
+            { Stratum = stratum; Horizontal = horizontal; HistoryOffset = historyOffset; Category = category; Difficulty = difficulty; SourceGame = source; HistoryInitialFen = initial; _moves = (string[])moves.Clone(); StartPly = startPly; _expectedFen = expectedFen; }
             public void Apply(ChessGameController target, bool mirrored)
             {
                 // Validate before replacing the live game; share validated templates across environments.
@@ -61,6 +65,14 @@ namespace ChessBot.Training
         private readonly List<Sample> _openingStarts = new List<Sample>(), _standardStarts = new List<Sample>();
         public int FullGameCount(bool standard) => (standard ? _standardStarts : _openingStarts).Count;
         public Sample FullGameSample(bool standard, int index) => (standard ? _standardStarts : _openingStarts)[index];
+        private readonly Dictionary<string, List<List<Sample>>> _balanced = new Dictionary<string, List<List<Sample>>>();
+        private static string BucketKey(int stage, int difficulty, bool standard) => stage + ":" + (stage == 0 ? difficulty : -1) + ":" + (stage == 5 && standard);
+        public Sample SampleBalanced(int stage, int difficulty, bool standard = false)
+        {
+            var buckets = _balanced[BucketKey(stage,difficulty,standard)];
+            var bucket = buckets[UnityEngine.Random.Range(0,buckets.Count)];
+            return bucket[UnityEngine.Random.Range(0,bucket.Count)];
+        }
         public string Id { get; private set; }
         public int Count(int stage) => _stages[stage].Count;
         public Sample Get(int stage, int index) => _stages[stage][index];
@@ -80,13 +92,13 @@ namespace ChessBot.Training
         public static ChessCurriculumDataset Parse(string json)
         {
             var document = JsonUtility.FromJson<Document>(json);
-            if (document == null || document.version != 3 || document.split != "train" || string.IsNullOrEmpty(document.datasetId) || document.samples == null)
-                throw new FormatException("Expected version 3 training curriculum dataset.");
+            if (document == null || document.version != 4 || document.split != "train" || string.IsNullOrEmpty(document.datasetId) || document.samples == null)
+                throw new FormatException("Expected version 4 training curriculum dataset.");
             var data = new ChessCurriculumDataset { Id = document.datasetId };
             for (int i = 0; i < 6; i++) data._stages[i] = new List<Sample>();
             foreach (var entry in document.samples)
             {
-                if (entry == null || entry.stage < 0 || entry.stage >= 6 || entry.split != "train" || entry.moves == null || entry.startPly != entry.moves.Length || entry.moves.Length > 1000 || string.IsNullOrEmpty(entry.sourceGame))
+                if (entry == null || entry.stage < 0 || entry.stage >= 6 || entry.split != "train" || entry.moves == null || entry.historyOffset < 0 || entry.startPly != entry.moves.Length + entry.historyOffset || entry.moves.Length > 1000 || string.IsNullOrEmpty(entry.stratum) || string.IsNullOrEmpty(entry.sourceGame))
                     throw new FormatException("Invalid or non-training curriculum entry.");
                 if (entry.stage == 0 && (entry.difficulty < 0 || entry.difficulty > 2)) throw new FormatException("Invalid capture difficulty.");
                 if (string.IsNullOrEmpty(entry.initialFen) || string.IsNullOrEmpty(entry.fen)) throw new FormatException("Missing curriculum FEN.");
@@ -94,7 +106,8 @@ namespace ChessBot.Training
                     !((entry.category == "standard" && entry.startPly == 0 && entry.fen == BoardState.InitialFen) ||
                       (entry.category == "opening3" && entry.startPly == 6) || (entry.category == "opening4" && entry.startPly == 8))))
                     throw new FormatException("Full-game lesson requires a standard start or a 6/8-ply opening history.");
-                var sample = new Sample(entry.category, entry.difficulty, entry.sourceGame, entry.initialFen, entry.moves, entry.fen);
+                if ((!entry.horizontal && entry.historyOffset != 0) || (entry.horizontal && (entry.stage == 5 || entry.initialFen.Split(' ')[2] != "-"))) throw new FormatException("Invalid horizontal curriculum history.");
+                var sample = new Sample(entry.stratum, entry.horizontal, entry.historyOffset, entry.startPly, entry.category, entry.difficulty, entry.sourceGame, entry.initialFen, entry.moves, entry.fen);
                 data._stages[entry.stage].Add(sample);
                 if (entry.stage == 5) (entry.startPly == 0 ? data._standardStarts : data._openingStarts).Add(sample);
                 if (entry.stage == 0) data._capture[entry.difficulty].Add(sample);
@@ -102,6 +115,15 @@ namespace ChessBot.Training
             foreach (var stage in data._stages) if (stage.Count == 0) throw new FormatException("Each of six curriculum stages needs training samples.");
             foreach (var level in data._capture) if (level.Count == 0) throw new FormatException("Each capture difficulty needs training samples.");
             if (data._standardStarts.Count == 0 || data._openingStarts.Count == 0) throw new FormatException("Full-game standard and opening samples are required.");
+            var groups = new Dictionary<string, Dictionary<string,List<Sample>>>();
+            for(int stage=0;stage<6;stage++) foreach(var sample in data._stages[stage])
+            {
+                string key=BucketKey(stage,sample.Difficulty,sample.StartPly==0);
+                if(!groups.TryGetValue(key,out var strata)) groups[key]=strata=new Dictionary<string,List<Sample>>();
+                if(!strata.TryGetValue(sample.Stratum,out var list)) strata[sample.Stratum]=list=new List<Sample>();
+                list.Add(sample);
+            }
+            foreach(var group in groups) data._balanced[group.Key]=new List<List<Sample>>(group.Value.Values);
             return data;
         }
         private static ChessGameController Replay(string initial, string[] moves, bool mirrored)

@@ -80,9 +80,9 @@ def opponent(board, rng):
     return encode_move(move),move
 
 def start_board(record, mirrored):
-    board=chess.Board()
+    board=chess.Board(record.get("initialFen",chess.STARTING_FEN))
     if mirrored:
-        board.turn=chess.BLACK
+        board=board.mirror()
     for uci in record['movesToStart']:
         if mirrored: uci=uci[0]+str(9-int(uci[1]))+uci[2]+str(9-int(uci[3]))+uci[4:]
         move=chess.Move.from_uci(uci)
@@ -185,7 +185,7 @@ def balanced_samples(pool,count,seed):
     if len(pool)<count:raise ValueError('Insufficient evaluation samples')
     groups={}
     for record in sorted(pool,key=lambda r:hashlib.sha256(f"{seed}:{r['gameUrl']}:{r['startPly']}".encode()).hexdigest()):
-        groups.setdefault(record.get('category','capture'),[]).append(record)
+        groups.setdefault(record.get('stratum',record.get('category','capture')),[]).append(record)
     selected=[];index=0
     while len(selected)<count:
         for category in sorted(groups):
@@ -201,7 +201,8 @@ def evaluate(model_path,config,through_stage=5,capture_difficulty=2):
     if config['capture_samples_per_difficulty']<=0 or config['capture_training_samples']<=0:raise ValueError('Invalid capture sample counts')
     data_path=ROOT/config['positions'];records=[json.loads(line) for line in data_path.read_text(encoding='utf-8').splitlines()]
     train_sites={r['gameUrl'] for r in records if r['split']=='train'};eval_sites={r['gameUrl'] for r in records if r['split']=='eval'}
-    if train_sites & eval_sites:raise ValueError('Training/evaluation source game leakage')
+    validation_sites={r['gameUrl'] for r in records if r['split']=='validation'}
+    if train_sites & eval_sites or train_sites & validation_sites or eval_sites & validation_sites:raise ValueError('Training/evaluation/validation source game leakage')
     model=Model(model_path)
     def run_cases(stage,split,count,difficulty=None):
         pool=[r for r in records if r['split']==split and r['stage']==stage and (difficulty is None or r.get('difficulty')==difficulty)]
@@ -209,21 +210,36 @@ def evaluate(model_path,config,through_stage=5,capture_difficulty=2):
         for index,record in enumerate(balanced_samples(pool,count,config['seed'])):
             for mirrored in (False,True):
                 result=play(model,record,mirrored,config['maximum_plies'][stage],config['seed']+stage*1000+index*2+int(mirrored))
-                cases.append(dict(category=record.get("category","capture"),game=record['gameUrl'],startPly=record['startPly'],mirrored=mirrored,**result))
+                cases.append(dict(stratum=record.get('stratum',record.get('category','capture')),horizontal=record.get('horizontal',False),category=record.get("category","capture"),game=record['gameUrl'],startPly=record['startPly'],mirrored=mirrored,**result))
         score=summarize_cases(stage,cases)
         score['categories']=[dict(category=category,episodes=len(subset),success_rate=sum(c['success'] for c in subset)/len(subset))
                              for category in sorted({c['category'] for c in cases})
                              for subset in [[c for c in cases if c['category']==category]]]
+        score['strata']=[dict(stratum=value,episodes=len(subset),success_rate=sum(c['success'] for c in subset)/len(subset))
+                         for value in sorted({c['stratum'] for c in cases}) for subset in [[c for c in cases if c['stratum']==value]]]
+        return score
+    def add_generalization(score,stage,difficulty=None):
+        if config.get('generalization_samples',0):
+            independent=run_cases(stage,'validation',config['generalization_samples'],difficulty)
+            score.update(independent_success_rate=independent['success_rate'],independent_episodes=independent['episodes'],independent=independent)
+            if 'training_success_rate' in score:score['independent_generalization_gap']=score['training_success_rate']-independent['success_rate']
+        if 'training_success_rate' in score:score['generalization_gap']=score['training_success_rate']-score['success_rate']
         return score
     levels=[]
     for difficulty in range((capture_difficulty if through_stage==0 else 2)+1):
         score=run_cases(0,'eval',config['capture_samples_per_difficulty'],difficulty)
         train=run_cases(0,'train',config['capture_training_samples'],difficulty)
         score.update(difficulty=difficulty,training_success_rate=train['success_rate'],training_episodes=train['episodes'])
-        levels.append(score)
+        levels.append(add_generalization(score,0,difficulty))
     capture=dict(levels[-1]);capture['difficulties']=levels
-    stages=[capture]+[run_cases(stage,'eval',config['samples_per_stage']) for stage in range(1,through_stage+1)]
-    return dict(evaluation_version=4,tactical_criterion='two-ply-material-v1',model=str(model_path),model_sha256=hashlib.sha256(Path(model_path).read_bytes()).hexdigest(),dataset_sha256=hashlib.sha256(data_path.read_bytes()).hexdigest(),opponent='material-one-ply-v1',stages=stages)
+    stages=[capture]
+    for stage in range(1,through_stage+1):
+        score=run_cases(stage,'eval',config['samples_per_stage'])
+        if config.get('training_samples_per_stage',0):
+            train=run_cases(stage,'train',config['training_samples_per_stage'])
+            score.update(training_success_rate=train['success_rate'],training_episodes=train['episodes'])
+        stages.append(add_generalization(score,stage))
+    return dict(evaluation_version=5,tactical_criterion='two-ply-material-v1',model=str(model_path),model_sha256=hashlib.sha256(Path(model_path).read_bytes()).hexdigest(),dataset_sha256=hashlib.sha256(data_path.read_bytes()).hexdigest(),opponent='material-one-ply-v1',stages=stages)
 
 if __name__=='__main__':
     ap=argparse.ArgumentParser(); ap.add_argument('model'); ap.add_argument('--config',default=str(ROOT/'config/chess_evaluation.yaml')); ap.add_argument('--through-stage',type=int,choices=range(6),default=5); ap.add_argument('--capture-difficulty',type=int,choices=range(3),default=2); ap.add_argument('--out',default='evaluation.json')

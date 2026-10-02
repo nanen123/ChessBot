@@ -12,8 +12,8 @@ namespace ChessBot.Tests
             var data = ChessCurriculumDataset.LoadBundled();
             for (int stage = 0; stage < 6; stage++)
             {
-                Assert.That(data.Count(stage), Is.EqualTo(new[] {3072,3072,2048,2048,5120,1025}[stage]));
-                if (stage == 0) for (int difficulty=0;difficulty<3;difficulty++) Assert.That(data.Count(0,difficulty),Is.EqualTo(1024));
+                Assert.That(data.Count(stage), Is.GreaterThanOrEqualTo(new[] {3072,3072,2048,2048,5120,1025}[stage]));
+                if (stage == 0) for (int difficulty=0;difficulty<3;difficulty++) Assert.That(data.Count(0,difficulty),Is.GreaterThanOrEqualTo(1024));
                 for (int i = 0; i < data.Count(stage); i += Math.Max(1, data.Count(stage) / 32))
                 {
                     var sample = data.Get(stage, i); var game = new ChessGameController();
@@ -43,6 +43,35 @@ namespace ChessBot.Tests
                     Assert.That(game.Board.ToFen()==ChessBot.Chess.Core.BoardState.InitialFen,Is.EqualTo(standard));
                 }
         }
+        [Test] public void BalancedCaptureSamplingAndAugmentedHistories()
+        {
+            var data=ChessCurriculumDataset.LoadBundled();var state=UnityEngine.Random.state;UnityEngine.Random.InitState(1701);
+            try
+            {
+                var counts=new System.Collections.Generic.Dictionary<string,int>();int horizontal=0;
+                for(int i=0;i<1200;i++)
+                {
+                    var sample=data.SampleBalanced(0,0);if(!counts.ContainsKey(sample.Stratum))counts[sample.Stratum]=0;counts[sample.Stratum]++;
+                    if(sample.Horizontal)horizontal++;
+                }
+                Assert.That(counts.Count,Is.EqualTo(6));foreach(var count in counts.Values)Assert.That(count,Is.InRange(140,260));
+                Assert.That(horizontal,Is.InRange(400,800));
+                for(int stage=0;stage<5;stage++)
+                {
+                    int checkedSamples=0;
+                    for(int i=0;i<data.Count(stage) && checkedSamples<8;i++)
+                    {
+                        var sample=data.Get(stage,i);if(!sample.Horizontal)continue;
+                        Assert.That(sample.HistoryMoves(false).Length+sample.HistoryOffset,Is.EqualTo(sample.StartPly));
+                        Assert.That(sample.HistoryInitialFen.Split(' ')[2],Is.EqualTo("-"));
+                        var game=new ChessGameController();sample.Apply(game,false);Assert.That(game.TurnVersion,Is.Zero);Assert.That(game.CanClaimDraw(),Is.False);
+                        sample.Apply(game,true);Assert.That(game.TurnVersion,Is.Zero);Assert.That(game.Result.IsFinished,Is.False);checkedSamples++;
+                    }
+                    Assert.That(checkedSamples,Is.GreaterThan(0));
+                }
+            }
+            finally {UnityEngine.Random.state=state;}
+        }
         [Test] public void CaptureBucketsAreDisjointAndMissingDifficultyFailsClosed()
         {
             var data=ChessCurriculumDataset.LoadBundled();
@@ -54,7 +83,7 @@ namespace ChessBot.Tests
                 {
                     var sample=data.Get(0,difficulty,i);
                     Assert.That(sample.Difficulty,Is.EqualTo(difficulty));
-                    Assert.That(sources.Add(sample.SourceGame),Is.True);
+                    Assert.That(sources.Add(sample.SourceGame+":"+sample.StartPly+":"+sample.Horizontal),Is.True);
                 }
             }
             string json=Resources.Load<TextAsset>("ChessCurriculumTraining").text;

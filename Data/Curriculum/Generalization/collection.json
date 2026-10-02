@@ -1,0 +1,25 @@
+{
+  "sourceSha256": "aa40b3671fa3cf1072eb182892cd90b0e1e003a4a5943492f64b77e7f3fd1635",
+  "gamesScanned": 49719,
+  "counts": {
+    "('validation', (5, -1, 'opening3'))": 32,
+    "('validation', (5, -1, 'opening4'))": 32,
+    "('validation', (2, -1, 'mateIn1'))": 32,
+    "('validation', (1, -1, 'safe_gain'))": 32,
+    "('validation', (4, -1, 'middlegame'))": 64,
+    "('validation', (1, -1, 'capture_choice'))": 32,
+    "('validation', (0, 1, 'safe_capture'))": 64,
+    "('validation', (0, 2, 'favorable_exchange'))": 64,
+    "('validation', (2, -1, 'mateIn2'))": 32,
+    "('validation', (1, -1, 'favorable_exchange'))": 32,
+    "('validation', (0, 0, 'free_capture'))": 64,
+    "('validation', (3, -1, 'KQK'))": 32,
+    "('validation', (3, -1, 'KRK'))": 32,
+    "('train', (0, 0, 'rook'))": 32,
+    "('train', (0, 0, 'king'))": 32,
+    "('train', (0, 0, 'queen'))": 32,
+    "('train', (0, 0, 'pawn'))": 32,
+    "('train', (0, 0, 'knight'))": 32,
+    "('train', (0, 0, 'bishop'))": 32
+  }
+}

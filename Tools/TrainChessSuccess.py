@@ -15,7 +15,24 @@ from EvaluateChess import evaluate
 from SuccessGate import SuccessGate
 
 def compact_score(score):
-    return {k:([compact_score(d) for d in value] if k=='difficulties' else value) for k,value in score.items() if k!='cases'}
+    if isinstance(score,dict):return {k:compact_score(v) for k,v in score.items() if k!='cases'}
+    if isinstance(score,list):return [compact_score(v) for v in score]
+    return score
+
+def save_evaluation_model(trainer):
+    """Export the current policy without serializing SAC replay memory.
+
+    Keep the GhostTrainer save path so self-play metadata is preserved. Restore
+    the setting even if export fails; normal checkpoints and shutdown still save
+    replay memory according to the configured setting. Requires unthreaded SAC.
+    """
+    inner=getattr(trainer,'trainer',trainer)
+    enabled=inner.checkpoint_replay_buffer
+    try:
+        inner.checkpoint_replay_buffer=False
+        trainer.save_model()
+    finally:
+        inner.checkpoint_replay_buffer=enabled
 
 def main():
     own=argparse.ArgumentParser(add_help=False)
@@ -57,7 +74,7 @@ def main():
             if not state_path.exists(): gate.save(state_path)
             if not gate.due(step): return count
             stage=gate.state['stage']; difficulty=gate.state['capture_difficulty']
-            trainer.save_model()
+            save_evaluation_model(trainer)
             model=Path(self.output_path)/'ChessV1.onnx'
             print(f'[Evaluation] step={step}, stage={stage}, capture_difficulty={difficulty}; testing current and previous lessons',flush=True)
             report=evaluate(model,config,stage,difficulty)
@@ -70,6 +87,13 @@ def main():
                 out.write(json.dumps({k:v for k,v in report.items() if k!='stages'} | {'scores':[compact_score(s) for s in report['stages']]})+'\n')
             for score in report['stages']:
                 trainer.stats_reporter.set_stat(f'Evaluation/Lesson{score["stage"]}/Success',score['success_rate'])
+                if max(score.get('generalization_gap',0),score.get('independent_generalization_gap',0))>0.2:
+                    print(f'[Generalization] stage={score["stage"]}: train/eval gap={score["generalization_gap"]:.3f}, independent gap={score.get("independent_generalization_gap",0):.3f}; inspect strata before extending training.',flush=True)
+                prefix=f'Evaluation/Lesson{score["stage"]}'
+                for key,label in [('training_success_rate','TrainingSuccess'),('generalization_gap','GeneralizationGap'),('independent_success_rate','IndependentSuccess'),('independent_generalization_gap','IndependentGap')]:
+                    if key in score:trainer.stats_reporter.set_stat(prefix+'/'+label,score[key])
+                for group in score.get('strata',[]):
+                    trainer.stats_reporter.set_stat(prefix+'/Strata/'+group['stratum'].replace(':','_')+'/Success',group['success_rate'])
                 for name,value in score['metrics'].items():
                     if value is not None: trainer.stats_reporter.set_stat(f'Evaluation/Lesson{score["stage"]}/{name}',value)
                 for level in score.get('difficulties',[]):
@@ -77,6 +101,9 @@ def main():
                     trainer.stats_reporter.set_stat(prefix+'/Success',level['success_rate'])
                     trainer.stats_reporter.set_stat(prefix+'/TrainingSuccess',level['training_success_rate'])
                     trainer.stats_reporter.set_stat(prefix+'/GeneralizationGap',level['training_success_rate']-level['success_rate'])
+                    if 'independent_success_rate' in level:
+                        trainer.stats_reporter.set_stat(prefix+'/IndependentSuccess',level['independent_success_rate'])
+                        trainer.stats_reporter.set_stat(prefix+'/IndependentGap',level['independent_generalization_gap'])
             trainer.stats_reporter.set_stat('Evaluation/Stage',gate.state['stage'])
             trainer.stats_reporter.set_stat('Evaluation/CaptureDifficulty',gate.state['capture_difficulty'])
             if promoted:

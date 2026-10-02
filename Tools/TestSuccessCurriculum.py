@@ -6,13 +6,81 @@ from SuccessGate import SuccessGate
 from EvaluateChess import ROOT, Model, legal_actions, observations, start_board, forced_mate
 import chess,yaml
 
+class GeneralizationDataTests(unittest.TestCase):
+    def test_horizontal_history_preserves_repetition_and_capture_relation(self):
+        from CurriculumGeneralization import horizontal_record,replay,orbit
+        board=chess.Board('7k/8/8/8/8/8/p7/R6K w - - 4 40')
+        record=dict(stage=0,difficulty=0,initialFen=board.fen(),movesToStart=[],fen=board.fen(),startPly=0,solutionFirstMove='a1a2')
+        changed=horizontal_record(record)
+        self.assertEqual(changed['solutionFirstMove'],'h1h2')
+        self.assertEqual(orbit(board),orbit(replay(changed)))
+        self.assertEqual(replay(changed).halfmove_clock,4)
+        start=chess.Board('6nk/8/8/8/8/8/p7/R5NK w - - 0 1');moves=['g1f3','g8f6','f3g1','f6g8']
+        b=start.copy()
+        for m in moves:b.push_uci(m)
+        record.update(initialFen=start.fen(),movesToStart=moves,fen=b.fen(),startPly=4)
+        self.assertTrue(replay(horizontal_record(record)).is_repetition(2))
+    def test_castling_positions_and_fullgame_not_reflected(self):
+        from CurriculumGeneralization import horizontal_record
+        r=dict(stage=4,movesToStart=[],fen=chess.STARTING_FEN,startPly=0)
+        self.assertIsNone(horizontal_record(r));r['stage']=5;self.assertIsNone(horizontal_record(r))
+
+class EvaluationSaveTests(unittest.TestCase):
+    def test_export_skips_replay_and_normal_save_retains_config(self):
+        from TrainChessSuccess import save_evaluation_model
+        for wrapped in (False,True):
+            for enabled in (False,True):
+                class Trainer:
+                    checkpoint_replay_buffer=enabled
+                    models=0
+                    buffers=0
+                    def save_model(self):
+                        self.models+=1
+                        if self.checkpoint_replay_buffer:self.buffers+=1
+                inner=Trainer()
+                class Ghost:
+                    trainer=inner
+                    metadata_saves=0
+                    def save_model(self):
+                        self.metadata_saves+=1
+                        self.trainer.save_model()
+                trainer=Ghost() if wrapped else inner
+                save_evaluation_model(trainer)
+                self.assertEqual(inner.models,1)
+                self.assertEqual(inner.buffers,0)
+                self.assertEqual(inner.checkpoint_replay_buffer,enabled)
+                if wrapped:self.assertEqual(trainer.metadata_saves,1)
+                trainer.save_model()
+                self.assertEqual(inner.buffers,int(enabled))
+
+    def test_export_failure_restores_replay_setting(self):
+        from TrainChessSuccess import save_evaluation_model
+        class Trainer:
+            checkpoint_replay_buffer=True
+            def save_model(self):raise RuntimeError('export failed')
+        trainer=Trainer()
+        with self.assertRaisesRegex(RuntimeError,'export failed'):save_evaluation_model(trainer)
+        self.assertTrue(trainer.checkpoint_replay_buffer)
+
 class GateTests(unittest.TestCase):
     def setUp(self):
         self.config=yaml.safe_load((ROOT/'config/chess_evaluation.yaml').read_text(encoding='utf-8-sig'))
-        self.config.update(evaluation_interval=10,minimum_stage_steps=20,consecutive_passes=2)
+        self.config.update(evaluation_interval=10,minimum_stage_steps=20,consecutive_passes=2,require_category_validation=False)
         self.gate=SuccessGate(self.config,'test')
     def report(self, stage=0, rate=1):
-        return {'stages':[dict(stage=s,episodes=self.config["minimum_episodes"],success_rate=rate,**({'difficulties':[dict(difficulty=d,episodes=128,success_rate=rate) for d in range(3)]} if s==0 else {})) for s in range(stage+1)]}
+        return {'stages':[dict(stage=s,episodes=self.config["minimum_episodes"],success_rate=rate,independent_success_rate=rate,independent_episodes=64,**({'difficulties':[dict(difficulty=d,episodes=128,success_rate=rate,independent_success_rate=rate,independent_episodes=64) for d in range(3)]} if s==0 else {})) for s in range(stage+1)]}
+    def test_independent_validation_blocks_memorized_success(self):
+        report=self.report();report['stages'][0]['difficulties'][0]['independent_success_rate']=0.5
+        self.assertFalse(self.gate.accept(report,100))
+        report['stages'][0]['difficulties'][0]['independent_episodes']=0
+        with self.assertRaises(ValueError):self.gate.accept(report,110)
+    def test_weak_endgame_category_cannot_hide_in_average(self):
+        self.config['require_category_validation']=True;self.gate.state.update(stage=3,capture_difficulty=2)
+        report=self.report(3)
+        for lesson,names in [(1,['safe_gain','favorable_exchange','capture_choice']),(2,['mateIn1','mateIn2']),(3,['KQK','KRK'])]:
+            r=report['stages'][lesson];r['categories']=[dict(category=c,episodes=32,success_rate=1) for c in names];r['independent']={'categories':[dict(c) for c in r['categories']]}
+        report['stages'][3]['independent']['categories'][1]['success_rate']=0.5
+        self.assertFalse(self.gate.accept(report,100))
     def test_time_alone_cannot_promote(self):
         for step in (100,200,300): self.assertFalse(self.gate.accept(self.report(rate=0),step))
         self.assertEqual(self.gate.state['stage'],0)

@@ -20,7 +20,7 @@ namespace ChessBot.Training
                 Directory.CreateDirectory(Path.GetDirectoryName(_path));
                 var record = new Record
                 {
-                    curriculumCategory = sample?.Category, sourceGame = sample?.SourceGame, sourceStartPly = sample?.StartPly ?? 0, sourceMirrored = mirrored,
+                    curriculumStratum = sample?.Stratum, sourceHorizontal = sample?.Horizontal ?? false, historyOffset = sample?.HistoryOffset ?? 0, curriculumCategory = sample?.Category, sourceGame = sample?.SourceGame, sourceStartPly = sample?.StartPly ?? 0, sourceMirrored = mirrored,
                     datasetId = sample == null ? null : ChessCurriculumDataset.LoadBundled().Id,
                     historyInitialFen = sample == null ? initialFen : mirrored ? ChessCurriculum.SwapColors(sample.HistoryInitialFen) : sample.HistoryInitialFen,
                     historyMoves = sample?.HistoryMoves(mirrored) ?? new string[0],
@@ -39,6 +39,9 @@ namespace ChessBot.Training
         [Serializable] private sealed class Record
         {
             public int schemaVersion, whiteTeam = 0, blackTeam = 1, curriculumStage, captureDifficulty, sampledCaptureDifficulty;
+            public string curriculumStratum;
+            public bool sourceHorizontal;
+            public int historyOffset;
             public string curriculumCategory, sourceGame, datasetId, historyInitialFen;
             public int sourceStartPly;
             public bool sourceMirrored;
